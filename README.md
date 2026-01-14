@@ -1,4 +1,4 @@
-# FloraPsi 🌿
+# FloraPsi (versão 0.1)🌿
 
 **FloraPsi** é um tema exclusivo e personalizado para WordPress, desenvolvido sob medida para profissionais de psicologia. O projeto une uma estética minimalista e botânica a uma arquitetura de software flexível, permitindo que 100% do conteúdo seja gerenciado de forma intuitiva pelo usuário final.
 
