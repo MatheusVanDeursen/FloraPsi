@@ -1,31 +1,36 @@
-FloraPsi 🌿
-FloraPsi é um tema customizado para WordPress desenvolvido para profissionais de psicologia, focado em elegância, performance e facilidade de gerenciamento de conteúdo. O projeto foi construído do zero (Custom Theme) para atender às necessidades específicas da psicóloga Louize Vieira.
+# FloraPsi 🌿
 
-🚀 Tecnologias Utilizadas
-PHP: Estrutura lógica do tema e integração com o motor do WordPress.
+**FloraPsi** é um tema exclusivo e personalizado para WordPress, desenvolvido sob medida para profissionais de psicologia. O projeto une uma estética minimalista e botânica a uma arquitetura de software flexível, permitindo que 100% do conteúdo seja gerenciado de forma intuitiva pelo usuário final.
 
-CMB2 (Custom Meta Boxes 2): Implementação de campos personalizados para tornar 100% do conteúdo editável pelo painel administrativo.
+## ✨ Funcionalidades Principais
 
-Vanilla JavaScript: Desenvolvimento de componentes interativos sob medida, como carrosséis infinitos e sistemas de accordion, sem a necessidade de bibliotecas pesadas.
+* **Painel Administrativo Dinâmico:** Implementação de Metaboxes customizadas (CMB2) para seções de "Sobre Mim", "Percurso Profissional", "Serviços" e "Dúvidas Frequentes".
+* **Carrossel de Depoimentos Inteligente:** Sistema híbrido que suporta tanto Shortcodes de terceiros (como Trustindex) quanto o cadastro manual de depoimentos via painel.
+* **Performance com Vanilla JS:** Navegação infinita do carrossel, menus mobile e sistemas de accordion desenvolvidos sem dependências externas, garantindo um carregamento rápido.
+* **Animações de Entrada:** Uso de `IntersectionObserver` para disparar animações de surgimento e efeitos visuais sequenciais no banner e cards de serviço.
+* **Experiência Visual Premium:** Tipografia refinada utilizando as fontes *Sofia Pro*, *Kepler* e *Tan Mon Cheri*, combinada com uma "Snake Animation" exclusiva nas bordas do botão principal.
 
-CSS3: Estilização baseada em tipografia sofisticada (Sofia Pro e Tan Mon Cheri) e animações personalizadas de bordas (Snake Animation).
+## 🚀 Tecnologias e Ferramentas
 
-✨ Principais Funcionalidades
-Gerenciamento Dinâmico: Metaboxes personalizadas para seções de "Sobre Mim", "Percurso Profissional", "Serviços" e "Dúvidas Frequentes".
+* **PHP:** Estrutura e lógica do tema WordPress.
+* **JavaScript (ES6+):** Lógica de carrossel responsivo, manipulação do DOM e observadores de rolagem.
+* **CSS3:** Layouts baseados em Flexbox/Grid e animações complexas com `@keyframes`.
+* **CMB2:** Framework para criação de campos personalizados e grupos repetíveis.
+* **Font Awesome:** Biblioteca de ícones integrada para a seção de serviços.
 
-Carrossel de Depoimentos Híbrido: Suporte para integração via Shortcodes (ex: Trustindex) ou cadastro manual de depoimentos via CMB2, com transição suave e loop infinito.
+## 🛠️ Estrutura do Projeto
 
-Animações de Entrada: Uso de IntersectionObserver no JavaScript para disparar animações de surgimento conforme o usuário navega pelo site.
+* `index.php`: Estrutura principal da One-Page e loop do WordPress.
+* `cmb2-fields.php`: Configuração de todas as áreas editáveis do backend.
+* `styles.css`: Identidade visual completa e regras de responsividade.
+* `script.js`: Comportamento dinâmico e interações do usuário.
 
-Accordion de FAQ: Sistema interativo para dúvidas frequentes que otimiza o espaço vertical da página.
+## 📦 Instalação
 
-Totalmente Responsivo: Design adaptável para desktop, tablets e smartphones, com breakpoints sincronizados entre CSS e lógica de carrossel JS.
+1. Clone o repositório na pasta de temas do seu WordPress: `/wp-content/themes/florapsi`.
+2. Certifique-se de ter o plugin **CMB2** instalado e ativo.
+3. Ative o tema no menu **Aparência > Temas**.
+4. Configure as opções globais (redes sociais e links de contato) através do **Personalizador** do WordPress.
 
-🛠️ Como instalar
-Clone este repositório na pasta wp-content/themes/ da sua instalação WordPress.
-
-Instale e ative o plugin CMB2.
-
-Ative o tema FloraPsi no painel administrativo do WordPress.
-
-Certifique-se de que o menu e as configurações de contato estejam configurados através do "Personalizar" (Customizer).
+---
+Desenvolvido como um projeto de portfólio para demonstrar habilidades em desenvolvimento de temas WordPress sob medida.
