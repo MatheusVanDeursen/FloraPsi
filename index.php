@@ -212,8 +212,8 @@
 
                 <?php if ( ! empty( $duvidas_lista ) && is_array( $duvidas_lista ) ) : ?>
                     <div class="duvidas-accordion">
-                        <?php foreach ( $duvidas_lista as $item ) : ?>
-                            <div class="duvidas-item">
+                        <?php foreach ( $duvidas_lista as $index => $item ) : ?>
+                            <div class="duvidas-item slide-animation" data-delay="<?php echo $index * 150; ?>">
                                 <div class="duvidas-question">
                                     <?php if ( ! empty( $item['pergunta'] ) ) : ?>
                                         <span><?php echo esc_html( $item['pergunta'] ); ?></span>

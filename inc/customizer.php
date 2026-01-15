@@ -195,7 +195,6 @@ function louize_customize_register($wp_customize) {
     * ------------------------------------------------------------------------- */
     $wp_customize->add_panel('louize_sobre_panel', array(
         'title'       => __('Sobre Mim', 'louize'),
-        'description' => __('Configurações de layout, tipografia e cores da seção Sobre Mim.', 'louize'),
         'priority'    => 35,
     ));
 
@@ -379,149 +378,199 @@ function louize_customize_register($wp_customize) {
         'priority'    => 37,
     ));
 
-    /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('louize_servicos_layout_section', array(
-        'title'    => __('Layout e Fundo', 'louize'),
+    /* --- SUBSEÇÃO 1: Fundo e Título --- */
+    $wp_customize->add_section('louize_serv_bg_tit_section', array(
+        'title'    => __('Fundo e Título', 'louize'),
         'panel'    => 'louize_servicos_panel',
         'priority' => 10,
     ));
 
-    // Cor de Fundo da Seção
+    // --- Fundo ---
     $wp_customize->add_setting('louize_servicos_background_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_bg_clr_ctrl', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_background_color', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_servicos_layout_section',
-        'settings' => 'louize_servicos_background_color',
+        'section'  => 'louize_serv_bg_tit_section',
     )));
 
-    // Cor de Fundo do Card
-    $wp_customize->add_setting('louize_servicos_card_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_card_bg_clr_ctrl', array(
-        'label'    => __('Cor de Fundo do Card', 'louize'),
-        'section'  => 'louize_servicos_layout_section',
-        'settings' => 'louize_servicos_card_background_color',
+    // --- Título Principal ---
+    $wp_customize->add_setting('louize_servicos_main_title_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_main_title_color', array(
+        'label'    => __('Cor do Título', 'louize'),
+        'section'  => 'louize_serv_bg_tit_section',
     )));
 
-    // Padding Mobile
-    $wp_customize->add_setting('louize_servicos_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_pad_mob_ctrl', array(
-        'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'louize_servicos_layout_section',
-        'settings' => 'louize_servicos_padding_mobile',
-        'type'     => 'number',
-    ));
-
-    /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_servicos_typography_section', array(
-        'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_servicos_panel',
-        'priority' => 20,
-    ));
-
-    // --- Tipografia: Título Principal ---
     $wp_customize->add_setting('louize_servicos_main_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_servicos_main_tit_ff_ctrl', array(
-        'label'    => __('Fonte do Título Principal', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_main_title_fontfamily',
+    $wp_customize->add_control('louize_servicos_main_title_fontfamily', array(
+        'label'    => __('Fonte do Título', 'louize'),
+        'section'  => 'louize_serv_bg_tit_section',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
     $wp_customize->add_setting('louize_servicos_main_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_main_tit_fs_ctrl', array(
-        'label'    => __('Tamanho do Título Principal (px)', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_main_title_fontsize',
+    $wp_customize->add_control('louize_servicos_main_title_fontsize', array(
+        'label'    => __('Tamanho do Título (px)', 'louize'),
+        'section'  => 'louize_serv_bg_tit_section',
         'type'     => 'number',
     ));
 
     $wp_customize->add_setting('louize_servicos_main_title_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_main_tit_fw_ctrl', array(
-        'label'    => __('Peso do Título Principal', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_main_title_fontweight',
+    $wp_customize->add_control('louize_servicos_main_title_fontweight', array(
+        'label'    => __('Peso da Fonte', 'louize'),
+        'section'  => 'louize_serv_bg_tit_section',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
-    // --- Tipografia: Texto do Card ---
-    $wp_customize->add_setting('louize_servicos_card_text_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_serv_card_txt_ff_ctrl', array(
-        'label'    => __('Fonte do Texto do Card', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_card_text_fontfamily',
+    /* --- SUBSEÇÃO 2: Cards - Textos e Ícone --- */
+    $wp_customize->add_section('louize_serv_cards_texts_section', array(
+        'title'    => __('Cards: Textos e Ícone', 'louize'),
+        'panel'    => 'louize_servicos_panel',
+        'priority' => 20,
+    ));
+
+    // --- Título do Card ---
+    $wp_customize->add_setting('louize_serv_card_tit_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('louize_serv_card_tit_ff', array(
+        'label'    => __('Fonte do Título do Card', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_servicos_card_text_fontsize', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_txt_fs_ctrl', array(
-        'label'    => __('Tamanho do Texto do Card (px)', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_card_text_fontsize',
+    $wp_customize->add_setting('louize_serv_card_tit_fs', array('default' => '26', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_tit_fs', array(
+        'label'    => __('Tamanho do Título do Card (px)', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_servicos_card_text_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_txt_fw_ctrl', array(
-        'label'    => __('Peso do Texto do Card', 'louize'),
-        'section'  => 'louize_servicos_typography_section',
-        'settings' => 'louize_servicos_card_text_fontweight',
+    $wp_customize->add_setting('louize_serv_card_tit_fw', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_tit_fw', array(
+        'label'    => __('Peso do Título do Card', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
-    /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('louize_servicos_style_section', array(
-        'title'    => __('Cores e Estilo', 'louize'),
+    // --- Texto do Card ---
+    $wp_customize->add_setting('louize_serv_card_txt_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('louize_serv_card_txt_ff', array(
+        'label'    => __('Fonte do Texto do Card', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
+        'type'     => 'select',
+        'choices'  => $font_family_choices,
+    ));
+
+    $wp_customize->add_setting('louize_serv_card_txt_fs', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_txt_fs', array(
+        'label'    => __('Tamanho do Texto do Card (px)', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
+        'type'     => 'number',
+    ));
+
+    $wp_customize->add_setting('louize_serv_card_txt_fw', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_txt_fw', array(
+        'label'    => __('Peso do Texto do Card', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
+        'type'     => 'select',
+        'choices'  => $font_weight_choices,
+    ));
+
+    // --- Ícone ---
+    $wp_customize->add_setting('louize_serv_icon_size', array('default' => '45', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_icon_size', array(
+        'label'    => __('Tamanho do Ícone (px)', 'louize'),
+        'section'  => 'louize_serv_cards_texts_section',
+        'type'     => 'number',
+    ));
+
+    /* --- SUBSEÇÃO 3: Cards - Cores --- */
+    $wp_customize->add_section('louize_serv_cards_colors_section', array(
+        'title'    => __('Cards: Cores', 'louize'),
         'panel'    => 'louize_servicos_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_servicos_main_title_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_main_tit_clr_ctrl', array(
-        'label'    => __('Cor do Título Principal', 'louize'),
-        'section'  => 'louize_servicos_style_section',
-        'settings' => 'louize_servicos_main_title_color',
+    $wp_customize->add_setting('louize_serv_card_tit_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_tit_clr', array(
+        'label'    => __('Cor do Título do Card', 'louize'),
+        'section'  => 'louize_serv_cards_colors_section',
+    )));
+
+    $wp_customize->add_setting('louize_serv_card_txt_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_txt_clr', array(
+        'label'    => __('Cor do Texto do Card', 'louize'),
+        'section'  => 'louize_serv_cards_colors_section',
     )));
 
     $wp_customize->add_setting('louize_servicos_icon_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_icon_clr_ctrl', array(
-        'label'    => __('Cor dos Ícones', 'louize'),
-        'section'  => 'louize_servicos_style_section',
-        'settings' => 'louize_servicos_icon_color',
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_icon_color', array(
+        'label'    => __('Cor do Ícone', 'louize'),
+        'section'  => 'louize_serv_cards_colors_section',
     )));
 
-    $wp_customize->add_setting('louize_servicos_card_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_tit_clr_ctrl', array(
-        'label'    => __('Cor do Título do Card', 'louize'),
-        'section'  => 'louize_servicos_style_section',
-        'settings' => 'louize_servicos_card_title_color',
+    $wp_customize->add_setting('louize_serv_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_bg_color', array(
+        'label'    => __('Cor de Fundo do Card', 'louize'),
+        'section'  => 'louize_serv_cards_colors_section',
     )));
 
-    $wp_customize->add_setting('louize_servicos_card_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_txt_clr_ctrl', array(
-        'label'    => __('Cor do Texto do Card', 'louize'),
-        'section'  => 'louize_servicos_style_section',
-        'settings' => 'louize_servicos_card_text_color',
-    )));
-
-    /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('louize_servicos_mobile_section', array(
-        'title'    => __('Responsividade (Mobile)', 'louize'),
+    /* --- SUBSEÇÃO 4: Cards - Responsividade --- */
+    $wp_customize->add_section('louize_serv_cards_resp_section', array(
+        'title'    => __('Cards: Responsividade', 'louize'),
         'panel'    => 'louize_servicos_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_servicos_main_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_main_tit_fs_mob_ctrl', array(
-        'label'    => __('Tam. Título Principal - Mobile (px)', 'louize'),
-        'section'  => 'louize_servicos_mobile_section',
-        'settings' => 'louize_servicos_main_title_fontsize_mobile',
+    // --- Largura Desktop ---
+    $wp_customize->add_setting('louize_serv_card_max_width_desktop', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_max_width_desktop', array(
+        'label'    => __('Largura Máxima do Card - Desktop (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
+    // --- Tamanho Título Seção Mobile ---
+    $wp_customize->add_setting('louize_servicos_main_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_servicos_main_title_fontsize_mobile', array(
+        'label'    => __('Tam. Título Seção - Mobile (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
+        'type'     => 'number',
+    ));
+
+    // --- Tamanho Título Card Mobile ---
+    $wp_customize->add_setting('louize_serv_card_tit_fs_mobile', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_tit_fs_mobile', array(
+        'label'    => __('Tam. Título do Card - Mobile (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
+        'type'     => 'number',
+    ));
+
+    // --- Tamanho Texto Card Mobile ---
+    $wp_customize->add_setting('louize_serv_card_txt_fs_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_txt_fs_mobile', array(
+        'label'    => __('Tam. Texto do Card - Mobile (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
+        'type'     => 'number',
+    ));
+
+    // --- Largura Card Mobile ---
+    $wp_customize->add_setting('louize_serv_card_max_width_mobile', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_card_max_width_mobile', array(
+        'label'    => __('Largura Máxima do Card - Mobile (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
+        'type'     => 'number',
+    ));
+
+    // --- Tamanho Ícone Mobile ---
+    $wp_customize->add_setting('louize_serv_icon_size_mobile', array('default' => '30', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('louize_serv_icon_size_mobile', array(
+        'label'    => __('Tamanho do Ícone - Mobile (px)', 'louize'),
+        'section'  => 'louize_serv_cards_resp_section',
+        'type'     => 'number',
+    ));
+    
     /* -------------------------------------------------------------------------
     * PAINEL: MEU PERCURSO
     * ------------------------------------------------------------------------- */
@@ -1401,33 +1450,40 @@ function louize_dynamic_css() {
         $percurso_texto_color = get_theme_mod('louize_percurso_texto_color', '#5A6E59');
         if ($percurso_texto_color !== '#5A6E59') { echo ".percurso .percurso-text, .percurso .percurso-text p { color: " . esc_attr($percurso_texto_color) . "; }"; }
 
-        // Serviços
+        // Serviços (Desktop)
         $servicos_bg_color = get_theme_mod('louize_servicos_background_color', '#5A6E59');
-        if ($servicos_bg_color !== '#5A6E59') { echo ".servico { background-color: " . esc_attr($servicos_bg_color) . "; }"; }
+        echo ".servico { background-color: " . esc_attr($servicos_bg_color) . "; }";
         
-        $servicos_main_title_ff = get_theme_mod('louize_servicos_main_title_fontfamily', 'Tan Mon Cheri');
-        if ($servicos_main_title_ff !== 'Tan Mon Cheri') { echo ".servico .servico-title { font-family: '" . esc_attr($servicos_main_title_ff) . "', sans-serif; }"; }
-        $servicos_main_title_fs = get_theme_mod('louize_servicos_main_title_fontsize', '50');
-        if ($servicos_main_title_fs !== '50') { echo ".servico .servico-title { font-size: " . esc_attr($servicos_main_title_fs) . "px; }"; }
-        $servicos_main_title_fw = get_theme_mod('louize_servicos_main_title_fontweight', '400');
-        if ($servicos_main_title_fw !== '400') { echo ".servico .servico-title { font-weight: " . esc_attr($servicos_main_title_fw) . "; }"; }
-        $servicos_main_title_color = get_theme_mod('louize_servicos_main_title_color', '#F8F0E3');
-        if ($servicos_main_title_color !== '#F8F0E3') { echo ".servico .servico-title { color: " . esc_attr($servicos_main_title_color) . "; }"; }
-        
-        $servicos_card_bg_color = get_theme_mod('louize_servicos_card_background_color', '#FFFFFF');
-        if ($servicos_card_bg_color !== '#FFFFFF') { echo ".servico-card { background-color: " . esc_attr($servicos_card_bg_color) . "; }"; }
-        $servicos_icon_color = get_theme_mod('louize_servicos_icon_color', '#9B545A');
-        if ($servicos_icon_color !== '#9B545A') { echo ".servico .servico-icon i { color: " . esc_attr($servicos_icon_color) . "; }"; }
-        $servicos_card_title_color = get_theme_mod('louize_servicos_card_title_color', '#5A6E59');
-        if ($servicos_card_title_color !== '#5A6E59') { echo ".servico .servico-card-title { color: " . esc_attr($servicos_card_title_color) . "; }"; }
-        $servicos_card_text_ff = get_theme_mod('louize_servicos_card_text_fontfamily', 'Sofia Pro');
-        if ($servicos_card_text_ff !== 'Sofia Pro') { echo ".servico .servico-card-text { font-family: '" . esc_attr($servicos_card_text_ff) . "', sans-serif; }"; }
-        $servicos_card_text_fs = get_theme_mod('louize_servicos_card_text_fontsize', '18');
-        if ($servicos_card_text_fs !== '18') { echo ".servico .servico-card-text { font-size: " . esc_attr($servicos_card_text_fs) . "px; }"; }
-        $servicos_card_text_fw = get_theme_mod('louize_servicos_card_text_fontweight', '300');
-        if ($servicos_card_text_fw !== '300') { echo ".servico .servico-card-text { font-weight: " . esc_attr($servicos_card_text_fw) . "; }"; }
-        $servicos_card_text_color = get_theme_mod('louize_servicos_card_text_color', '#5A6E59');
-        if ($servicos_card_text_color !== '#5A6E59') { echo ".servico .servico-card-text { color: " . esc_attr($servicos_card_text_color) . "; }"; }
+        echo ".servico .servico-title {";
+        echo " color: " . esc_attr(get_theme_mod('louize_servicos_main_title_color', '#F8F0E3')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('louize_servicos_main_title_fontfamily', 'Tan Mon Cheri')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontsize', '50')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontweight', '400')) . ";";
+        echo "}";
+
+        echo ".servico-card {";
+        echo " background-color: " . esc_attr(get_theme_mod('louize_serv_card_bg_color', '#FFFFFF')) . ";";
+        echo " max-width: " . esc_attr(get_theme_mod('louize_serv_card_max_width_desktop', '400')) . "px;";
+        echo "}";
+
+        echo ".servico .servico-icon i {";
+        echo " color: " . esc_attr(get_theme_mod('louize_servicos_icon_color', '#9B545A')) . ";";
+        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_icon_size', '45')) . "px;";
+        echo "}";
+
+        echo ".servico .servico-card-title {";
+        echo " color: " . esc_attr(get_theme_mod('louize_serv_card_tit_clr', '#5A6E59')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('louize_serv_card_tit_ff', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_card_tit_fs', '26')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('louize_serv_card_tit_fw', '600')) . ";";
+        echo "}";
+
+        echo ".servico .servico-card-text {";
+        echo " color: " . esc_attr(get_theme_mod('louize_serv_card_txt_clr', '#5A6E59')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('louize_serv_card_txt_ff', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_card_txt_fs', '18')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('louize_serv_card_txt_fw', '300')) . ";";
+        echo "}";
 
         // Depoimentos
         $feedback_bg_color = get_theme_mod('louize_feedback_background_color', '#F8F0E3');
@@ -1596,15 +1652,12 @@ function louize_dynamic_css() {
                 echo ".percurso .percurso-text, .percurso .percurso-text p { font-size: " . esc_attr($percurso_texto_fs_mobile) . "px; }";
             }
 
-            // Serviços
-            $servicos_padding_mobile = get_theme_mod('louize_servicos_padding_mobile', '40');
-            if ($servicos_padding_mobile !== '40') {
-                echo ".servico { padding-top: " . esc_attr($servicos_padding_mobile) . "px; padding-bottom: " . esc_attr($servicos_padding_mobile) . "px; }";
-            }
-            $servicos_main_title_fs_mobile = get_theme_mod('louize_servicos_main_title_fontsize_mobile', '36'); // Corrigido para o valor mobile padrão
-            if ($servicos_main_title_fs_mobile !== '36') {
-                echo ".servico .servico-title { font-size: " . esc_attr($servicos_main_title_fs_mobile) . "px; }";
-            }
+            // Serviços Mobile
+            echo ".servico .servico-title { font-size: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontsize_mobile', '36')) . "px; }";
+            echo ".servico-card { max-width: " . esc_attr(get_theme_mod('louize_serv_card_max_width_mobile', '300')) . "px; }";
+            echo ".servico .servico-icon i { font-size: " . esc_attr(get_theme_mod('louize_serv_icon_size_mobile', '30')) . "px; }";
+            echo ".servico .servico-card-title { font-size: " . esc_attr(get_theme_mod('louize_serv_card_tit_fs_mobile', '22')) . "px; }";
+            echo ".servico .servico-card-text { font-size: " . esc_attr(get_theme_mod('louize_serv_card_txt_fs_mobile', '16')) . "px; }";
 
             // Depoimentos
             $feedback_padding_mobile = get_theme_mod('louize_feedback_padding_mobile', '40');

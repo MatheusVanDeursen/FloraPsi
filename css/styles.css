@@ -213,6 +213,13 @@ body *, body *::before, body *::after {
   scroll-margin-top: 120px;
 }
 
+@media (max-width: 991px) {
+  .section-container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
 /* =================================================================== */
 /* NAVBAR                                                            */
 /* =================================================================== */
@@ -320,6 +327,43 @@ body *, body *::before, body *::after {
 @keyframes burger-fill-in { 0% { width: 0; left: 36px; } 40% { width: 0; left: 40px; } 80% { width: 36px; left: -6px; } 100% { width: 36px; left: 0px; } }
 @keyframes burger-fill-out { 0% { width: 36px; left: 0px; } 20% { width: 42px; left: -6px; } 40% { width: 0; left: 40px; } 100% { width: 0; left: 36px; } }
 
+@media (max-width: 1280px) {
+  .navbar {
+    padding: 15px 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .navbar-nav {
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out;
+  }
+  .navbar-nav.is-open {
+    max-height: 500px;
+  }
+  .navbar-menu-list {
+    flex-direction: column;
+    padding: 20px 0 10px;
+    gap: 15px;
+  }
+  .navbar-menu-list a {
+    font-size: 18px;
+  }
+  .hamburglar {
+    display: block;
+  }
+  .navbar-logo-link {
+    top: 35px;
+    left: 20px;
+    transform: translateY(-50%);
+  }
+  .navbar.menu-is-open .navbar-logo-link {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
 /* =================================================================== */
 /* BANNER                                                            */
 /* =================================================================== */
@@ -336,6 +380,7 @@ body *, body *::before, body *::after {
   padding-right: 15px;
   transition: background-color 0.2s ease-out, color 0.2s ease-out;
   position: relative;
+  --animation-base-delay: 0s;
 }
 
 .banner-subtitle {
@@ -345,6 +390,7 @@ body *, body *::before, body *::after {
   font-weight: 400;
   margin-top: 0px;
   margin-bottom: 60px;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .banner-text {
@@ -354,50 +400,22 @@ body *, body *::before, body *::after {
   font-weight: 100;
   margin-top: 20px;
   margin-bottom: 150px;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transition-delay: 0.2s;
 }
 
-/* Estilização das decorações */
 .banner-corner-img {
   position: absolute;
   height: auto;
-  /* Define uma largura máxima para não ficarem muito grandes */
   max-width: 400px; 
-  /* Evita que as imagens bloqueiem cliques em outros elementos */
   pointer-events: none; 
-  /* Garante que fiquem acima do fundo, mas abaixo do conteúdo principal */
   z-index: 1; 
 }
 
-.banner-top-left {
-  top: 0;
-  left: 0;
-}
-
-.banner-top-right {
-  top: 0;
-  right: 0;
-}
-
-.banner-bottom-left {
-  bottom: 0;
-  left: 0;
-}
-
-.banner-bottom-right {
-  bottom: 0;
-  right: 0;
-}
-
-/* Esconde as imagens em telas menores para não poluir o layout */
-@media (max-width: 991px) {
-  .banner-corner-img {
-    max-width: 200px; 
-  }
-}
-
-/* =================================================================== */
-/* BLOCO CONSOLIDADO: BOTÃO DO BANNER (SIMPLIFICADO)                  */
-/* =================================================================== */
+.banner-top-left { top: 0; left: 0; }
+.banner-top-right { top: 0; right: 0; }
+.banner-bottom-left { bottom: 0; left: 0; }
+.banner-bottom-right { bottom: 0; right: 0; }
 
 .banner-button {
   display: inline-block;
@@ -410,33 +428,29 @@ body *, body *::before, body *::after {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  color: #E5CDC0; /* Cor do texto original */
+  color: #E5CDC0;
   background-color: transparent;
   z-index: 2;
-  transition: background-color 0.05s ease, color 0.05s ease, transform 0.15s ease;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out, background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+  transition-delay: 0.4s;
 }
 
-/* Estado de Hover: Apenas mudança de fundo e texto rápida */
 .banner-button:hover {
   color: #5A6E59 !important;
   background-color: #E5CDC0 !important;
   transition: background-color 0.35s ease, color 0.35s ease;
 }
 
-/* Base das Bordas (Spans) */
 .banner-button span[class^=border-] {
   position: absolute;
   background-color: #E5CDC0;
   pointer-events: none;
 }
 
-/* Posicionamento fixo das bordas */
 .border-top    { top: -8px; left: -8px; width: calc(100% + 16px); height: 3px; transform: scaleX(0); }
 .border-right  { top: -8px; right: -8px; width: 3px; height: calc(100% + 16px); transform: scaleY(0); }
 .border-bottom { bottom: -8px; right: -8px; width: calc(100% + 16px); height: 3px; transform: scaleX(0); }
 .border-left   { bottom: -8px; left: -8px; width: 3px; height: calc(100% + 16px); transform: scaleY(0); }
-
-/* --- DEFINIÇÃO DO MOVIMENTO (KEYFRAMES) --- */
 
 @keyframes border-top-flow {
   0%   { transform: scaleX(0); transform-origin: left; }
@@ -466,21 +480,10 @@ body *, body *::before, body *::after {
   100% { transform: scaleY(0); transform-origin: top; }
 }
 
-/* --- GATILHOS DE ANIMAÇÃO --- */
-
-/* Executa apenas uma vez quando a classe .border-active é adicionada pelo JS */
 .banner-button.border-active .border-top    { animation: border-top-flow 0.8s ease forwards; }
 .banner-button.border-active .border-right  { animation: border-right-flow 0.8s ease 0.4s forwards; }
 .banner-button.border-active .border-bottom { animation: border-bottom-flow 0.8s ease 0.8s forwards; }
 .banner-button.border-active .border-left   { animation: border-left-flow 0.8s ease 1.2s forwards; }
-
-/* Importante: Note que não há regras de animação para :hover aqui, 
-   o que garante que elas nunca mais apareçam após a entrada inicial. */
-
-.banner {
-    /* Para mudar o tempo de espera, BASTA ALTERAR ESTE VALOR! */
-    --animation-base-delay: 0s;
-}
 
 .slide-animation,
 .slide-animation-delayed-trigger {
@@ -494,25 +497,12 @@ body *, body *::before, body *::after {
   transform: translateY(0);
 }
 
-.banner-subtitle,
-.banner-text {
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.banner-button {
-    transition: 
-        opacity 0.6s ease-out, 
-        transform 0.6s ease-out,
-        background-color 0.4s ease-in-out, 
-        color 0.4s ease-in-out;
-}
-
-.banner-text {
-  transition-delay: 0.2s;
-}
-
-.banner-button {
-  transition-delay: 0.4s;
+@media (max-width: 991px) {
+  .banner { padding-top: 150px; }
+  .banner-subtitle { font-size: 42px; margin-bottom: 40px; }
+  .banner-text { font-size: 28px; margin-bottom: 80px; }
+  .banner-button { font-size: 22px; padding: 12px 28px; margin-bottom: 80px; }
+  .banner-corner-img { max-width: 200px; }
 }
 
 /* =================================================================== */
@@ -578,13 +568,23 @@ body *, body *::before, body *::after {
   margin-top: 10px;
 }
 
+@media (max-width: 991px) {
+  .sobre-mim { padding: 40px 0; }
+  .sobre-mim .section-container { flex-direction: column; align-items: center; gap: 40px; }
+  .sobre-mim-img { max-width: 100%; height: auto; max-height: 400px; }
+  .sobre-mim-content-2 { align-items: center; text-align: center; }
+  .sobre-mim-title { font-size: 36px; }
+  .sobre-mim-subtitle { font-size: 22px; }
+  .sobre-mim-text, .sobre-mim-text p { font-size: 18px; text-align: justify; }
+}
+
 /* =================================================================== */
 /* PERCURSO                                                            */
 /* =================================================================== */
 
 .percurso {
   width: 100%;
-  background-color: white; /* Mantém a cor original */
+  background-color: white; 
   color: #5A6E59;
   display: flex;
   align-items: center;
@@ -593,9 +593,9 @@ body *, body *::before, body *::after {
 
 .percurso .section-container {
   display: flex;
-  gap: 70px; /* Mesmo gap do Sobre Mim */
+  gap: 70px; 
   align-items: center;
-  flex-direction: row; /* Texto na esquerda, imagem na direita */
+  flex-direction: row; 
 }
 
 .percurso-content-img {
@@ -613,7 +613,6 @@ body *, body *::before, body *::after {
   min-width: 0;
 }
 
-/* Estilização da Imagem igual ao Sobre Mim */
 .percurso-img {
   max-height: 600px;
   width: 100%;
@@ -637,19 +636,13 @@ body *, body *::before, body *::after {
   text-align: justify;
 }
 
-/* Ajuste Responsivo para o Percurso */
 @media (max-width: 991px) {
-  .percurso .section-container {
-    flex-direction: column-reverse; /* No mobile, imagem em cima ou baixo conforme preferir */
-    gap: 40px;
-  }
-  .percurso-img {
-    max-height: 400px;
-  }
-  .percurso-content-text {
-    align-items: center;
-    text-align: center;
-  }
+  .percurso { padding: 40px 0; }
+  .percurso .section-container { flex-direction: column-reverse; gap: 40px; }
+  .percurso-img { max-height: 400px; }
+  .percurso-content-text { align-items: center; text-align: center; }
+  .percurso-title { font-size: 32px; }
+  .percurso-text { font-size: 18px; }
 }
 
 /* =================================================================== */
@@ -671,7 +664,7 @@ body *, body *::before, body *::after {
 }
 
 .servico-title {
-  font-size: 50px;
+  font-size: clamp(32px, 5vw, 50px);
   font-family: "Tan Mon Cheri";
   font-weight: 400;
   margin: 0;
@@ -680,10 +673,13 @@ body *, body *::before, body *::after {
 }
 
 .servicos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 40px;
   width: 100%;
+  --base-delay: 500ms; 
+  --stagger-delay: 200ms;
 }
 
 .servico-card {
@@ -691,16 +687,11 @@ body *, body *::before, body *::after {
   border-radius: 8px;
   padding: 40px 30px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(90, 110, 89, 0.3); /* Sombra suave com a cor base */
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  border: 1px solid #E5CDC0;
+  box-shadow: 0 8px 24px rgba(90, 110, 89, 0.3);
+  /*border: 1px solid #000000;*/
   transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.6s ease-in-out;
-}
-
-/* Tempo de animação dos cards */
-.servicos-grid {
-  --base-delay: 500ms; 
-  --stagger-delay: 200ms;
+  flex: 1 1 300px;
+  max-width: 400px;
 }
 
 .servico-card.slide-animation {
@@ -714,18 +705,17 @@ body *, body *::before, body *::after {
 .servico-card.slide-animation:nth-child(3) {
   transition-delay: calc(var(--base-delay) + var(--stagger-delay) * 2);
 }
-/* Fim */
 
 .servico-icon i {
   font-size: 45px;
-  color: #9B545A; /* Cor do Navbar, para criar conexão */
+  color: #9B545A;
   margin-bottom: 25px;
   display: inline-block;
 }
 
 .servico-card-title {
   font-family: "Sofia Pro";
-  font-size: 26px;
+  font-size: clamp(20px, 3vw, 26px);
   font-weight: 600;
   color: #5A6E59;
   margin-top: 0;
@@ -734,13 +724,35 @@ body *, body *::before, body *::after {
 
 .servico-card-text {
   font-family: "Sofia Pro";
-  font-size: 18px;
+  font-size: clamp(16px, 2vw, 18px);
   font-weight: 300;
   color: #5A6E59;
   line-height: 1.7;
   margin: 0;
 }
 
+@media (max-width: 1336px) {
+  .servico-card {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 991px) {
+  .servico {
+    padding: 60px 0;
+  }
+  .servico .section-container {
+    gap: 40px;
+  }
+  .servico-card {
+    flex: 1 1 100%;
+    max-width: 300px;
+    padding: 30px 20px;
+  }
+  .servico-icon i {
+    font-size: 30px;
+  }
+}
 
 /* =================================================================== */
 /* DEPOIMENTOS (FEEDBACK)                                            */
@@ -758,11 +770,11 @@ body *, body *::before, body *::after {
 
 .feedback .section-container {
     text-align: center;
-    width: 100%;           /* Ocupa a largura total disponível */
-    max-width: 1280px;      /* Mas não passa de 1280px */
+    width: 100%;           
+    max-width: 1280px;      
     margin: 0 auto;
-    padding: 0 20px;       /* Margem de segurança nas bordas */
-    overflow: hidden;      /* Garante que nada saia deste container */
+    padding: 0 20px;       
+    overflow: hidden;      
 }
 
 .feedback-title {
@@ -771,102 +783,6 @@ body *, body *::before, body *::after {
   font-weight: 400;
   margin: 0 0 40px 0;
   text-align: center;
-}
-
-/* --- ESTILOS PARA WIDGET TRUSTINDEX DE DEPOIMENTOS (COMENTADO) --- */
-
-#meus-depoimentos-customizados .ti-widget {
-    font-family: 'Sofia Pro', sans-serif !important;
-}
-#meus-depoimentos-customizados .ti-header,
-#meus-depoimentos-customizados .ti-footer {
-    display: none !important;
-}
-#meus-depoimentos-customizados .ti-review-item > .ti-inner {
-    background-color: white !important;
-    border-radius: 20px !important;
-    padding: 30px !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-    border: none !important;
-    display: flex !important;
-    flex-direction: column !important;
-    position: relative !important;
-    height: 100%;
-}
-#meus-depoimentos-customizados .ti-review-item > .ti-inner::before {
-    content: '“';
-    font-family: 'Kepler', serif;
-    font-size: 140px;
-    color: #A3B899;
-    line-height: 1;
-    position: absolute;
-    top: 75px; 
-    left: 25px;
-    z-index: 1;
-    opacity: 1;
-}
-#meus-depoimentos-customizados .ti-review-header {
-    display: flex !important;
-    align-items: center !important;
-    gap: 10px !important;
-    margin-bottom: 30px !important;
-}
-#meus-depoimentos-customizados .ti-platform-icon {
-    display: block !important;
-    width: 20px !important;
-    height: 20px !important;
-}
-#meus-depoimentos-customizados .ti-name {
-    font-family: 'Sofia Pro', sans-serif !important;
-    font-weight: 600 !important;
-    font-size: 16px !important;
-    color: #5A6E59 !important;
-    text-align: left !important;
-}
-#meus-depoimentos-customizados .ti-name::before {
-    content: "- ";
-}
-#meus-depoimentos-customizados .ti-review-content {
-    font-family: 'Sofia Pro', sans-serif !important;
-    font-size: 18px !important;
-    font-style: italic !important;
-    color: #5A6E59 !important;
-    position: relative;
-    z-index: 2;
-    padding-top: 30px;
-    margin-bottom: auto;
-    height: auto !important;
-    -webkit-line-clamp: 6 !important;
-    overflow: hidden !important;
-    display: -webkit-box !important;
-    -webkit-box-orient: vertical !important;
-}
-#meus-depoimentos-customizados .ti-read-more span {
-    color: #5A6E59 !important;
-    font-size: 14px !important;
-    font-weight: 600;
-    text-decoration: none !important;
-    opacity: 1 !important;
-}
-#meus-depoimentos-customizados .ti-read-more span:hover {
-    text-decoration: underline !important;
-    color: #A3B899 !important;
-}
-#meus-depoimentos-customizados .ti-stars {
-    display: none;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 8px;
-    margin-top: 15px;
-}
-#meus-depoimentos-customizados .ti-star.f {
-    background: #A3B899 !important;
-}
-#meus-depoimentos-customizados .ti-verified-review {
-    display: inline-block !important;
-    width: 15px;
-    height: 15px;
-    margin: 0 !important;
 }
 
 /* --- ESTILO DEPOIMENTOS MANUAIS --- */
@@ -888,7 +804,6 @@ body *, body *::before, body *::after {
     text-align: left;
 }
 
-/* Ícone decorativo de aspas */
 .depoimento-item::before {
     content: '“';
     font-family: 'Kepler', serif;
@@ -919,45 +834,38 @@ body *, body *::before, body *::after {
     margin-top: auto;
 }
 
-/* Ajuste Responsivo */
-@media (max-width: 768px) {
-    .depoimentos-manuais-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* --- Ajustes Finais Depoimentos Manuais --- */
-
 /* --- Carrossel Infinito Manual --- */
-
 .manual-carousel-wrapper {
     display: flex !important;
-    transition: transform 0.5s ease-in-out; /* Movimento suave */
+    transition: transform 0.5s ease-in-out;
     gap: 0;
-    overflow: visible !important; /* Permitir que clones existam fora da área visível */
+    overflow: visible !important;
     width: 100%;
 }
 
-/* Container pai precisa esconder o que sobra */
 .ti-reviews-container {
     overflow: hidden !important; 
     position: relative;
     padding: 20px 0;
 }
 
-/* Cada card ocupa 1/3 da tela no Desktop e tem espaçamento */
 .manual-carousel-wrapper .ti-review-item {
-    flex: 0 0 33.333%; /* Exibe 3 por vez */
+    flex: 0 0 33.333%;
     max-width: 33.333%;
-    padding: 0 10px; /* 10px em cada lado = 20px de espaçamento total entre cards */
+    padding: 0 10px;
     box-sizing: border-box;
 }
 
-/* Alinhamento de texto ocupando a largura total */
-#meus-depoimentos-customizados .ti-review-content {
-    text-align: justify;
-    width: 100% !important;
-    display: block !important;
+.is-manual-carousel .ti-controls {
+    display: flex !important;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 100;
+    pointer-events: none; 
 }
 
 .manual-next, .manual-prev {
@@ -973,75 +881,6 @@ body *, body *::before, body *::after {
     justify-content: center;
 }
 
-/* Responsividade Mobile */
-@media (max-width: 991px) {
-    .manual-carousel-wrapper .ti-review-item {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
-.manual-next, .manual-prev {
-    pointer-events: auto;
-    width: 35px !important;
-    height: 35px !important;
-    background-color: white !important;
-    border: 1px solid #d9d9d9 !important;
-    border-radius: 50% !important;
-    cursor: pointer;
-    position: relative;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.manual-next:hover, .manual-prev:hover {
-    background-color: #5E5E5E !important;
-    border-color: #5E5E5E !important;
-}
-
-/* Criando o desenho da flecha */
-.is-manual-carousel .manual-next::before, 
-.is-manual-carousel .manual-prev::before {
-    content: "";
-    display: block;
-    width: 10px;
-    height: 10px;
-    border-style: solid;
-    border-width: 0 0 2px 2px;
-    border-color: #5E5E5E;
-    transition: border-color 0.2s ease;
-}
-
-.manual-next:hover::before, .manual-prev:hover::before {
-    border-color: #fff !important;
-}
-
-/* Direcionando as flechas */
-.manual-prev::before {
-    transform: rotate(45deg);
-    margin-left: 4px;
-}
-
-.manual-next::before {
-    transform: rotate(-135deg);
-    margin-right: 4px;
-}
-
-.is-manual-carousel .ti-controls {
-    display: flex !important;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    left: 0;
-    transform: translateY(-50%);
-    z-index: 100;
-    pointer-events: none; 
-}
-
-/* Garante que apenas as nossas setas manuais recebam cliques neste modo */
 .is-manual-carousel .manual-next, 
 .is-manual-carousel .manual-prev {
     pointer-events: auto;
@@ -1057,75 +896,11 @@ body *, body *::before, body *::after {
     justify-content: center;
     transition: all 0.2s ease;
 }
+
 .is-manual-carousel .manual-next:hover, 
 .is-manual-carousel .manual-prev:hover {
     background-color: #969696 !important;
     border-color: #5E5E5E !important;
-}
-
-/* --- Responsividade do Carrossel Manual --- */
-/* Janela de visualização (Onde os cards aparecem) */
-.is-manual-carousel .ti-reviews-container {
-    overflow: hidden !important; 
-    position: relative;
-    width: 100%;
-    padding: 20px 0 !important;
-}
-
-/* O "trilho" que se move */
-.is-manual-carousel .manual-carousel-wrapper {
-    display: flex !important;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* Configuração de colunas por tela */
-/* Desktop: 3 cards */
-.is-manual-carousel .ti-review-item {
-    flex: 0 0 33.3333%;
-    max-width: 33.3333%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-/* Tablet: 2 cards */
-@media (max-width: 1024px) {
-    .is-manual-carousel .ti-review-item {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-/* Mobile: 1 card (Resolve o problema de sair da tela) */
-@media (max-width: 768px) {
-    .is-manual-carousel .ti-review-item {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-    }
-    
-    /* Ajuste de setas para não sobrepor o texto no mobile */
-    .is-manual-carousel .ti-controls {
-        width: 100%;
-        padding: 0 2px;
-    }
-}
-
-/* Estilo das Setas (Flechas desenhadas com CSS) */
-.is-manual-carousel .manual-next, 
-.is-manual-carousel .manual-prev {
-    pointer-events: auto;
-    width: 35px;
-    height: 35px;
-    background-color: white;
-    border: 1px solid #d9d9d9;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
 }
 
 .is-manual-carousel .manual-next::before, 
@@ -1142,6 +917,29 @@ body *, body *::before, body *::after {
 .is-manual-carousel .manual-prev::before { transform: rotate(45deg); margin-left: 3px; }
 .is-manual-carousel .manual-next::before { transform: rotate(-135deg); margin-right: 3px; }
 
+@media (max-width: 1024px) {
+    .is-manual-carousel .ti-review-item {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+@media (max-width: 991px) {
+    .feedback { padding: 40px 0; }
+    .feedback-title { font-size: 36px; }
+}
+
+@media (max-width: 768px) {
+    .depoimentos-manuais-grid { grid-template-columns: 1fr; }
+    .is-manual-carousel .ti-review-item {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+    .is-manual-carousel .ti-controls {
+        width: 100%;
+        padding: 0 2px;
+    }
+}
 
 /* =================================================================== */
 /* DÚVIDAS FREQUENTES                                                */
@@ -1184,6 +982,11 @@ body *, body *::before, body *::after {
   border-bottom: 1px solid #eee;
 }
 
+/* Animação de entrada dos itens */
+.duvidas-item.slide-animation {
+    transition: opacity 1.2s ease-out, transform 1.8s ease-out;
+}
+
 .duvidas-item:last-child {
   border-bottom: none;
 }
@@ -1208,13 +1011,8 @@ body *, body *::before, body *::after {
   cursor: pointer;
 }
 
-.duvidas-question span {
-  transition: color 0.4s ease-in-out;
-}
-
-.duvidas-question:hover span {
-  color: rgb(232, 177, 177);
-}
+.duvidas-question span { transition: color 0.4s ease-in-out; }
+.duvidas-question:hover span { color: rgb(232, 177, 177); }
 
 .duvidas-question::after {
   content: "+";
@@ -1238,6 +1036,15 @@ body *, body *::before, body *::after {
   transition: max-height 0.4s ease-in-out, padding-top 0.4s ease-in-out;
 }
 
+@media (max-width: 991px) {
+  .duvidas { padding: 40px 0; }
+  .duvidas-accordion { padding-left: 20px; padding-right: 20px; }
+  .duvidas-title { font-size: 36px; }
+  .duvidas-question { font-size: 18px; }
+  .duvidas-answer { font-size: 16px; padding-right: 15px; }
+  .duvidas .duvidas-item .duvidas-question:hover span { color: rgb(155, 84, 90); }
+}
+
 /* =================================================================== */
 /* CONTATO                                                           */
 /* =================================================================== */
@@ -1255,18 +1062,13 @@ body *, body *::before, body *::after {
 .contato-wrapper {
   display: flex;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   gap: 40px;
   width: 100%;
   max-width: 1280px;
-  align-items: center;
 }
 
-.contato-coluna {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-}
+.contato-coluna { flex: 1; display: flex; justify-content: center; }
 
 .contato-box {
   background-color: #F8F0E3;
@@ -1294,9 +1096,8 @@ body *, body *::before, body *::after {
   max-width: 100%;
 }
 
-/* Estilo do Botão do Instagram na área de contacto */
 .instagram-button {
-    background-color: #5A6E59; /* Verde padrão do site */
+    background-color: #5A6E59;
     color: white;
     padding: 15px 40px;
     border-radius: 50px;
@@ -1312,15 +1113,8 @@ body *, body *::before, body *::after {
     margin-top: 10px;
 }
 
-.instagram-button:hover {
-    background-color: #4a5b49; /* Um tom mais escuro para o hover */
-    transform: scale(1.05);
-    color: white;
-}
-
-.instagram-button i {
-    font-size: 24px;
-}
+.instagram-button:hover { background-color: #4a5b49; transform: scale(1.05); color: white; }
+.instagram-button i { font-size: 24px; }
 
 .contato .social-link {
   display: inline-flex;
@@ -1334,13 +1128,8 @@ body *, body *::before, body *::after {
   transition: transform 0.3s ease;
 }
 
-.contato .social-link:hover {
-  transform: scale(1.05);
-}
-
-.contato .social-icon {
-  font-size: 40px;
-}
+.contato .social-link:hover { transform: scale(1.05); }
+.contato .social-icon { font-size: 40px; }
 
 .contato-cta {
   display: flex;
@@ -1365,34 +1154,18 @@ body *, body *::before, body *::after {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.contato .whatsapp-button:hover {
-  background-color: rgb(135, 163, 122);
-  transform: scale(1.05);
-}
+.contato .whatsapp-button:hover { background-color: rgb(135, 163, 122); transform: scale(1.05); }
 
-/* --- ESTILOS PARA WIDGET TRUSTINDEX DO INSTAGRAM (COMENTADO) --- */
-/*
-#posts-instagram {
-    max-width: 450px;
-    margin: 0 auto;
+@media (max-width: 991px) {
+  .contato-wrapper { flex-direction: column; gap: 20px; }
+  .contato-box { padding: 30px 25px; margin: 20px; }
+  .contato-cta { margin: 0 20px 40px 20px; }
+  .contato-title { font-size: 36px; }
+  .contato-text { font-size: 18px; }
+  .social-link { font-size: 18px; }
+  .social-icon { font-size: 30px; }
+  .whatsapp-button { font-size: 18px; padding: 12px 30px; }
 }
-#posts-instagram .ti-widget {
-    width: 100% !important;
-    margin-bottom: 25px !important;
-}
-#posts-instagram .ti-widget-body {
-    max-height: 880px;
-    overflow-y: auto !important;
-    scrollbar-width: thin;
-    scrollbar-color: #A3B899 #F8F0E3;
-}
-#posts-instagram .ti-widget-body::-webkit-scrollbar { width: 8px; }
-#posts-instagram .ti-widget-body::-webkit-scrollbar-track { background: #F8F0E3; border-radius: 4px; }
-#posts-instagram .ti-widget-body::-webkit-scrollbar-thumb { background-color: #A3B899; border-radius: 4px; border: 2px solid #F8F0E3; }
-#posts-instagram .ti-layout-container { flex-wrap: wrap !important; }
-#posts-instagram .ti-layout-item { flex-basis: 100% !important; width: 100% !important; max-width: 100% !important; }
-#posts-instagram .ti-nav-arrow { display: none !important; }
-*/
 
 /* =================================================================== */
 /* FOOTER                                                            */
@@ -1407,70 +1180,37 @@ body *, body *::before, body *::after {
   font-family: "Sofia Pro";
 }
 
-.footer p {
-  margin: 5px 0;
-  font-weight: 300;
-  font-size: 15px;
-}
+.footer p { margin: 5px 0; font-weight: 300; font-size: 15px; }
+.footer p:first-child { font-weight: 600; }
 
-.footer p:first-child {
-  font-weight: 600;
-}
+.footer-privacy { margin-top: 15px; opacity: 0.7; transition: opacity 0.3s ease; }
+.footer-privacy a { color: inherit; font-size: 13px; text-decoration: underline; font-weight: 300; transition: opacity 0.3s; }
+.footer-privacy a:hover { opacity: 1; }
 
-/* Estilo discreto para a Política de Privacidade */
-.footer-privacy {
-    margin-top: 15px;
-    opacity: 0.7; /* Deixa o texto levemente esmaecido */
-    transition: opacity 0.3s ease;
-}
-
-.footer-privacy a {
-    color: inherit; /* Segue a cor definida no Customizer para o footer */
-    font-size: 12px; /* Fonte menor que o padrão de 15px */
-    text-decoration: none;
-    font-weight: 300;
-}
-
-.footer-privacy a:hover {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-/* Ajuste para mobile */
 @media (max-width: 991px) {
-    .footer-privacy {
-        margin-top: 10px;
-    }
+    .footer { padding: 15px 15px; }
+    .footer-privacy { margin-top: 10px; }
 }
 
 /* =================================================================== */
-/* --- ESTILOS DO MODAL LEGAL (COM ANIMAÇÃO) --- */
+/* MODAL LEGAL                                                       */
 /* =================================================================== */
 
 .modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.7);
     z-index: 9999;
     padding: 20px;
-    
-    /* --- Configuração da Animação (Overlay) --- */
-    display: flex; /* Sempre flex para centralizar */
+    display: flex;
     justify-content: center;
     align-items: center;
-    opacity: 0;           /* Começa invisível */
-    visibility: hidden;   /* Não interativo quando fechado */
-    transition: opacity 0.4s ease, visibility 0.4s ease; /* Suavidade na transição */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
 }
 
-/* Quando a classe .is-active é adicionada pelo JS */
-.modal-overlay.is-active {
-    opacity: 1;          /* Torna visível */
-    visibility: visible; /* Torna interativo */
-}
+.modal-overlay.is-active { opacity: 1; visibility: visible; }
 
 .modal-content {
     background: #F8F0E3;
@@ -1484,66 +1224,34 @@ body *, body *::before, body *::after {
     overflow-y: auto;
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     font-family: "Sofia Pro", sans-serif;
-
-    /* --- Configuração da Animação (Conteúdo) --- */
-    opacity: 0;                /* Conteúdo começa um pouco transparente */
-    transform: translateY(-30px); /* Conteúdo começa um pouco mais para cima */
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1); /* Efeito de "pulo" suave */
-    transition-delay: 0.1s;    /* Pequeno atraso para o fundo escuro aparecer primeiro */
+    opacity: 0;
+    transform: translateY(-30px);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition-delay: 0.1s;
 }
 
-/* Quando o modal está ativo, o conteúdo desce e aparece */
-.modal-overlay.is-active .modal-content {
-    opacity: 1;
-    transform: translateY(0); /* Volta para a posição original */
-}
+.modal-overlay.is-active .modal-content { opacity: 1; transform: translateY(0); }
 
-/* --- Restante dos estilos (Título, corpo, botão fechar) --- */
 .modal-title {
     font-family: "Tan Mon Cheri", serif;
     font-size: 28px;
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin-top: 0; margin-bottom: 20px;
     border-bottom: 1px solid rgba(90, 110, 89, 0.2);
     padding-bottom: 10px;
 }
 
-.modal-body {
-    font-size: 16px;
-    line-height: 1.6;
-    text-align: justify;
-}
+.modal-body { font-size: 16px; line-height: 1.6; text-align: justify; }
 
 .modal-close {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 30px;
-    cursor: pointer;
+    top: 15px; right: 20px;
+    background: none; border: none;
+    font-size: 30px; cursor: pointer;
     color: #5A6E59;
     transition: transform 0.3s ease;
 }
 
-.modal-close:hover {
-    transform: rotate(90deg); /* Efeito extra: gira o X ao passar o mouse */
-}
-
-/* Classe para mostrar o modal via JS */
-.modal-overlay.is-active {
-    display: flex;
-}
-
-/* Link no footer */
-.footer-privacy a {
-    font-size: 13px;
-    opacity: 0.8;
-    text-decoration: underline;
-    color: inherit;
-    transition: opacity 0.3s;
-}
-.footer-privacy a:hover { opacity: 1; }
+.modal-close:hover { transform: rotate(90deg); }
 
 /* =================================================================== */
 /* BOTÃO FLUTUANTE WHATSAPP                                          */
@@ -1568,197 +1276,8 @@ body *, body *::before, body *::after {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  background-color: rgb(149, 173, 137);
-}
-
-/*
---------------------------------------------------
-ESTILOS RESPONSIVOS
---------------------------------------------------
-*/
-@media (max-width: 1280px) {
-  .navbar {
-    padding: 15px 20px;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  .navbar-nav {
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease-in-out;
-  }
-  .navbar-nav.is-open {
-    max-height: 500px;
-  }
-  .navbar-menu-list {
-    flex-direction: column;
-    padding: 20px 0 10px;
-    gap: 15px;
-  }
-  .navbar-menu-list a {
-    font-size: 18px;
-  }
-  .hamburglar {
-    display: block;
-  }
-  .navbar-logo-link {
-    top: 35px;
-    left: 20px;
-    transform: translateY(-50%);
-  }
-  .navbar.menu-is-open .navbar-logo-link {
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
+.whatsapp-float:hover { transform: scale(1.1); background-color: rgb(149, 173, 137); }
 
 @media (max-width: 991px) {
-  .banner {
-    padding-top: 150px;
-  }
-  .banner-subtitle {
-    font-size: 42px;
-    margin-bottom: 40px;
-  }
-  .banner-text {
-    font-size: 28px;
-    margin-bottom: 80px;
-  }
-  .banner-button {
-    font-size: 22px;
-    padding: 12px 28px;
-    margin-bottom: 80px;
-  }
-
-  .section-container {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-
-  .sobre-mim {
-    padding: 40px 0;
-  }
-  .sobre-mim .section-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
-  .sobre-mim-img {
-    max-width: 100%;
-    height: auto;
-    max-height: 400px;
-  }
-  .sobre-mim-content-2 {
-    align-items: center;
-    text-align: center;
-  }
-  .sobre-mim-title {
-    font-size: 36px;
-  }
-  .sobre-mim-subtitle {
-    font-size: 22px;
-  }
-  .sobre-mim-text, .sobre-mim-text p {
-    font-size: 18px;
-    text-align: justify;
-  }
-
-  .percurso {
-    padding: 40px 0;
-  }
-  .percurso-title {
-    font-size: 32px;
-  }
-  .percurso-text {
-    font-size: 18px;
-  }
-
-  .servico {
-    padding: 60px 0;
-  }
-  .servico .section-container {
-      gap: 40px;
-  }
-  .servico-title {
-    font-size: 36px;
-  }
-  .servicos-grid {
-      grid-template-columns: 1fr; /* Coluna única em telas menores */
-      gap: 30px;
-  }
-  .servico-card-title {
-      font-size: 20px;
-  }
-
-  .feedback {
-    padding: 40px 0;
-  }
-  .feedback-title {
-    font-size: 36px;
-  }
-  
-  .duvidas {
-    padding: 40px 0;
-  }
-  .duvidas-accordion {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .duvidas-title {
-    font-size: 36px;
-  }
-  .duvidas-question {
-    font-size: 18px;
-  }
-  .duvidas-answer {
-    font-size: 16px;
-    padding-right: 15px;
-  }
-  .duvidas .duvidas-item .duvidas-question:hover span {
-    color: rgb(155, 84, 90);
-  }
-
-  .contato-wrapper {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .contato-box {
-    padding: 30px 25px;
-    margin: 20px;
-  }
-  .contato-cta {
-    margin: 0 20px 40px 20px;
-  }
-  .contato-title {
-    font-size: 36px;
-  }
-  .contato-text {
-    font-size: 18px;
-  }
-  .social-link {
-    font-size: 18px;
-  }
-  .social-icon {
-    font-size: 30px;
-  }
-  .whatsapp-button {
-    font-size: 18px;
-    padding: 12px 30px;
-  }
-  #posts-instagram {
-    max-width: 100%;
-  }
-
-  .footer {
-    padding: 15px 15px;
-  }
-
-  .whatsapp-float {
-    bottom: 65px;
-    right: 20px;
-  }
+  .whatsapp-float { bottom: 65px; right: 20px; }
 }
-
