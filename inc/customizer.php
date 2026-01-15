@@ -4,7 +4,7 @@
  *
  * @param WP_Customize_Manager $wp_customize Manager do Customizer.
  */
-function louize_customize_register($wp_customize) {
+function florapsi_customize_register($wp_customize) {
 
     // Opções reutilizáveis
     $font_weight_choices = array(
@@ -23,1068 +23,1119 @@ function louize_customize_register($wp_customize) {
     /* -------------------------------------------------------------------------
      * RESPONSIVIDADE
      * ------------------------------------------------------------------------- */
-    $wp_customize->add_section('louize_responsividade_section', array(
+    $wp_customize->add_section('florapsi_responsividade_section', array(
         'title'    => __('Responsividade', 'louize'),
-        'priority' => 10,
+        'priority' => 200,
     ));
 
-    $wp_customize->add_setting('louize_mobile_breakpoint', array('default' => '768', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_mobile_breakpoint_control', array(
-        'label'    => __('Largura Máxima para Estilos Mobile (px)', 'louize'),
-        'section'  => 'louize_responsividade_section',
+    // Ponto de Interrupção: Tablet
+    $wp_customize->add_setting('florapsi_tablet_breakpoint', array('default' => '992', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_tablet_breakpoint', array(
+        'label'    => __('Largura Máxima: Tablet (px)', 'louize'),
+        'section'  => 'florapsi_responsividade_section',
         'type'     => 'number',
-        'settings' => 'louize_mobile_breakpoint',
+    ));
+
+    // Ponto de Interrupção: Mobile
+    $wp_customize->add_setting('florapsi_mobile_breakpoint', array('default' => '576', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_mobile_breakpoint', array(
+        'label'    => __('Largura Máxima: Mobile (px)', 'louize'),
+        'section'  => 'florapsi_responsividade_section',
+        'type'     => 'number',
     ));
 
     /* -------------------------------------------------------------------------
      * CABEÇALHO (HEADER)
      * ------------------------------------------------------------------------- */
-    $wp_customize->add_section('louize_header_section', array(
+    $wp_customize->add_section('florapsi_header_section', array(
         'title'    => __('Cabeçalho', 'louize'),
         'priority' => 20,
     ));
 
     // Cor de Fundo
-    $wp_customize->add_setting('louize_navbar_background_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_navbar_background_color_control', array(
+    $wp_customize->add_setting('florapsi_navbar_background_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_navbar_background_color_control', array(
         'label'    => __('Cor de Fundo da Barra de Navegação', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_navbar_background_color',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_navbar_background_color',
     )));
 
     // Logo
-    $wp_customize->add_setting('louize_header_logo', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'louize_header_logo_control', array(
+    $wp_customize->add_setting('florapsi_header_logo', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'florapsi_header_logo_control', array(
         'label'    => __('Logo Principal (no topo)', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_header_logo',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_header_logo',
     )));
     
     // Tipografia do Menu
-    $wp_customize->add_setting('louize_menu_font_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_menu_font_color_control', array(
+    $wp_customize->add_setting('florapsi_menu_font_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_menu_font_color_control', array(
         'label'    => __('Cor da Fonte do Menu', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_menu_font_color',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_menu_font_color',
     )));
 
-    $wp_customize->add_setting('louize_menu_font_family', array('default' => 'Segoe UI Light', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_menu_font_family_control', array(
+    $wp_customize->add_setting('florapsi_menu_font_family', array('default' => 'Segoe UI Light', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_menu_font_family_control', array(
         'label'    => __('Fonte do Menu', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_menu_font_family',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_menu_font_family',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_menu_font_size', array('default' => '20', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_menu_font_size_control', array(
+    $wp_customize->add_setting('florapsi_menu_font_size', array('default' => '20', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_menu_font_size_control', array(
         'label'    => __('Tamanho da Fonte do Menu (px)', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_menu_font_size',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_menu_font_size',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_menu_font_weight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_menu_font_weight_control', array(
+    $wp_customize->add_setting('florapsi_menu_font_weight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_menu_font_weight_control', array(
         'label'    => __('Peso da Fonte do Menu', 'louize'),
-        'section'  => 'louize_header_section',
-        'settings' => 'louize_menu_font_weight',
+        'section'  => 'florapsi_header_section',
+        'settings' => 'florapsi_menu_font_weight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
-    /*-------------------------------------------------------------------------
+    /* -------------------------------------------------------------------------
     * PAINEL: BANNER PRINCIPAL
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_banner_panel', array(
+    $wp_customize->add_panel('florapsi_banner_panel', array(
         'title'       => __('Banner Principal', 'louize'),
-        'description' => __('Configurações de imagem, tipografia e botões.', 'louize'),
+        'description' => __('Configurações de fundo, frases, botão e responsividade do banner.', 'louize'),
         'priority'    => 30,
     ));
 
-    /* --- SUBSEÇÃO 1: Imagens e Decoração --- */
-    $wp_customize->add_section('louize_banner_images_section', array(
-        'title'    => __('Imagens e Decoração', 'louize'),
-        'panel'    => 'louize_banner_panel',
+    /* --- SUBSEÇÃO: Fundo --- */
+    $wp_customize->add_section('florapsi_banner_fundo_section', array(
+        'title'    => __('Banner: Fundo', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
         'priority' => 10,
     ));
 
-    $wp_customize->add_setting('louize_banner_background_image', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'louize_banner_bg_img_ctrl', array(
-        'label' => __('Imagem de Fundo', 'louize'), 'section' => 'louize_banner_images_section', 'settings' => 'louize_banner_background_image',
+    $wp_customize->add_setting('florapsi_banner_bg_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_bg_color', array(
+        'label'    => __('Cor de Fundo da Seção', 'louize'),
+        'section'  => 'florapsi_banner_fundo_section',
     )));
 
-    $decoracoes = array('tl' => 'Flor Sup. Esq.', 'tr' => 'Flor Sup. Dir.', 'bl' => 'Flor Inf. Esq.', 'br' => 'Flor Inf. Dir.');
-    foreach ($decoracoes as $pos => $label) {
-        $setting_id = "louize_banner_decor_{$pos}";
-        $wp_customize->add_setting($setting_id, array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
-        $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, "{$setting_id}_ctrl", array('label' => $label, 'section' => 'louize_banner_images_section', 'settings' => $setting_id)));
-    }
-
-    /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_banner_content_section', array(
-        'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_banner_panel',
+    /* --- SUBSEÇÃO: Frases - Cores --- */
+    $wp_customize->add_section('florapsi_banner_frases_color_section', array(
+        'title'    => __('Frases: Cores', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
         'priority' => 20,
     ));
 
-    // --- Subtítulo ---
-    $wp_customize->add_setting('louize_banner_subtitle', array('default' => 'Seja bem-vindo', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_banner_sub_text', array('label' => __('Texto do Subtítulo', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'text', 'settings' => 'louize_banner_subtitle'));
+    $wp_customize->add_setting('florapsi_banner_subtitle_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_subtitle_color', array('label' => __('Cor do Subtítulo', 'louize'), 'section' => 'florapsi_banner_frases_color_section')));
 
-    $wp_customize->add_setting('louize_banner_subtitle_font_family', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_banner_sub_ff', array('label' => __('Fonte do Subtítulo', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'select', 'choices' => $font_family_choices, 'settings' => 'louize_banner_subtitle_font_family'));
+    $wp_customize->add_setting('florapsi_banner_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_text_color', array('label' => __('Cor do Texto Principal', 'louize'), 'section' => 'florapsi_banner_frases_color_section')));
 
-    $wp_customize->add_setting('louize_banner_subtitle_font_size', array('default' => '80', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_banner_sub_fs', array('label' => __('Tamanho (px)', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'number', 'settings' => 'louize_banner_subtitle_font_size'));
-
-    $wp_customize->add_setting('louize_banner_subtitle_font_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_banner_sub_fw', array('label' => __('Peso da Fonte', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'select', 'choices' => $font_weight_choices, 'settings' => 'louize_banner_subtitle_font_weight'));
-
-    $wp_customize->add_setting('louize_banner_subtitle_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_banner_sub_clr', array('label' => __('Cor do Subtítulo', 'louize'), 'section' => 'louize_banner_content_section', 'settings' => 'louize_banner_subtitle_color')));
-
-    // --- Texto Principal ---
-    $wp_customize->add_setting('louize_banner_text', array('default' => 'Sua saúde mental importa', 'sanitize_callback' => 'sanitize_textarea_field'));
-    $wp_customize->add_control('louize_banner_txt_body', array('label' => __('Texto Principal', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'textarea', 'settings' => 'louize_banner_text'));
-
-    $wp_customize->add_setting('louize_banner_text_font_family', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_banner_txt_ff', array('label' => __('Fonte do Texto', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'select', 'choices' => $font_family_choices, 'settings' => 'louize_banner_text_font_family'));
-
-    $wp_customize->add_setting('louize_banner_text_font_size', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_banner_txt_fs', array('label' => __('Tamanho (px)', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'number', 'settings' => 'louize_banner_text_font_size'));
-
-    $wp_customize->add_setting('louize_banner_text_font_weight', array('default' => '100', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_banner_txt_fw', array('label' => __('Peso da Fonte', 'louize'), 'section' => 'louize_banner_content_section', 'type' => 'select', 'choices' => $font_weight_choices, 'settings' => 'louize_banner_text_font_weight'));
-
-    $wp_customize->add_setting('louize_banner_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_banner_txt_clr', array('label' => __('Cor do Texto', 'louize'), 'section' => 'louize_banner_content_section', 'settings' => 'louize_banner_text_color')));
-
-    /* --- SUBSEÇÃO 3: Botão de Ação (CTA) --- */
-    $wp_customize->add_section('louize_banner_cta_section', array(
-        'title'    => __('Botão de Chamada (CTA)', 'louize'),
-        'panel'    => 'louize_banner_panel',
+    /* --- SUBSEÇÃO: Frases - Texto e Fonte --- */
+    $wp_customize->add_section('florapsi_banner_frases_text_section', array(
+        'title'    => __('Frases: Texto e Fonte', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_banner_button_text', array('default' => 'Agendar Consulta', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_btn_txt', array('label' => __('Texto do Botão', 'louize'), 'section' => 'louize_banner_cta_section', 'settings' => 'louize_banner_button_text'));
+    // --- Subtítulo ---
+    $wp_customize->add_setting('florapsi_banner_subtitle', array('default' => 'Seja bem-vindo', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_subtitle', array('label' => __('Conteúdo do Subtítulo', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'text'));
 
-    $wp_customize->add_setting('louize_banner_button_url', array('default' => '#', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control('louize_btn_url', array('label' => __('Link do Botão', 'louize'), 'section' => 'louize_banner_cta_section', 'settings' => 'louize_banner_button_url', 'type' => 'url'));
+    $wp_customize->add_setting('florapsi_banner_subtitle_font_family', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_subtitle_font_family', array('label' => __('Fonte do Subtítulo', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'select', 'choices' => $font_family_choices));
 
-    $wp_customize->add_setting('louize_banner_button_bg_color', array('default' => 'transparent', 'sanitize_callback' => 'sanitize_text_field')); // Pode ser hex ou transparent
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_btn_bg', array('label' => __('Cor de Fundo', 'louize'), 'section' => 'louize_banner_cta_section', 'settings' => 'louize_banner_button_bg_color')));
+    $wp_customize->add_setting('florapsi_banner_subtitle_font_size', array('default' => '80', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_subtitle_font_size', array('label' => __('Tamanho do Subtítulo (px)', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'number'));
 
-    $wp_customize->add_setting('louize_banner_button_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_btn_txc', array('label' => __('Cor do Texto', 'louize'), 'section' => 'louize_banner_cta_section', 'settings' => 'louize_banner_button_text_color')));
+    $wp_customize->add_setting('florapsi_banner_subtitle_font_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_subtitle_font_weight', array('label' => __('Peso do Subtítulo', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
 
-    /* --- SUBSEÇÃO 4: Estilo Geral da Seção --- */
-    $wp_customize->add_section('louize_banner_style_section', array(
-        'title'    => __('Estilo da Seção', 'louize'),
-        'panel'    => 'louize_banner_panel',
+    // --- Texto Principal ---
+    $wp_customize->add_setting('florapsi_banner_text', array('default' => 'Sua saúde mental importa', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('florapsi_banner_text', array('label' => __('Conteúdo do Texto Principal', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'textarea'));
+
+    $wp_customize->add_setting('florapsi_banner_text_font_family', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_text_font_family', array('label' => __('Fonte do Texto Principal', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'select', 'choices' => $font_family_choices));
+
+    $wp_customize->add_setting('florapsi_banner_text_font_size', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_text_font_size', array('label' => __('Tamanho do Texto Principal (px)', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_text_font_weight', array('default' => '100', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_text_font_weight', array('label' => __('Peso do Texto Principal', 'louize'), 'section' => 'florapsi_banner_frases_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
+
+    /* --- SUBSEÇÃO: Botão CTA - Cores --- */
+    $wp_customize->add_section('florapsi_banner_btn_color_section', array(
+        'title'    => __('Botão CTA: Cores e Hover', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_banner_bg_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_banner_bg_clr', array('label' => __('Cor de Fundo da Seção', 'louize'), 'section' => 'louize_banner_style_section', 'settings' => 'louize_banner_bg_color')));
+    $wp_customize->add_setting('florapsi_banner_button_bg_color', array('default' => 'transparent', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_button_bg_color', array('label' => __('Cor de Fundo', 'louize'), 'section' => 'florapsi_banner_btn_color_section')));
+
+    $wp_customize->add_setting('florapsi_banner_button_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_button_text_color', array('label' => __('Cor do Texto', 'louize'), 'section' => 'florapsi_banner_btn_color_section')));
+
+    $wp_customize->add_setting('florapsi_banner_button_hover_bg_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_button_hover_bg_color', array('label' => __('Cor de Fundo (Hover)', 'louize'), 'section' => 'florapsi_banner_btn_color_section')));
+
+    $wp_customize->add_setting('florapsi_banner_button_hover_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_button_hover_text_color', array('label' => __('Cor do Texto (Hover)', 'louize'), 'section' => 'florapsi_banner_btn_color_section')));
+
+    /* --- SUBSEÇÃO: Botão CTA - Texto e Fonte --- */
+    $wp_customize->add_section('florapsi_banner_btn_text_section', array(
+        'title'    => __('Botão CTA: Texto e Fonte', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
+        'priority' => 50,
+    ));
+
+    $wp_customize->add_setting('florapsi_banner_button_text', array('default' => 'Agendar Consulta', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_button_text', array('label' => __('Texto do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section'));
+
+    $wp_customize->add_setting('florapsi_banner_button_url', array('default' => '#', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control('florapsi_banner_button_url', array('label' => __('Link do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'url'));
+
+    $wp_customize->add_setting('florapsi_banner_btn_font_family', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_btn_font_family', array('label' => __('Fonte do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'select', 'choices' => $font_family_choices));
+
+    $wp_customize->add_setting('florapsi_banner_btn_font_size', array('default' => '30', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_btn_font_size', array('label' => __('Tamanho do Botão (px)', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_btn_font_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_btn_font_weight', array('label' => __('Peso do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
+
+    /* --- SUBSEÇÃO: Banner - Responsividade --- */
+    $wp_customize->add_section('florapsi_banner_resp_section', array(
+        'title'    => __('Banner: Responsividade', 'louize'),
+        'panel'    => 'florapsi_banner_panel',
+        'priority' => 60,
+    ));
+
+    // --- Tablet (992px por padrão) ---
+    $wp_customize->add_setting('florapsi_banner_padding_tablet', array('default' => '160', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_padding_tablet', array('label' => __('Padding Top - Tablet (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_subtitle_fs_tablet', array('default' => '30', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_subtitle_fs_tablet', array('label' => __('Subtítulo - Tablet (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_text_fs_tablet', array('default' => '24', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_text_fs_tablet', array('label' => __('Texto - Tablet (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_btn_fs_tablet', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_btn_fs_tablet', array('label' => __('Botão - Tablet (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+    
+    // --- Mobile (576px por padrão) ---
+    $wp_customize->add_setting('florapsi_banner_subtitle_fs_mobile', array('default' => '35', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_subtitle_fs_mobile', array('label' => __('Subtítulo - Mobile (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_text_fs_mobile', array('default' => '25', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_text_fs_mobile', array('label' => __('Texto - Mobile (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_btn_fs_mobile', array('default' => '20', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_btn_fs_mobile', array('label' => __('Botão - Mobile (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
 
     /* -------------------------------------------------------------------------
     * PAINEL: SOBRE MIM
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_sobre_panel', array(
+    $wp_customize->add_panel('florapsi_sobre_panel', array(
         'title'       => __('Sobre Mim', 'louize'),
         'priority'    => 35,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('louize_sobre_layout_section', array(
+    $wp_customize->add_section('florapsi_sobre_layout_section', array(
         'title'    => __('Layout e Fundo', 'louize'),
-        'panel'    => 'louize_sobre_panel',
+        'panel'    => 'florapsi_sobre_panel',
         'priority' => 10,
     ));
 
     // Cor de Fundo
-    $wp_customize->add_setting('louize_sobre_background_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_sobre_bg_color_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_background_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_sobre_bg_color_ctrl', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_sobre_layout_section',
-        'settings' => 'louize_sobre_background_color', // Vínculo explícito
+        'section'  => 'florapsi_sobre_layout_section',
+        'settings' => 'florapsi_sobre_background_color', // Vínculo explícito
     )));
 
     // Padding Mobile
-    $wp_customize->add_setting('louize_sobre_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_pad_mobile_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_pad_mobile_ctrl', array(
         'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'louize_sobre_layout_section',
-        'settings' => 'louize_sobre_padding_mobile', // Vínculo explícito
+        'section'  => 'florapsi_sobre_layout_section',
+        'settings' => 'florapsi_sobre_padding_mobile', // Vínculo explícito
         'type'     => 'number',
     ));
 
     /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_sobre_typography_section', array(
+    $wp_customize->add_section('florapsi_sobre_typography_section', array(
         'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_sobre_panel',
+        'panel'    => 'florapsi_sobre_panel',
         'priority' => 20,
     ));
 
     // --- Título ---
-    $wp_customize->add_setting('louize_sobre_titulo_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_sobre_tit_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_titulo_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_sobre_tit_ff_ctrl', array(
         'label'    => __('Fonte do Título', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_titulo_fontfamily',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_titulo_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_sobre_titulo_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_tit_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_titulo_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_tit_fs_ctrl', array(
         'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_titulo_fontsize',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_titulo_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_sobre_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_tit_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_tit_fw_ctrl', array(
         'label'    => __('Peso do Título', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_titulo_fontweight',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_titulo_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Subtítulo ---
-    $wp_customize->add_setting('louize_sobre_subtitulo_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_sobre_sub_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_subtitulo_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_sobre_sub_ff_ctrl', array(
         'label'    => __('Fonte do Subtítulo', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_subtitulo_fontfamily',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_subtitulo_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_sobre_subtitulo_fontsize', array('default' => '30', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_sub_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_subtitulo_fontsize', array('default' => '30', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_sub_fs_ctrl', array(
         'label'    => __('Tamanho do Subtítulo (px)', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_subtitulo_fontsize',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_subtitulo_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_sobre_subtitulo_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_sub_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_subtitulo_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_sub_fw_ctrl', array(
         'label'    => __('Peso do Subtítulo', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_subtitulo_fontweight',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_subtitulo_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Texto Principal ---
-    $wp_customize->add_setting('louize_sobre_texto_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_sobre_txt_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_texto_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_sobre_txt_ff_ctrl', array(
         'label'    => __('Fonte do Texto', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_texto_fontfamily',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_texto_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_sobre_texto_fontsize', array('default' => '20', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_txt_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_texto_fontsize', array('default' => '20', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_txt_fs_ctrl', array(
         'label'    => __('Tamanho do Texto (px)', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_texto_fontsize',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_texto_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_sobre_texto_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_txt_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_texto_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_txt_fw_ctrl', array(
         'label'    => __('Peso do Texto', 'louize'),
-        'section'  => 'louize_sobre_typography_section',
-        'settings' => 'louize_sobre_texto_fontweight',
+        'section'  => 'florapsi_sobre_typography_section',
+        'settings' => 'florapsi_sobre_texto_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('louize_sobre_style_section', array(
+    $wp_customize->add_section('florapsi_sobre_style_section', array(
         'title'    => __('Cores e Estilo', 'louize'),
-        'panel'    => 'louize_sobre_panel',
+        'panel'    => 'florapsi_sobre_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_sobre_titulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_sobre_tit_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_titulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_sobre_tit_clr_ctrl', array(
         'label'    => __('Cor do Título', 'louize'),
-        'section'  => 'louize_sobre_style_section',
-        'settings' => 'louize_sobre_titulo_color',
+        'section'  => 'florapsi_sobre_style_section',
+        'settings' => 'florapsi_sobre_titulo_color',
     )));
 
-    $wp_customize->add_setting('louize_sobre_subtitulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_sobre_sub_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_subtitulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_sobre_sub_clr_ctrl', array(
         'label'    => __('Cor do Subtítulo', 'louize'),
-        'section'  => 'louize_sobre_style_section',
-        'settings' => 'louize_sobre_subtitulo_color',
+        'section'  => 'florapsi_sobre_style_section',
+        'settings' => 'florapsi_sobre_subtitulo_color',
     )));
 
-    $wp_customize->add_setting('louize_sobre_texto_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_sobre_txt_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_texto_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_sobre_txt_clr_ctrl', array(
         'label'    => __('Cor do Texto', 'louize'),
-        'section'  => 'louize_sobre_style_section',
-        'settings' => 'louize_sobre_texto_color',
+        'section'  => 'florapsi_sobre_style_section',
+        'settings' => 'florapsi_sobre_texto_color',
     )));
 
     /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('louize_sobre_mobile_section', array(
+    $wp_customize->add_section('florapsi_sobre_mobile_section', array(
         'title'    => __('Responsividade (Mobile)', 'louize'),
-        'panel'    => 'louize_sobre_panel',
+        'panel'    => 'florapsi_sobre_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_sobre_titulo_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_tit_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_titulo_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_tit_fs_mob_ctrl', array(
         'label'    => __('Tam. Título - Mobile (px)', 'louize'),
-        'section'  => 'louize_sobre_mobile_section',
-        'settings' => 'louize_sobre_titulo_fontsize_mobile',
+        'section'  => 'florapsi_sobre_mobile_section',
+        'settings' => 'florapsi_sobre_titulo_fontsize_mobile',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_sobre_subtitulo_fontsize_mobile', array('default' => '22', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_sub_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_subtitulo_fontsize_mobile', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_sub_fs_mob_ctrl', array(
         'label'    => __('Tam. Subtítulo - Mobile (px)', 'louize'),
-        'section'  => 'louize_sobre_mobile_section',
-        'settings' => 'louize_sobre_subtitulo_fontsize_mobile',
+        'section'  => 'florapsi_sobre_mobile_section',
+        'settings' => 'florapsi_sobre_subtitulo_fontsize_mobile',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_sobre_texto_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_sobre_txt_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_sobre_texto_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_sobre_txt_fs_mob_ctrl', array(
         'label'    => __('Tam. Texto - Mobile (px)', 'louize'),
-        'section'  => 'louize_sobre_mobile_section',
-        'settings' => 'louize_sobre_texto_fontsize_mobile',
+        'section'  => 'florapsi_sobre_mobile_section',
+        'settings' => 'florapsi_sobre_texto_fontsize_mobile',
         'type'     => 'number',
     ));
 
     /* -------------------------------------------------------------------------
     * PAINEL: SERVIÇOS
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_servicos_panel', array(
+    $wp_customize->add_panel('florapsi_servicos_panel', array(
         'title'       => __('Serviços', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção de Serviços.', 'louize'),
         'priority'    => 37,
     ));
 
     /* --- SUBSEÇÃO 1: Fundo e Título --- */
-    $wp_customize->add_section('louize_serv_bg_tit_section', array(
+    $wp_customize->add_section('florapsi_serv_bg_tit_section', array(
         'title'    => __('Fundo e Título', 'louize'),
-        'panel'    => 'louize_servicos_panel',
+        'panel'    => 'florapsi_servicos_panel',
         'priority' => 10,
     ));
 
     // --- Fundo ---
-    $wp_customize->add_setting('louize_servicos_background_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_background_color', array(
+    $wp_customize->add_setting('florapsi_servicos_background_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_servicos_background_color', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_serv_bg_tit_section',
+        'section'  => 'florapsi_serv_bg_tit_section',
     )));
 
     // --- Título Principal ---
-    $wp_customize->add_setting('louize_servicos_main_title_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_main_title_color', array(
+    $wp_customize->add_setting('florapsi_servicos_main_title_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_servicos_main_title_color', array(
         'label'    => __('Cor do Título', 'louize'),
-        'section'  => 'louize_serv_bg_tit_section',
+        'section'  => 'florapsi_serv_bg_tit_section',
     )));
 
-    $wp_customize->add_setting('louize_servicos_main_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_servicos_main_title_fontfamily', array(
+    $wp_customize->add_setting('florapsi_servicos_main_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_servicos_main_title_fontfamily', array(
         'label'    => __('Fonte do Título', 'louize'),
-        'section'  => 'louize_serv_bg_tit_section',
+        'section'  => 'florapsi_serv_bg_tit_section',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_servicos_main_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_main_title_fontsize', array(
+    $wp_customize->add_setting('florapsi_servicos_main_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_servicos_main_title_fontsize', array(
         'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'louize_serv_bg_tit_section',
+        'section'  => 'florapsi_serv_bg_tit_section',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_servicos_main_title_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_main_title_fontweight', array(
+    $wp_customize->add_setting('florapsi_servicos_main_title_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_servicos_main_title_fontweight', array(
         'label'    => __('Peso da Fonte', 'louize'),
-        'section'  => 'louize_serv_bg_tit_section',
+        'section'  => 'florapsi_serv_bg_tit_section',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     /* --- SUBSEÇÃO 2: Cards - Textos e Ícone --- */
-    $wp_customize->add_section('louize_serv_cards_texts_section', array(
+    $wp_customize->add_section('florapsi_serv_cards_texts_section', array(
         'title'    => __('Cards: Textos e Ícone', 'louize'),
-        'panel'    => 'louize_servicos_panel',
+        'panel'    => 'florapsi_servicos_panel',
         'priority' => 20,
     ));
 
     // --- Título do Card ---
-    $wp_customize->add_setting('louize_serv_card_tit_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_serv_card_tit_ff', array(
+    $wp_customize->add_setting('florapsi_serv_card_tit_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_serv_card_tit_ff', array(
         'label'    => __('Fonte do Título do Card', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_serv_card_tit_fs', array('default' => '26', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_tit_fs', array(
+    $wp_customize->add_setting('florapsi_serv_card_tit_fs', array('default' => '26', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_tit_fs', array(
         'label'    => __('Tamanho do Título do Card (px)', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_serv_card_tit_fw', array('default' => '600', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_tit_fw', array(
+    $wp_customize->add_setting('florapsi_serv_card_tit_fw', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_tit_fw', array(
         'label'    => __('Peso do Título do Card', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Texto do Card ---
-    $wp_customize->add_setting('louize_serv_card_txt_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_serv_card_txt_ff', array(
+    $wp_customize->add_setting('florapsi_serv_card_txt_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_serv_card_txt_ff', array(
         'label'    => __('Fonte do Texto do Card', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_serv_card_txt_fs', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_txt_fs', array(
+    $wp_customize->add_setting('florapsi_serv_card_txt_fs', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_txt_fs', array(
         'label'    => __('Tamanho do Texto do Card (px)', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_serv_card_txt_fw', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_txt_fw', array(
+    $wp_customize->add_setting('florapsi_serv_card_txt_fw', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_txt_fw', array(
         'label'    => __('Peso do Texto do Card', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Ícone ---
-    $wp_customize->add_setting('louize_serv_icon_size', array('default' => '45', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_icon_size', array(
+    $wp_customize->add_setting('florapsi_serv_icon_size', array('default' => '45', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_icon_size', array(
         'label'    => __('Tamanho do Ícone (px)', 'louize'),
-        'section'  => 'louize_serv_cards_texts_section',
+        'section'  => 'florapsi_serv_cards_texts_section',
         'type'     => 'number',
     ));
 
     /* --- SUBSEÇÃO 3: Cards - Cores --- */
-    $wp_customize->add_section('louize_serv_cards_colors_section', array(
+    $wp_customize->add_section('florapsi_serv_cards_colors_section', array(
         'title'    => __('Cards: Cores', 'louize'),
-        'panel'    => 'louize_servicos_panel',
+        'panel'    => 'florapsi_servicos_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_serv_card_tit_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_tit_clr', array(
+    $wp_customize->add_setting('florapsi_serv_card_tit_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_serv_card_tit_clr', array(
         'label'    => __('Cor do Título do Card', 'louize'),
-        'section'  => 'louize_serv_cards_colors_section',
+        'section'  => 'florapsi_serv_cards_colors_section',
     )));
 
-    $wp_customize->add_setting('louize_serv_card_txt_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_txt_clr', array(
+    $wp_customize->add_setting('florapsi_serv_card_txt_clr', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_serv_card_txt_clr', array(
         'label'    => __('Cor do Texto do Card', 'louize'),
-        'section'  => 'louize_serv_cards_colors_section',
+        'section'  => 'florapsi_serv_cards_colors_section',
     )));
 
-    $wp_customize->add_setting('louize_servicos_icon_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_servicos_icon_color', array(
+    $wp_customize->add_setting('florapsi_servicos_icon_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_servicos_icon_color', array(
         'label'    => __('Cor do Ícone', 'louize'),
-        'section'  => 'louize_serv_cards_colors_section',
+        'section'  => 'florapsi_serv_cards_colors_section',
     )));
 
-    $wp_customize->add_setting('louize_serv_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_serv_card_bg_color', array(
+    $wp_customize->add_setting('florapsi_serv_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_serv_card_bg_color', array(
         'label'    => __('Cor de Fundo do Card', 'louize'),
-        'section'  => 'louize_serv_cards_colors_section',
+        'section'  => 'florapsi_serv_cards_colors_section',
     )));
 
     /* --- SUBSEÇÃO 4: Cards - Responsividade --- */
-    $wp_customize->add_section('louize_serv_cards_resp_section', array(
+    $wp_customize->add_section('florapsi_serv_cards_resp_section', array(
         'title'    => __('Cards: Responsividade', 'louize'),
-        'panel'    => 'louize_servicos_panel',
+        'panel'    => 'florapsi_servicos_panel',
         'priority' => 40,
     ));
 
     // --- Largura Desktop ---
-    $wp_customize->add_setting('louize_serv_card_max_width_desktop', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_max_width_desktop', array(
+    $wp_customize->add_setting('florapsi_serv_card_max_width_desktop', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_max_width_desktop', array(
         'label'    => __('Largura Máxima do Card - Desktop (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
     // --- Tamanho Título Seção Mobile ---
-    $wp_customize->add_setting('louize_servicos_main_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_servicos_main_title_fontsize_mobile', array(
+    $wp_customize->add_setting('florapsi_servicos_main_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_servicos_main_title_fontsize_mobile', array(
         'label'    => __('Tam. Título Seção - Mobile (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
     // --- Tamanho Título Card Mobile ---
-    $wp_customize->add_setting('louize_serv_card_tit_fs_mobile', array('default' => '22', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_tit_fs_mobile', array(
+    $wp_customize->add_setting('florapsi_serv_card_tit_fs_mobile', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_tit_fs_mobile', array(
         'label'    => __('Tam. Título do Card - Mobile (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
     // --- Tamanho Texto Card Mobile ---
-    $wp_customize->add_setting('louize_serv_card_txt_fs_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_txt_fs_mobile', array(
+    $wp_customize->add_setting('florapsi_serv_card_txt_fs_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_txt_fs_mobile', array(
         'label'    => __('Tam. Texto do Card - Mobile (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
     // --- Largura Card Mobile ---
-    $wp_customize->add_setting('louize_serv_card_max_width_mobile', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_card_max_width_mobile', array(
+    $wp_customize->add_setting('florapsi_serv_card_max_width_mobile', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_card_max_width_mobile', array(
         'label'    => __('Largura Máxima do Card - Mobile (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
 
     // --- Tamanho Ícone Mobile ---
-    $wp_customize->add_setting('louize_serv_icon_size_mobile', array('default' => '30', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_serv_icon_size_mobile', array(
+    $wp_customize->add_setting('florapsi_serv_icon_size_mobile', array('default' => '30', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_serv_icon_size_mobile', array(
         'label'    => __('Tamanho do Ícone - Mobile (px)', 'louize'),
-        'section'  => 'louize_serv_cards_resp_section',
+        'section'  => 'florapsi_serv_cards_resp_section',
         'type'     => 'number',
     ));
-    
+
     /* -------------------------------------------------------------------------
     * PAINEL: MEU PERCURSO
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_percurso_panel', array(
+    $wp_customize->add_panel('florapsi_percurso_panel', array(
         'title'       => __('Meu Percurso', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção Meu Percurso.', 'louize'),
         'priority'    => 36,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('louize_percurso_layout_section', array(
+    $wp_customize->add_section('florapsi_percurso_layout_section', array(
         'title'    => __('Layout e Fundo', 'louize'),
-        'panel'    => 'louize_percurso_panel',
+        'panel'    => 'florapsi_percurso_panel',
         'priority' => 10,
     ));
 
     // Cor de Fundo
-    $wp_customize->add_setting('louize_percurso_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_percurso_bg_color_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_percurso_bg_color_ctrl', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_percurso_layout_section',
-        'settings' => 'louize_percurso_background_color',
+        'section'  => 'florapsi_percurso_layout_section',
+        'settings' => 'florapsi_percurso_background_color',
     )));
 
     // Padding Mobile
-    $wp_customize->add_setting('louize_percurso_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_pad_mobile_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_pad_mobile_ctrl', array(
         'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'louize_percurso_layout_section',
-        'settings' => 'louize_percurso_padding_mobile',
+        'section'  => 'florapsi_percurso_layout_section',
+        'settings' => 'florapsi_percurso_padding_mobile',
         'type'     => 'number',
     ));
 
     /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_percurso_typography_section', array(
+    $wp_customize->add_section('florapsi_percurso_typography_section', array(
         'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_percurso_panel',
+        'panel'    => 'florapsi_percurso_panel',
         'priority' => 20,
     ));
 
     // --- Título ---
-    $wp_customize->add_setting('louize_percurso_titulo_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_percurso_tit_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_titulo_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_percurso_tit_ff_ctrl', array(
         'label'    => __('Fonte do Título', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_titulo_fontfamily',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_titulo_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_percurso_titulo_fontsize', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_tit_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_titulo_fontsize', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_tit_fs_ctrl', array(
         'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_titulo_fontsize',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_titulo_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_percurso_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_tit_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_tit_fw_ctrl', array(
         'label'    => __('Peso do Título', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_titulo_fontweight',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_titulo_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Texto Principal ---
-    $wp_customize->add_setting('louize_percurso_texto_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_percurso_txt_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_texto_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_percurso_txt_ff_ctrl', array(
         'label'    => __('Fonte do Texto', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_texto_fontfamily',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_texto_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_percurso_texto_fontsize', array('default' => '22', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_txt_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_texto_fontsize', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_txt_fs_ctrl', array(
         'label'    => __('Tamanho do Texto (px)', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_texto_fontsize',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_texto_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_percurso_texto_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_txt_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_texto_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_txt_fw_ctrl', array(
         'label'    => __('Peso do Texto', 'louize'),
-        'section'  => 'louize_percurso_typography_section',
-        'settings' => 'louize_percurso_texto_fontweight',
+        'section'  => 'florapsi_percurso_typography_section',
+        'settings' => 'florapsi_percurso_texto_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('louize_percurso_style_section', array(
+    $wp_customize->add_section('florapsi_percurso_style_section', array(
         'title'    => __('Cores e Estilo', 'louize'),
-        'panel'    => 'louize_percurso_panel',
+        'panel'    => 'florapsi_percurso_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_percurso_titulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_percurso_tit_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_titulo_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_percurso_tit_clr_ctrl', array(
         'label'    => __('Cor do Título', 'louize'),
-        'section'  => 'louize_percurso_style_section',
-        'settings' => 'louize_percurso_titulo_color',
+        'section'  => 'florapsi_percurso_style_section',
+        'settings' => 'florapsi_percurso_titulo_color',
     )));
 
-    $wp_customize->add_setting('louize_percurso_texto_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_percurso_txt_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_texto_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_percurso_txt_clr_ctrl', array(
         'label'    => __('Cor do Texto', 'louize'),
-        'section'  => 'louize_percurso_style_section',
-        'settings' => 'louize_percurso_texto_color',
+        'section'  => 'florapsi_percurso_style_section',
+        'settings' => 'florapsi_percurso_texto_color',
     )));
 
     /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('louize_percurso_mobile_section', array(
+    $wp_customize->add_section('florapsi_percurso_mobile_section', array(
         'title'    => __('Responsividade (Mobile)', 'louize'),
-        'panel'    => 'louize_percurso_panel',
+        'panel'    => 'florapsi_percurso_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_percurso_titulo_fontsize_mobile', array('default' => '32', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_tit_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_titulo_fontsize_mobile', array('default' => '32', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_tit_fs_mob_ctrl', array(
         'label'    => __('Tam. Título - Mobile (px)', 'louize'),
-        'section'  => 'louize_percurso_mobile_section',
-        'settings' => 'louize_percurso_titulo_fontsize_mobile',
+        'section'  => 'florapsi_percurso_mobile_section',
+        'settings' => 'florapsi_percurso_titulo_fontsize_mobile',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_percurso_texto_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_percurso_txt_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_percurso_texto_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_txt_fs_mob_ctrl', array(
         'label'    => __('Tam. Texto - Mobile (px)', 'louize'),
-        'section'  => 'louize_percurso_mobile_section',
-        'settings' => 'louize_percurso_texto_fontsize_mobile',
+        'section'  => 'florapsi_percurso_mobile_section',
+        'settings' => 'florapsi_percurso_texto_fontsize_mobile',
         'type'     => 'number',
     ));
 
     /* -------------------------------------------------------------------------
     * PAINEL: DEPOIMENTOS (FEEDBACK)
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_feedback_panel', array(
+    $wp_customize->add_panel('florapsi_feedback_panel', array(
         'title'       => __('Depoimentos', 'louize'),
         'description' => __('Configurações de layout, tipografia e estilos da seção de feedbacks.', 'louize'),
         'priority'    => 38,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('louize_feedback_layout_section', array(
+    $wp_customize->add_section('florapsi_feedback_layout_section', array(
         'title'    => __('Layout e Fundo', 'louize'),
-        'panel'    => 'louize_feedback_panel',
+        'panel'    => 'florapsi_feedback_panel',
         'priority' => 10,
     ));
 
     // Cor de Fundo da Seção
-    $wp_customize->add_setting('louize_feedback_background_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_bg_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_background_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_bg_clr_ctrl', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_feedback_layout_section',
-        'settings' => 'louize_feedback_background_color',
+        'section'  => 'florapsi_feedback_layout_section',
+        'settings' => 'florapsi_feedback_background_color',
     )));
 
     // Estilo do Card
-    $wp_customize->add_setting('louize_feedback_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_card_bg_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_card_bg_ctrl', array(
         'label'    => __('Cor de Fundo do Card', 'louize'),
-        'section'  => 'louize_feedback_layout_section',
-        'settings' => 'louize_feedback_card_bg_color',
+        'section'  => 'florapsi_feedback_layout_section',
+        'settings' => 'florapsi_feedback_card_bg_color',
     )));
 
     // Ícone de Aspas
-    $wp_customize->add_setting('louize_feedback_quote_icon_color', array('default' => '#A3B899', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_quote_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_quote_icon_color', array('default' => '#A3B899', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_quote_clr_ctrl', array(
         'label'    => __('Cor do Ícone de Aspas', 'louize'),
-        'section'  => 'louize_feedback_layout_section',
-        'settings' => 'louize_feedback_quote_icon_color',
+        'section'  => 'florapsi_feedback_layout_section',
+        'settings' => 'florapsi_feedback_quote_icon_color',
     )));
 
-    $wp_customize->add_setting('louize_feedback_quote_icon_size', array('default' => '140', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_fb_quote_size_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_quote_icon_size', array('default' => '140', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_fb_quote_size_ctrl', array(
         'label'    => __('Tamanho do Ícone de Aspas (px)', 'louize'),
-        'section'  => 'louize_feedback_layout_section',
-        'settings' => 'louize_feedback_quote_icon_size',
+        'section'  => 'florapsi_feedback_layout_section',
+        'settings' => 'florapsi_feedback_quote_icon_size',
         'type'     => 'number',
     ));
 
     // Padding Mobile
-    $wp_customize->add_setting('louize_feedback_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_fb_pad_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_fb_pad_mob_ctrl', array(
         'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'louize_feedback_layout_section',
-        'settings' => 'louize_feedback_padding_mobile',
+        'section'  => 'florapsi_feedback_layout_section',
+        'settings' => 'florapsi_feedback_padding_mobile',
         'type'     => 'number',
     ));
 
     /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_feedback_typography_section', array(
+    $wp_customize->add_section('florapsi_feedback_typography_section', array(
         'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_feedback_panel',
+        'panel'    => 'florapsi_feedback_panel',
         'priority' => 20,
     ));
 
     // Texto do Título
-    $wp_customize->add_setting('louize_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_fb_main_tit_txt_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_fb_main_tit_txt_ctrl', array(
         'label'    => __('Título da Seção', 'louize'),
-        'section'  => 'louize_feedback_typography_section',
-        'settings' => 'louize_feedback_main_title',
+        'section'  => 'florapsi_feedback_typography_section',
+        'settings' => 'florapsi_feedback_main_title',
     ));
 
     // --- Tipografia: Título ---
-    $wp_customize->add_setting('louize_feedback_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_fb_tit_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_fb_tit_ff_ctrl', array(
         'label'    => __('Fonte do Título', 'louize'),
-        'section'  => 'louize_feedback_typography_section',
-        'settings' => 'louize_feedback_title_fontfamily',
+        'section'  => 'florapsi_feedback_typography_section',
+        'settings' => 'florapsi_feedback_title_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_feedback_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_fb_tit_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_fb_tit_fs_ctrl', array(
         'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'louize_feedback_typography_section',
-        'settings' => 'louize_feedback_title_fontsize',
+        'section'  => 'florapsi_feedback_typography_section',
+        'settings' => 'florapsi_feedback_title_fontsize',
         'type'     => 'number',
     ));
 
     // --- Tipografia: Autor ---
-    $wp_customize->add_setting('louize_feedback_author_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_fb_auth_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_author_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_fb_auth_ff_ctrl', array(
         'label'    => __('Fonte do Autor', 'louize'),
-        'section'  => 'louize_feedback_typography_section',
-        'settings' => 'louize_feedback_author_fontfamily',
+        'section'  => 'florapsi_feedback_typography_section',
+        'settings' => 'florapsi_feedback_author_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
     // --- Tipografia: Texto do Depoimento ---
-    $wp_customize->add_setting('louize_feedback_text_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_fb_txt_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_text_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_fb_txt_ff_ctrl', array(
         'label'    => __('Fonte do Depoimento', 'louize'),
-        'section'  => 'louize_feedback_typography_section',
-        'settings' => 'louize_feedback_text_fontfamily',
+        'section'  => 'florapsi_feedback_typography_section',
+        'settings' => 'florapsi_feedback_text_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
     /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('louize_feedback_style_section', array(
+    $wp_customize->add_section('florapsi_feedback_style_section', array(
         'title'    => __('Cores e Estilo', 'louize'),
-        'panel'    => 'louize_feedback_panel',
+        'panel'    => 'florapsi_feedback_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_feedback_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_tit_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_tit_clr_ctrl', array(
         'label'    => __('Cor do Título', 'louize'),
-        'section'  => 'louize_feedback_style_section',
-        'settings' => 'louize_feedback_title_color',
+        'section'  => 'florapsi_feedback_style_section',
+        'settings' => 'florapsi_feedback_title_color',
     )));
 
-    $wp_customize->add_setting('louize_feedback_author_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_auth_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_author_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_auth_clr_ctrl', array(
         'label'    => __('Cor do Autor', 'louize'),
-        'section'  => 'louize_feedback_style_section',
-        'settings' => 'louize_feedback_author_color',
+        'section'  => 'florapsi_feedback_style_section',
+        'settings' => 'florapsi_feedback_author_color',
     )));
 
-    $wp_customize->add_setting('louize_feedback_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_txt_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_txt_clr_ctrl', array(
         'label'    => __('Cor do Depoimento', 'louize'),
-        'section'  => 'louize_feedback_style_section',
-        'settings' => 'louize_feedback_text_color',
+        'section'  => 'florapsi_feedback_style_section',
+        'settings' => 'florapsi_feedback_text_color',
     )));
 
-    $wp_customize->add_setting('louize_feedback_readmore_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_fb_rdmr_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_readmore_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_rdmr_clr_ctrl', array(
         'label'    => __('Cor do "Ler Mais"', 'louize'),
-        'section'  => 'louize_feedback_style_section',
-        'settings' => 'louize_feedback_readmore_color',
+        'section'  => 'florapsi_feedback_style_section',
+        'settings' => 'florapsi_feedback_readmore_color',
     )));
 
     /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('louize_feedback_mobile_section', array(
+    $wp_customize->add_section('florapsi_feedback_mobile_section', array(
         'title'    => __('Responsividade (Mobile)', 'louize'),
-        'panel'    => 'louize_feedback_panel',
+        'panel'    => 'florapsi_feedback_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_feedback_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_fb_tit_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_feedback_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_fb_tit_fs_mob_ctrl', array(
         'label'    => __('Tam. Título - Mobile (px)', 'louize'),
-        'section'  => 'louize_feedback_mobile_section',
-        'settings' => 'louize_feedback_title_fontsize_mobile',
+        'section'  => 'florapsi_feedback_mobile_section',
+        'settings' => 'florapsi_feedback_title_fontsize_mobile',
         'type'     => 'number',
     ));
 
     /* -------------------------------------------------------------------------
     * PAINEL: DÚVIDAS FREQUENTES
     * ------------------------------------------------------------------------- */
-    $wp_customize->add_panel('louize_duvidas_panel', array(
+    $wp_customize->add_panel('florapsi_duvidas_panel', array(
         'title'       => __('Dúvidas Frequentes', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção de Dúvidas Frequentes (FAQ).', 'louize'),
         'priority'    => 40,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('louize_duvidas_layout_section', array(
+    $wp_customize->add_section('florapsi_duvidas_layout_section', array(
         'title'    => __('Layout e Fundo', 'louize'),
-        'panel'    => 'louize_duvidas_panel',
+        'panel'    => 'florapsi_duvidas_panel',
         'priority' => 10,
     ));
 
     // Cor de Fundo da Seção
-    $wp_customize->add_setting('louize_duvidas_background_color', array('default' => '#E8B1B1', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_duv_bg_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_background_color', array('default' => '#E8B1B1', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_duv_bg_clr_ctrl', array(
         'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'louize_duvidas_layout_section',
-        'settings' => 'louize_duvidas_background_color',
+        'section'  => 'florapsi_duvidas_layout_section',
+        'settings' => 'florapsi_duvidas_background_color',
     )));
 
     // Padding Mobile
-    $wp_customize->add_setting('louize_duvidas_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_pad_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_pad_mob_ctrl', array(
         'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'louize_duvidas_layout_section',
-        'settings' => 'louize_duvidas_padding_mobile',
+        'section'  => 'florapsi_duvidas_layout_section',
+        'settings' => 'florapsi_duvidas_padding_mobile',
         'type'     => 'number',
     ));
 
     /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('louize_duvidas_typography_section', array(
+    $wp_customize->add_section('florapsi_duvidas_typography_section', array(
         'title'    => __('Conteúdo e Tipografia', 'louize'),
-        'panel'    => 'louize_duvidas_panel',
+        'panel'    => 'florapsi_duvidas_panel',
         'priority' => 20,
     ));
 
     // --- Tipografia: Título ---
-    $wp_customize->add_setting('louize_duvidas_titulo_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_tit_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_titulo_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_tit_fs_ctrl', array(
         'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_titulo_fontsize',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_titulo_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_duvidas_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_tit_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_titulo_fontweight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_tit_fw_ctrl', array(
         'label'    => __('Peso do Título', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_titulo_fontweight',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_titulo_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Tipografia: Pergunta ---
-    $wp_customize->add_setting('louize_duvidas_pergunta_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_duv_perg_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_duv_perg_ff_ctrl', array(
         'label'    => __('Fonte da Pergunta', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_pergunta_fontfamily',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_pergunta_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_duvidas_pergunta_fontsize', array('default' => '20', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_perg_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_fontsize', array('default' => '20', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_perg_fs_ctrl', array(
         'label'    => __('Tamanho da Pergunta (px)', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_pergunta_fontsize',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_pergunta_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_duvidas_pergunta_fontweight', array('default' => '600', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_perg_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_fontweight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_perg_fw_ctrl', array(
         'label'    => __('Peso da Pergunta', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_pergunta_fontweight',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_pergunta_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     // --- Tipografia: Resposta ---
-    $wp_customize->add_setting('louize_duvidas_resposta_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_duv_resp_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_resposta_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_duv_resp_ff_ctrl', array(
         'label'    => __('Fonte da Resposta', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_resposta_fontfamily',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_resposta_fontfamily',
         'type'     => 'select',
         'choices'  => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_duvidas_resposta_fontsize', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_resp_fs_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_resposta_fontsize', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_resp_fs_ctrl', array(
         'label'    => __('Tamanho da Resposta (px)', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_resposta_fontsize',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_resposta_fontsize',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_duvidas_resposta_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_resp_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_resposta_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_resp_fw_ctrl', array(
         'label'    => __('Peso da Resposta', 'louize'),
-        'section'  => 'louize_duvidas_typography_section',
-        'settings' => 'louize_duvidas_pergunta_fontweight',
+        'section'  => 'florapsi_duvidas_typography_section',
+        'settings' => 'florapsi_duvidas_pergunta_fontweight',
         'type'     => 'select',
         'choices'  => $font_weight_choices,
     ));
 
     /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('louize_duvidas_style_section', array(
+    $wp_customize->add_section('florapsi_duvidas_style_section', array(
         'title'    => __('Cores e Estilo', 'louize'),
-        'panel'    => 'louize_duvidas_panel',
+        'panel'    => 'florapsi_duvidas_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('louize_duvidas_titulo_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_duv_tit_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_titulo_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_duv_tit_clr_ctrl', array(
         'label'    => __('Cor do Título Principal', 'louize'),
-        'section'  => 'louize_duvidas_style_section',
-        'settings' => 'louize_duvidas_titulo_color',
+        'section'  => 'florapsi_duvidas_style_section',
+        'settings' => 'florapsi_duvidas_titulo_color',
     )));
 
-    $wp_customize->add_setting('louize_duvidas_pergunta_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_duv_perg_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_color', array('default' => '#9B545A', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_duv_perg_clr_ctrl', array(
         'label'    => __('Cor da Pergunta', 'louize'),
-        'section'  => 'louize_duvidas_style_section',
-        'settings' => 'louize_duvidas_pergunta_color',
+        'section'  => 'florapsi_duvidas_style_section',
+        'settings' => 'florapsi_duvidas_pergunta_color',
     )));
 
-    $wp_customize->add_setting('louize_duvidas_pergunta_hover_color', array('default' => '#E8B1B1', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_duv_perg_hvr_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_hover_color', array('default' => '#E8B1B1', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_duv_perg_hvr_clr_ctrl', array(
         'label'    => __('Cor do Hover da Pergunta', 'louize'),
-        'section'  => 'louize_duvidas_style_section',
-        'settings' => 'louize_duvidas_pergunta_hover_color',
+        'section'  => 'florapsi_duvidas_style_section',
+        'settings' => 'florapsi_duvidas_pergunta_hover_color',
     )));
 
-    $wp_customize->add_setting('louize_duvidas_resposta_color', array('default' => '#333333', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_duv_resp_clr_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_resposta_color', array('default' => '#333333', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_duv_resp_clr_ctrl', array(
         'label'    => __('Cor da Resposta', 'louize'),
-        'section'  => 'louize_duvidas_style_section',
-        'settings' => 'louize_duvidas_resposta_color',
+        'section'  => 'florapsi_duvidas_style_section',
+        'settings' => 'florapsi_duvidas_resposta_color',
     )));
 
     /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('louize_duvidas_mobile_section', array(
+    $wp_customize->add_section('florapsi_duvidas_mobile_section', array(
         'title'    => __('Responsividade (Mobile)', 'louize'),
-        'panel'    => 'louize_duvidas_panel',
+        'panel'    => 'florapsi_duvidas_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('louize_duvidas_titulo_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_tit_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_titulo_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_tit_fs_mob_ctrl', array(
         'label'    => __('Tam. Título - Mobile (px)', 'louize'),
-        'section'  => 'louize_duvidas_mobile_section',
-        'settings' => 'louize_duvidas_titulo_fontsize_mobile',
+        'section'  => 'florapsi_duvidas_mobile_section',
+        'settings' => 'florapsi_duvidas_titulo_fontsize_mobile',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_duvidas_pergunta_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_perg_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_pergunta_fontsize_mobile', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_perg_fs_mob_ctrl', array(
         'label'    => __('Tam. Pergunta - Mobile (px)', 'louize'),
-        'section'  => 'louize_duvidas_mobile_section',
-        'settings' => 'louize_duvidas_pergunta_fontsize_mobile',
+        'section'  => 'florapsi_duvidas_mobile_section',
+        'settings' => 'florapsi_duvidas_pergunta_fontsize_mobile',
         'type'     => 'number',
     ));
 
-    $wp_customize->add_setting('louize_duvidas_resposta_fontsize_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_duv_resp_fs_mob_ctrl', array(
+    $wp_customize->add_setting('florapsi_duvidas_resposta_fontsize_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_duv_resp_fs_mob_ctrl', array(
         'label'    => __('Tam. Resposta - Mobile (px)', 'louize'),
-        'section'  => 'louize_duvidas_mobile_section',
-        'settings' => 'louize_duvidas_resposta_fontsize_mobile',
+        'section'  => 'florapsi_duvidas_mobile_section',
+        'settings' => 'florapsi_duvidas_resposta_fontsize_mobile',
         'type'     => 'number',
     ));
     /* -------------------------------------------------------------------------
      * SEÇÃO: CONTATO
      * ------------------------------------------------------------------------- */
-    $wp_customize->add_section('louize_contato_section', array(
+    $wp_customize->add_section('florapsi_contato_section', array(
         'title'    => __('Contato', 'louize'),
         'priority' => 50,
     ));
 
     // Títulos
-    $wp_customize->add_setting('louize_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_contato_insta_title_control', array(
-        'label' => __('Título: Coluna Instagram', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_contato_insta_title',
+    $wp_customize->add_setting('florapsi_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contato_insta_title_control', array(
+        'label' => __('Título: Coluna Instagram', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_insta_title',
     ));
 
-    $wp_customize->add_setting('louize_contato_cta_title', array('default' => 'Vamos conversar?', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_contato_cta_title_control', array(
-        'label' => __('Título: Coluna Convite', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_contato_cta_title',
+    $wp_customize->add_setting('florapsi_contato_cta_title', array('default' => 'Vamos conversar?', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contato_cta_title_control', array(
+        'label' => __('Título: Coluna Convite', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_cta_title',
     ));
 
     // Conteúdo Instagram
-    $wp_customize->add_setting('louize_instagram_text', array('default' => 'Conheça mais sobre meu trabalho.', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_instagram_text_control', array(
-        'label' => __('Texto da Coluna Instagram', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_instagram_text', 'type' => 'textarea',
+    $wp_customize->add_setting('florapsi_instagram_text', array('default' => 'Conheça mais sobre meu trabalho.', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_instagram_text_control', array(
+        'label' => __('Texto da Coluna Instagram', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_text', 'type' => 'textarea',
     ));
 
-    $wp_customize->add_setting('louize_instagram_handle', array('default' => '@perfil', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_instagram_handle_control', array(
-        'label' => __('Nome de Usuário (@)', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_instagram_handle',
+    $wp_customize->add_setting('florapsi_instagram_handle', array('default' => '@perfil', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_instagram_handle_control', array(
+        'label' => __('Nome de Usuário (@)', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_handle',
     ));
 
-    $wp_customize->add_setting('louize_instagram_url', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control('louize_instagram_url_control', array(
-        'label' => __('Link do Instagram (URL)', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_instagram_url', 'type' => 'url',
+    $wp_customize->add_setting('florapsi_instagram_url', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control('florapsi_instagram_url_control', array(
+        'label' => __('Link do Instagram (URL)', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_url', 'type' => 'url',
     ));
 
     // --- Estilos da Seção de Contato ---
-    $wp_customize->add_setting('louize_contato_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_contato_background_color_control', array(
-        'label' => __('Cor de Fundo da Seção', 'louize'), 'section' => 'louize_contato_section', 'settings' => 'louize_contato_background_color',
+    $wp_customize->add_setting('florapsi_contato_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contato_background_color_control', array(
+        'label' => __('Cor de Fundo da Seção', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_background_color',
     )));
 
     // =========================================================================
@@ -1092,30 +1143,30 @@ function louize_customize_register($wp_customize) {
     // =========================================================================
     
     // Título da Secção de Depoimentos
-    $wp_customize->add_setting('louize_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_feedback_main_title_control', array(
+    $wp_customize->add_setting('florapsi_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_feedback_main_title_control', array(
         'label' => __('Título da Secção de Depoimentos', 'louize'),
-        'section' => 'louize_feedback_section',
+        'section' => 'florapsi_feedback_section',
     ));
 
     // Título da Coluna Instagram
-    $wp_customize->add_setting('louize_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_contato_insta_title_control', array(
+    $wp_customize->add_setting('florapsi_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contato_insta_title_control', array(
         'label' => __('Título da Coluna Instagram', 'louize'),
-        'section' => 'louize_contato_section',
+        'section' => 'florapsi_contato_section',
     ));
 
     // Título da Coluna "Vamos Conversar"
-    $wp_customize->add_setting('louize_contato_cta_title', array('default' => 'Vamos conversar?', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_contato_cta_title_control', array(
+    $wp_customize->add_setting('florapsi_contato_cta_title', array('default' => 'Vamos conversar?', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contato_cta_title_control', array(
         'label' => __('Título do Convite de Contacto', 'louize'),
-        'section' => 'louize_contato_section',
+        'section' => 'florapsi_contato_section',
     ));
 
     // =========================================================================
     // PAINEL DO RODAPÉ (Agrupa todas as subseções de rodapé e legal)
     // =========================================================================
-    $wp_customize->add_panel('louize_footer_panel', array(
+    $wp_customize->add_panel('florapsi_footer_panel', array(
         'title'       => __('Rodapé e Legal', 'louize'),
         'description' => __('Configurações de conteúdo, estilo do rodapé e avisos de privacidade.', 'louize'),
         'priority'    => 160, // Mantém a prioridade original do rodapé
@@ -1124,138 +1175,138 @@ function louize_customize_register($wp_customize) {
     // =========================================================================
     // SUBSEÇÃO 1: Conteúdo e Estilo do Rodapé
     // =========================================================================
-    $wp_customize->add_section('louize_footer_content_section', array(
+    $wp_customize->add_section('florapsi_footer_content_section', array(
         'title'    => __('Conteúdo e Estilo Geral', 'louize'),
-        'panel'    => 'louize_footer_panel',
+        'panel'    => 'florapsi_footer_panel',
         'priority' => 10,
     ));
 
     // --- Identificação e Copyright ---
-    $wp_customize->add_setting('louize_footer_identification_text', array('default' => 'Nome do Profissional | Cargo - Registro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_footer_id_text_ctrl', array(
+    $wp_customize->add_setting('florapsi_footer_identification_text', array('default' => 'Nome do Profissional | Cargo - Registro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_footer_id_text_ctrl', array(
         'label'    => __('Texto de Identificação', 'louize'),
-        'section'  => 'louize_footer_content_section',
-        'settings' => 'louize_footer_identification_text',
+        'section'  => 'florapsi_footer_content_section',
+        'settings' => 'florapsi_footer_identification_text',
     ));
 
-    $wp_customize->add_setting('louize_footer_copyright_text', array('default' => 'Todos os direitos reservados.', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_footer_copy_text_ctrl', array(
+    $wp_customize->add_setting('florapsi_footer_copyright_text', array('default' => 'Todos os direitos reservados.', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_footer_copy_text_ctrl', array(
         'label'    => __('Texto de Copyright', 'louize'),
-        'section'  => 'louize_footer_content_section',
-        'settings' => 'louize_footer_copyright_text',
+        'section'  => 'florapsi_footer_content_section',
+        'settings' => 'florapsi_footer_copyright_text',
     ));
 
-    $wp_customize->add_setting('louize_footer_background_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_footer_bg_color_ctrl', array(
-        'label' => __('Cor de Fundo', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_background_color',
+    $wp_customize->add_setting('florapsi_footer_background_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_footer_bg_color_ctrl', array(
+        'label' => __('Cor de Fundo', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_background_color',
     )));
 
-    $wp_customize->add_setting('louize_footer_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_footer_text_color_ctrl', array(
-        'label' => __('Cor do Texto', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_text_color',
+    $wp_customize->add_setting('florapsi_footer_text_color', array('default' => '#E5CDC0', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_footer_text_color_ctrl', array(
+        'label' => __('Cor do Texto', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_text_color',
     )));
 
-    $wp_customize->add_setting('louize_footer_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_footer_ff_ctrl', array(
-        'label' => __('Família da Fonte', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_fontfamily', 'type' => 'select', 'choices' => $font_family_choices,
+    $wp_customize->add_setting('florapsi_footer_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_footer_ff_ctrl', array(
+        'label' => __('Família da Fonte', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_fontfamily', 'type' => 'select', 'choices' => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_footer_fontsize', array('default' => '15', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_footer_fs_ctrl', array(
-        'label' => __('Tamanho da Fonte (px)', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_fontsize', 'type' => 'number',
+    $wp_customize->add_setting('florapsi_footer_fontsize', array('default' => '15', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_footer_fs_ctrl', array(
+        'label' => __('Tamanho da Fonte (px)', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_fontsize', 'type' => 'number',
     ));
 
-    $wp_customize->add_setting('louize_footer_identification_fontweight', array('default' => '600', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_footer_fw_ctrl', array(
-        'label' => __('Peso da Fonte (Identificação)', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_identification_fontweight', 'type' => 'select', 'choices' => $font_weight_choices,
+    $wp_customize->add_setting('florapsi_footer_identification_fontweight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_footer_fw_ctrl', array(
+        'label' => __('Peso da Fonte (Identificação)', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_identification_fontweight', 'type' => 'select', 'choices' => $font_weight_choices,
     ));
 
-    $wp_customize->add_setting('louize_footer_padding', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_footer_pad_ctrl', array(
-        'label' => __('Padding Vertical (px)', 'louize'), 'section' => 'louize_footer_content_section', 'settings' => 'louize_footer_padding', 'type' => 'number',
+    $wp_customize->add_setting('florapsi_footer_padding', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_footer_pad_ctrl', array(
+        'label' => __('Padding Vertical (px)', 'louize'), 'section' => 'florapsi_footer_content_section', 'settings' => 'florapsi_footer_padding', 'type' => 'number',
     ));
 
 
     // Subseção: Modal Legal
-    $wp_customize->add_section('louize_footer_modal_section', array(
+    $wp_customize->add_section('florapsi_footer_modal_section', array(
         'title'    => __('Modal Legal e Privacidade', 'louize'),
-        'panel'    => 'louize_footer_panel',
+        'panel'    => 'florapsi_footer_panel',
         'priority' => 20,
     ));
 
-    $wp_customize->add_setting('louize_footer_legal_link_text', array('default' => 'Informações Legais e Privacidade', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_footer_legal_link_ctrl', array(
+    $wp_customize->add_setting('florapsi_footer_legal_link_text', array('default' => 'Informações Legais e Privacidade', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_footer_legal_link_ctrl', array(
         'label'    => __('Texto do Link no Rodapé', 'louize'),
-        'section'  => 'louize_footer_modal_section',
-        'settings' => 'louize_footer_legal_link_text',
+        'section'  => 'florapsi_footer_modal_section',
+        'settings' => 'florapsi_footer_legal_link_text',
     ));
 
-    $wp_customize->add_setting('louize_footer_legal_notice', array('default' => '', 'sanitize_callback' => 'sanitize_textarea_field'));
-    $wp_customize->add_control('louize_footer_legal_notice_ctrl', array(
+    $wp_customize->add_setting('florapsi_footer_legal_notice', array('default' => '', 'sanitize_callback' => 'sanitize_textarea_field'));
+    $wp_customize->add_control('florapsi_footer_legal_notice_ctrl', array(
         'label'    => __('Conteúdo das Informações Legais', 'louize'),
-        'section'  => 'louize_footer_modal_section',
-        'settings' => 'louize_footer_legal_notice',
+        'section'  => 'florapsi_footer_modal_section',
+        'settings' => 'florapsi_footer_legal_notice',
         'type'     => 'textarea',
     ));
 
-    $wp_customize->add_setting('louize_modal_bg_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_modal_bg_ctrl', array(
-        'label' => __('Cor de Fundo da Janela', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_bg_color',
+    $wp_customize->add_setting('florapsi_modal_bg_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_modal_bg_ctrl', array(
+        'label' => __('Cor de Fundo da Janela', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_bg_color',
     )));
 
-    $wp_customize->add_setting('louize_modal_line_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_modal_line_ctrl', array(
-        'label' => __('Cor da Linha Divisória', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_line_color',
+    $wp_customize->add_setting('florapsi_modal_line_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_modal_line_ctrl', array(
+        'label' => __('Cor da Linha Divisória', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_line_color',
     )));
 
-    $wp_customize->add_setting('louize_modal_close_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_modal_close_ctrl', array(
-        'label' => __('Cor do Botão Fechar (X)', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_close_color',
+    $wp_customize->add_setting('florapsi_modal_close_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_modal_close_ctrl', array(
+        'label' => __('Cor do Botão Fechar (X)', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_close_color',
     )));
 
-    $wp_customize->add_setting('louize_modal_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_modal_title_color_ctrl', array(
-        'label' => __('Cor do Título', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_title_color',
+    $wp_customize->add_setting('florapsi_modal_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_modal_title_color_ctrl', array(
+        'label' => __('Cor do Título', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_title_color',
     )));
 
-    $wp_customize->add_setting('louize_modal_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_modal_title_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_modal_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_modal_title_ff_ctrl', array(
         'label'   => __('Fonte do Título', 'louize'),
-        'section' => 'louize_footer_modal_section',
-        'settings'=> 'louize_modal_title_fontfamily',
+        'section' => 'florapsi_footer_modal_section',
+        'settings'=> 'florapsi_modal_title_fontfamily',
         'type'    => 'select',
         'choices' => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_modal_title_fontsize', array('default' => '28', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_modal_title_fs_ctrl', array(
-        'label' => __('Tamanho do Título (px)', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_title_fontsize', 'type' => 'number',
+    $wp_customize->add_setting('florapsi_modal_title_fontsize', array('default' => '28', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_modal_title_fs_ctrl', array(
+        'label' => __('Tamanho do Título (px)', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_title_fontsize', 'type' => 'number',
     ));
 
-    $wp_customize->add_setting('louize_modal_body_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_modal_body_color_ctrl', array(
-        'label' => __('Cor do Texto', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_body_color',
+    $wp_customize->add_setting('florapsi_modal_body_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_modal_body_color_ctrl', array(
+        'label' => __('Cor do Texto', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_body_color',
     )));
 
-    $wp_customize->add_setting('louize_modal_body_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('louize_modal_body_ff_ctrl', array(
+    $wp_customize->add_setting('florapsi_modal_body_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_modal_body_ff_ctrl', array(
         'label'   => __('Fonte do Texto', 'louize'),
-        'section' => 'louize_footer_modal_section',
-        'settings'=> 'louize_modal_body_fontfamily',
+        'section' => 'florapsi_footer_modal_section',
+        'settings'=> 'florapsi_modal_body_fontfamily',
         'type'    => 'select',
         'choices' => $font_family_choices,
     ));
 
-    $wp_customize->add_setting('louize_modal_body_fontsize', array('default' => '16', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_modal_body_fs_ctrl', array(
-        'label' => __('Tamanho do Texto (px)', 'louize'), 'section' => 'louize_footer_modal_section', 'settings' => 'louize_modal_body_fontsize', 'type' => 'number',
+    $wp_customize->add_setting('florapsi_modal_body_fontsize', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_modal_body_fs_ctrl', array(
+        'label' => __('Tamanho do Texto (px)', 'louize'), 'section' => 'florapsi_footer_modal_section', 'settings' => 'florapsi_modal_body_fontsize', 'type' => 'number',
     ));
 
-    $wp_customize->add_setting('louize_modal_body_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('louize_modal_body_fw_ctrl', array(
+    $wp_customize->add_setting('florapsi_modal_body_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_modal_body_fw_ctrl', array(
         'label'   => __('Peso da Fonte', 'louize'),
-        'section' => 'louize_footer_modal_section',
-        'settings'=> 'louize_modal_body_fontweight',
+        'section' => 'florapsi_footer_modal_section',
+        'settings'=> 'florapsi_modal_body_fontweight',
         'type'    => 'select',
         'choices' => $font_weight_choices,
     ));
@@ -1263,84 +1314,85 @@ function louize_customize_register($wp_customize) {
     /* -------------------------------------------------------------------------
      * BOTÃO FLUTUANTE (WHATSAPP)
      * ------------------------------------------------------------------------- */
-    $wp_customize->add_section('louize_whatsapp_section', array(
+    $wp_customize->add_section('florapsi_whatsapp_section', array(
         'title'    => __('Botão Flutuante (WhatsApp)', 'louize'),
         'priority' => 170,
     ));
 
-    $wp_customize->add_setting('louize_whatsapp_link', array(
+    $wp_customize->add_setting('florapsi_whatsapp_link', array(
         'default'   => 'https://wa.me/seu-numer',
         'sanitize_callback' => 'esc_url_raw',
     ));
-    $wp_customize->add_control('louize_whatsapp_link_control', array(
+    $wp_customize->add_control('florapsi_whatsapp_link_control', array(
         'label'      => __('Link de Redirecionamento', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_link',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_link',
         'type'       => 'url',
     ));
 
-    $wp_customize->add_setting('louize_whatsapp_bg_color', array(
+    $wp_customize->add_setting('florapsi_whatsapp_bg_color', array(
         'default'   => '#A3B899',
         'sanitize_callback' => 'sanitize_hex_color',
     ));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_whatsapp_bg_color_control', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_whatsapp_bg_color_control', array(
         'label'      => __('Cor de Fundo do Botão', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_bg_color',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_bg_color',
     )));
     
-    $wp_customize->add_setting('louize_whatsapp_icon_color', array(
+    $wp_customize->add_setting('florapsi_whatsapp_icon_color', array(
         'default'   => '#E5CDC0',
         'sanitize_callback' => 'sanitize_hex_color',
     ));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'louize_whatsapp_icon_color_control', array(
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_whatsapp_icon_color_control', array(
         'label'      => __('Cor do Ícone', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_icon_color',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_icon_color',
     )));
     
-    $wp_customize->add_setting('louize_whatsapp_size', array(
+    $wp_customize->add_setting('florapsi_whatsapp_size', array(
         'default'   => '60',
         'sanitize_callback' => 'absint',
     ));
-    $wp_customize->add_control('louize_whatsapp_size_control', array(
+    $wp_customize->add_control('florapsi_whatsapp_size_control', array(
         'label'      => __('Tamanho do Botão (px)', 'louize'),
         'description' => __('Define a largura e altura do botão.', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_size',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_size',
         'type'       => 'number',
     ));
 
-    $wp_customize->add_setting('louize_whatsapp_position_bottom', array(
+    $wp_customize->add_setting('florapsi_whatsapp_position_bottom', array(
         'default'   => '50',
         'sanitize_callback' => 'absint',
     ));
-    $wp_customize->add_control('louize_whatsapp_position_bottom_control', array(
+    $wp_customize->add_control('florapsi_whatsapp_position_bottom_control', array(
         'label'      => __('Distância do Fundo (px)', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_position_bottom',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_position_bottom',
         'type'       => 'number',
     ));
 
-    $wp_customize->add_setting('louize_whatsapp_position_right', array(
+    $wp_customize->add_setting('florapsi_whatsapp_position_right', array(
         'default'   => '50',
         'sanitize_callback' => 'absint',
     ));
-    $wp_customize->add_control('louize_whatsapp_position_right_control', array(
+    $wp_customize->add_control('florapsi_whatsapp_position_right_control', array(
         'label'      => __('Distância da Direita (px)', 'louize'),
-        'section'    => 'louize_whatsapp_section',
-        'settings'   => 'louize_whatsapp_position_right',
+        'section'    => 'florapsi_whatsapp_section',
+        'settings'   => 'florapsi_whatsapp_position_right',
         'type'       => 'number',
     ));
 
 }
-add_action('customize_register', 'louize_customize_register');
+add_action('customize_register', 'florapsi_customize_register');
 
 /**
  * Adiciona o CSS dinâmico do Personalizador ao <head>.
  */
-function louize_dynamic_css() {
-    $mobile_breakpoint = get_theme_mod('louize_mobile_breakpoint', '768');
+function florapsi_dynamic_css() {
+    $tablet_bp = get_theme_mod('florapsi_tablet_breakpoint', '1176');
+    $mobile_bp = get_theme_mod('florapsi_mobile_breakpoint', '576');
     ?>
     <style type="text/css">
         <?php
@@ -1349,354 +1401,384 @@ function louize_dynamic_css() {
          * ------------------------------------------------------------------------- */
         
         // Navbar
-        $navbar_bg_color = get_theme_mod('louize_navbar_background_color', '#9B545A');
+        $navbar_bg_color = get_theme_mod('florapsi_navbar_background_color', '#9B545A');
         if ($navbar_bg_color !== '#9B545A') {
             echo ".navbar { background-color: " . esc_attr($navbar_bg_color) . "; }";
         }
 
-        $menu_color = get_theme_mod('louize_menu_font_color', '#FFFFFF');
+        $menu_color = get_theme_mod('florapsi_menu_font_color', '#FFFFFF');
         if ($menu_color !== '#FFFFFF') {
             echo ".navbar-menu-list a { color: " . esc_attr($menu_color) . "; }";
         }
-        $menu_ff = get_theme_mod('louize_menu_font_family', 'Segoe UI Light');
+        $menu_ff = get_theme_mod('florapsi_menu_font_family', 'Segoe UI Light');
         if ($menu_ff !== 'Segoe UI Light') {
             echo ".navbar-menu-list a { font-family: '" . esc_attr($menu_ff) . "', sans-serif; }";
         }
-        $menu_fs = get_theme_mod('louize_menu_font_size', '20');
+        $menu_fs = get_theme_mod('florapsi_menu_font_size', '20');
         if ($menu_fs !== '20') {
             echo ".navbar-menu-list a { font-size: " . esc_attr($menu_fs) . "px; }";
         }
-        $menu_fw = get_theme_mod('louize_menu_font_weight', '300');
+        $menu_fw = get_theme_mod('florapsi_menu_font_weight', '300');
         if ($menu_fw !== '300') {
             echo ".navbar-menu-list a { font-weight: " . esc_attr($menu_fw) . "; }";
         }
 
-        /* --- Estilos do Banner --- */
-        $banner_bg_color = get_theme_mod('louize_banner_bg_color', '#5A6E59');
+       // Banner (Desktop)
+        $banner_bg_color = get_theme_mod('florapsi_banner_bg_color', '#5A6E59');
         echo ".banner { background-color: " . esc_attr($banner_bg_color) . "; }";
 
-        // Subtítulo
         echo ".banner .banner-subtitle {";
-        echo " font-family: '" . esc_attr(get_theme_mod('louize_banner_subtitle_font_family', 'Tan Mon Cheri')) . "', serif;";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_banner_subtitle_font_size', '80')) . "px;";
-        echo " font-weight: " . esc_attr(get_theme_mod('louize_banner_subtitle_font_weight', '400')) . ";";
-        echo " color: " . esc_attr(get_theme_mod('louize_banner_subtitle_color', '#E5CDC0')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_color', '#E5CDC0')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_banner_subtitle_font_family', 'Tan Mon Cheri')) . "', serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_font_size', '80')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_font_weight', '400')) . ";";
         echo "}";
 
-        // Texto Principal
         echo ".banner .banner-text {";
-        echo " font-family: '" . esc_attr(get_theme_mod('louize_banner_text_font_family', 'Sofia Pro')) . "', sans-serif;";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_banner_text_font_size', '50')) . "px;";
-        echo " font-weight: " . esc_attr(get_theme_mod('louize_banner_text_font_weight', '100')) . ";";
-        echo " color: " . esc_attr(get_theme_mod('louize_banner_text_color', '#E5CDC0')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_banner_text_color', '#E5CDC0')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_banner_text_font_family', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_font_size', '50')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_banner_text_font_weight', '100')) . ";";
         echo "}";
 
-        // Botão
-        $btn_bg = get_theme_mod('louize_banner_button_bg_color', 'transparent');
-        $btn_txt = get_theme_mod('louize_banner_button_text_color', '#E5CDC0');
-        echo ".banner-button { background-color: " . esc_attr($btn_bg) . "; color: " . esc_attr($btn_txt) . "; }";
-        echo ".banner-button span[class^=border-] { background-color: " . esc_attr($btn_txt) . "; }"; // As bordas seguem a cor do texto do botão
+        $btn_bg = get_theme_mod('florapsi_banner_button_bg_color', 'transparent');
+        $btn_txt = get_theme_mod('florapsi_banner_button_text_color', '#E5CDC0');
+        $btn_hvr_bg = get_theme_mod('florapsi_banner_button_hover_bg_color', '#E5CDC0');
+        $btn_hvr_txt = get_theme_mod('florapsi_banner_button_hover_text_color', '#5A6E59');
+
+        echo ".banner-button {";
+        echo " background-color: " . esc_attr($btn_bg) . ";";
+        echo " color: " . esc_attr($btn_txt) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_banner_btn_font_family', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_font_size', '30')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_banner_btn_font_weight', '600')) . ";";
+        echo "}";
+
+        echo ".banner-button span[class^=border-] { background-color: " . esc_attr($btn_txt) . "; }";
+
+        echo ".banner-button:hover {";
+        echo " background-color: " . esc_attr($btn_hvr_bg) . " !important;";
+        echo " color: " . esc_attr($btn_hvr_txt) . " !important;";
+        echo "}";
 
         // Sobre Mim
-        $sobre_bg_color = get_theme_mod('louize_sobre_background_color', '#F8F0E3');
+        $sobre_bg_color = get_theme_mod('florapsi_sobre_background_color', '#F8F0E3');
         if ($sobre_bg_color !== '#F8F0E3') { echo ".sobre-mim { background-color: " . esc_attr($sobre_bg_color) . "; }"; }
         
-        $sobre_titulo_ff = get_theme_mod('louize_sobre_titulo_fontfamily', 'Tan Mon Cheri');
+        $sobre_titulo_ff = get_theme_mod('florapsi_sobre_titulo_fontfamily', 'Tan Mon Cheri');
         if ($sobre_titulo_ff !== 'Tan Mon Cheri') { echo ".sobre-mim .sobre-mim-title { font-family: '" . esc_attr($sobre_titulo_ff) . "', serif; }"; }
-        $sobre_titulo_fs = get_theme_mod('louize_sobre_titulo_fontsize', '50');
+        $sobre_titulo_fs = get_theme_mod('florapsi_sobre_titulo_fontsize', '50');
         if ($sobre_titulo_fs !== '50') { echo ".sobre-mim .sobre-mim-title { font-size: " . esc_attr($sobre_titulo_fs) . "px; }"; }
-        $sobre_titulo_fw = get_theme_mod('louize_sobre_titulo_fontweight', '400');
+        $sobre_titulo_fw = get_theme_mod('florapsi_sobre_titulo_fontweight', '400');
         if ($sobre_titulo_fw !== '400') { echo ".sobre-mim .sobre-mim-title { font-weight: " . esc_attr($sobre_titulo_fw) . "; }"; }
-        $sobre_titulo_color = get_theme_mod('louize_sobre_titulo_color', '#5A6E59');
+        $sobre_titulo_color = get_theme_mod('florapsi_sobre_titulo_color', '#5A6E59');
         if ($sobre_titulo_color !== '#5A6E59') { echo ".sobre-mim .sobre-mim-title { color: " . esc_attr($sobre_titulo_color) . "; }"; }
         
-        $sobre_subtitulo_ff = get_theme_mod('louize_sobre_subtitulo_fontfamily', 'Sofia Pro');
+        $sobre_subtitulo_ff = get_theme_mod('florapsi_sobre_subtitulo_fontfamily', 'Sofia Pro');
         if ($sobre_subtitulo_ff !== 'Sofia Pro') { echo ".sobre-mim .sobre-mim-subtitle { font-family: '" . esc_attr($sobre_subtitulo_ff) . "', sans-serif; }"; }
-        $sobre_subtitulo_fs = get_theme_mod('louize_sobre_subtitulo_fontsize', '30');
+        $sobre_subtitulo_fs = get_theme_mod('florapsi_sobre_subtitulo_fontsize', '30');
         if ($sobre_subtitulo_fs !== '30') { echo ".sobre-mim .sobre-mim-subtitle { font-size: " . esc_attr($sobre_subtitulo_fs) . "px; }"; }
-        $sobre_subtitulo_fw = get_theme_mod('louize_sobre_subtitulo_fontweight', '300');
+        $sobre_subtitulo_fw = get_theme_mod('florapsi_sobre_subtitulo_fontweight', '300');
         if ($sobre_subtitulo_fw !== '300') { echo ".sobre-mim .sobre-mim-subtitle { font-weight: " . esc_attr($sobre_subtitulo_fw) . "; }"; }
-        $sobre_subtitulo_color = get_theme_mod('louize_sobre_subtitulo_color', '#5A6E59');
+        $sobre_subtitulo_color = get_theme_mod('florapsi_sobre_subtitulo_color', '#5A6E59');
         if ($sobre_subtitulo_color !== '#5A6E59') { echo ".sobre-mim .sobre-mim-subtitle { color: " . esc_attr($sobre_subtitulo_color) . "; }"; }
         
-        $sobre_texto_ff = get_theme_mod('louize_sobre_texto_fontfamily', 'Sofia Pro');
+        $sobre_texto_ff = get_theme_mod('florapsi_sobre_texto_fontfamily', 'Sofia Pro');
         if ($sobre_texto_ff !== 'Sofia Pro') { echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p { font-family: '" . esc_attr($sobre_texto_ff) . "', sans-serif; }"; }
-        $sobre_texto_fs = get_theme_mod('louize_sobre_texto_fontsize', '20');
+        $sobre_texto_fs = get_theme_mod('florapsi_sobre_texto_fontsize', '20');
         if ($sobre_texto_fs !== '20') { echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p { font-size: " . esc_attr($sobre_texto_fs) . "px; }"; }
-        $sobre_texto_fw = get_theme_mod('louize_sobre_texto_fontweight', '300');
+        $sobre_texto_fw = get_theme_mod('florapsi_sobre_texto_fontweight', '300');
         if ($sobre_texto_fw !== '300') { echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p { font-weight: " . esc_attr($sobre_texto_fw) . "; }"; }
-        $sobre_texto_color = get_theme_mod('louize_sobre_texto_color', '#5A6E59');
+        $sobre_texto_color = get_theme_mod('florapsi_sobre_texto_color', '#5A6E59');
         if ($sobre_texto_color !== '#5A6E59') { echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p { color: " . esc_attr($sobre_texto_color) . "; }"; }
 
         // Meu Percurso
-        $percurso_bg_color = get_theme_mod('louize_percurso_background_color', '#FFFFFF');
+        $percurso_bg_color = get_theme_mod('florapsi_percurso_background_color', '#FFFFFF');
         if ($percurso_bg_color !== '#FFFFFF') { echo ".percurso { background-color: " . esc_attr($percurso_bg_color) . "; }"; }
         
-        $percurso_titulo_ff = get_theme_mod('louize_percurso_titulo_fontfamily', 'Tan Mon Cheri');
+        $percurso_titulo_ff = get_theme_mod('florapsi_percurso_titulo_fontfamily', 'Tan Mon Cheri');
         if ($percurso_titulo_ff !== 'Tan Mon Cheri') { echo ".percurso .percurso-title { font-family: '" . esc_attr($percurso_titulo_ff) . "', sans-serif; }"; }
-        $percurso_titulo_fs = get_theme_mod('louize_percurso_titulo_fontsize', '40');
+        $percurso_titulo_fs = get_theme_mod('florapsi_percurso_titulo_fontsize', '40');
         if ($percurso_titulo_fs !== '40') { echo ".percurso .percurso-title { font-size: " . esc_attr($percurso_titulo_fs) . "px; }"; }
-        $percurso_titulo_fw = get_theme_mod('louize_percurso_titulo_fontweight', '400');
+        $percurso_titulo_fw = get_theme_mod('florapsi_percurso_titulo_fontweight', '400');
         if ($percurso_titulo_fw !== '400') { echo ".percurso .percurso-title { font-weight: " . esc_attr($percurso_titulo_fw) . "; }"; }
-        $percurso_titulo_color = get_theme_mod('louize_percurso_titulo_color', '#5A6E59');
+        $percurso_titulo_color = get_theme_mod('florapsi_percurso_titulo_color', '#5A6E59');
         if ($percurso_titulo_color !== '#5A6E59') { echo ".percurso .percurso-title { color: " . esc_attr($percurso_titulo_color) . "; }"; }
         
-        $percurso_texto_ff = get_theme_mod('louize_percurso_texto_fontfamily', 'Sofia Pro');
+        $percurso_texto_ff = get_theme_mod('florapsi_percurso_texto_fontfamily', 'Sofia Pro');
         if ($percurso_texto_ff !== 'Sofia Pro') { echo ".percurso .percurso-text, .percurso .percurso-text p { font-family: '" . esc_attr($percurso_texto_ff) . "', sans-serif; }"; }
-        $percurso_texto_fs = get_theme_mod('louize_percurso_texto_fontsize', '22');
+        $percurso_texto_fs = get_theme_mod('florapsi_percurso_texto_fontsize', '22');
         if ($percurso_texto_fs !== '22') { echo ".percurso .percurso-text, .percurso .percurso-text p { font-size: " . esc_attr($percurso_texto_fs) . "px; }"; }
-        $percurso_texto_fw = get_theme_mod('louize_percurso_texto_fontweight', '300');
+        $percurso_texto_fw = get_theme_mod('florapsi_percurso_texto_fontweight', '300');
         if ($percurso_texto_fw !== '300') { echo ".percurso .percurso-text, .percurso .percurso-text p { font-weight: " . esc_attr($percurso_texto_fw) . "; }"; }
-        $percurso_texto_color = get_theme_mod('louize_percurso_texto_color', '#5A6E59');
+        $percurso_texto_color = get_theme_mod('florapsi_percurso_texto_color', '#5A6E59');
         if ($percurso_texto_color !== '#5A6E59') { echo ".percurso .percurso-text, .percurso .percurso-text p { color: " . esc_attr($percurso_texto_color) . "; }"; }
 
         // Serviços (Desktop)
-        $servicos_bg_color = get_theme_mod('louize_servicos_background_color', '#5A6E59');
+        $servicos_bg_color = get_theme_mod('florapsi_servicos_background_color', '#5A6E59');
         echo ".servico { background-color: " . esc_attr($servicos_bg_color) . "; }";
         
         echo ".servico .servico-title {";
-        echo " color: " . esc_attr(get_theme_mod('louize_servicos_main_title_color', '#F8F0E3')) . ";";
-        echo " font-family: '" . esc_attr(get_theme_mod('louize_servicos_main_title_fontfamily', 'Tan Mon Cheri')) . "', sans-serif;";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontsize', '50')) . "px;";
-        echo " font-weight: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontweight', '400')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_color', '#F8F0E3')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontfamily', 'Tan Mon Cheri')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontsize', '50')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontweight', '400')) . ";";
         echo "}";
 
         echo ".servico-card {";
-        echo " background-color: " . esc_attr(get_theme_mod('louize_serv_card_bg_color', '#FFFFFF')) . ";";
-        echo " max-width: " . esc_attr(get_theme_mod('louize_serv_card_max_width_desktop', '400')) . "px;";
+        echo " background-color: " . esc_attr(get_theme_mod('florapsi_serv_card_bg_color', '#FFFFFF')) . ";";
+        echo " max-width: " . esc_attr(get_theme_mod('florapsi_serv_card_max_width_desktop', '400')) . "px;";
         echo "}";
 
         echo ".servico .servico-icon i {";
-        echo " color: " . esc_attr(get_theme_mod('louize_servicos_icon_color', '#9B545A')) . ";";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_icon_size', '45')) . "px;";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_servicos_icon_color', '#9B545A')) . ";";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_serv_icon_size', '45')) . "px;";
         echo "}";
 
         echo ".servico .servico-card-title {";
-        echo " color: " . esc_attr(get_theme_mod('louize_serv_card_tit_clr', '#5A6E59')) . ";";
-        echo " font-family: '" . esc_attr(get_theme_mod('louize_serv_card_tit_ff', 'Sofia Pro')) . "', sans-serif;";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_card_tit_fs', '26')) . "px;";
-        echo " font-weight: " . esc_attr(get_theme_mod('louize_serv_card_tit_fw', '600')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_serv_card_tit_clr', '#5A6E59')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_serv_card_tit_ff', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_serv_card_tit_fs', '26')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_serv_card_tit_fw', '600')) . ";";
         echo "}";
 
         echo ".servico .servico-card-text {";
-        echo " color: " . esc_attr(get_theme_mod('louize_serv_card_txt_clr', '#5A6E59')) . ";";
-        echo " font-family: '" . esc_attr(get_theme_mod('louize_serv_card_txt_ff', 'Sofia Pro')) . "', sans-serif;";
-        echo " font-size: " . esc_attr(get_theme_mod('louize_serv_card_txt_fs', '18')) . "px;";
-        echo " font-weight: " . esc_attr(get_theme_mod('louize_serv_card_txt_fw', '300')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_clr', '#5A6E59')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_serv_card_txt_ff', 'Sofia Pro')) . "', sans-serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_fs', '18')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_fw', '300')) . ";";
         echo "}";
 
         // Depoimentos
-        $feedback_bg_color = get_theme_mod('louize_feedback_background_color', '#F8F0E3');
+        $feedback_bg_color = get_theme_mod('florapsi_feedback_background_color', '#F8F0E3');
         if ($feedback_bg_color !== '#F8F0E3') { echo ".feedback { background-color: " . esc_attr($feedback_bg_color) . "; }"; }
         
-        $feedback_title_ff = get_theme_mod('louize_feedback_title_fontfamily', 'Tan Mon Cheri');
+        $feedback_title_ff = get_theme_mod('florapsi_feedback_title_fontfamily', 'Tan Mon Cheri');
         if ($feedback_title_ff !== 'Tan Mon Cheri') { echo ".feedback .feedback-title { font-family: '" . esc_attr($feedback_title_ff) . "', sans-serif; }"; }
-        $feedback_title_fs = get_theme_mod('louize_feedback_title_fontsize', '50');
+        $feedback_title_fs = get_theme_mod('florapsi_feedback_title_fontsize', '50');
         if ($feedback_title_fs !== '50') { echo ".feedback .feedback-title { font-size: " . esc_attr($feedback_title_fs) . "px; }"; }
-        $feedback_title_fw = get_theme_mod('louize_feedback_title_fontweight', '400');
+        $feedback_title_fw = get_theme_mod('florapsi_feedback_title_fontweight', '400');
         if ($feedback_title_fw !== '400') { echo ".feedback .feedback-title { font-weight: " . esc_attr($feedback_title_fw) . "; }"; }
-        $feedback_title_color = get_theme_mod('louize_feedback_title_color', '#5A6E59');
+        $feedback_title_color = get_theme_mod('florapsi_feedback_title_color', '#5A6E59');
         if ($feedback_title_color !== '#5A6E59') { echo ".feedback .feedback-title { color: " . esc_attr($feedback_title_color) . "; }"; }
         
-        $feedback_card_bg_color = get_theme_mod('louize_feedback_card_bg_color', '#FFFFFF');
+        $feedback_card_bg_color = get_theme_mod('florapsi_feedback_card_bg_color', '#FFFFFF');
         if ($feedback_card_bg_color !== '#FFFFFF') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner { background-color: " . esc_attr($feedback_card_bg_color) . " !important; }"; }
-        $feedback_quote_color = get_theme_mod('louize_feedback_quote_icon_color', '#A3B899');
+        $feedback_quote_color = get_theme_mod('florapsi_feedback_quote_icon_color', '#A3B899');
         if ($feedback_quote_color !== '#A3B899') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner::before { color: " . esc_attr($feedback_quote_color) . " !important; }"; }
-        $feedback_quote_size = get_theme_mod('louize_feedback_quote_icon_size', '140');
+        $feedback_quote_size = get_theme_mod('florapsi_feedback_quote_icon_size', '140');
         if ($feedback_quote_size !== '140') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner::before { font-size: " . esc_attr($feedback_quote_size) . "px !important; }"; }
         
-        $feedback_author_ff = get_theme_mod('louize_feedback_author_fontfamily', 'Sofia Pro');
+        $feedback_author_ff = get_theme_mod('florapsi_feedback_author_fontfamily', 'Sofia Pro');
         if ($feedback_author_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-name { font-family: '" . esc_attr($feedback_author_ff) . "', sans-serif !important; }"; }
-        $feedback_author_fs = get_theme_mod('louize_feedback_author_fontsize', '16');
+        $feedback_author_fs = get_theme_mod('florapsi_feedback_author_fontsize', '16');
         if ($feedback_author_fs !== '16') { echo "#meus-depoimentos-customizados .ti-name { font-size: " . esc_attr($feedback_author_fs) . "px !important; }"; }
-        $feedback_author_fw = get_theme_mod('louize_feedback_author_fontweight', '600');
+        $feedback_author_fw = get_theme_mod('florapsi_feedback_author_fontweight', '600');
         if ($feedback_author_fw !== '600') { echo "#meus-depoimentos-customizados .ti-name { font-weight: " . esc_attr($feedback_author_fw) . " !important; }"; }
-        $feedback_author_color = get_theme_mod('louize_feedback_author_color', '#5A6E59');
+        $feedback_author_color = get_theme_mod('florapsi_feedback_author_color', '#5A6E59');
         if ($feedback_author_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-name { color: " . esc_attr($feedback_author_color) . " !important; }"; }
         
-        $feedback_text_ff = get_theme_mod('louize_feedback_text_fontfamily', 'Sofia Pro');
+        $feedback_text_ff = get_theme_mod('florapsi_feedback_text_fontfamily', 'Sofia Pro');
         if ($feedback_text_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-review-content { font-family: '" . esc_attr($feedback_text_ff) . "', sans-serif !important; }"; }
-        $feedback_text_fs = get_theme_mod('louize_feedback_text_fontsize', '18');
+        $feedback_text_fs = get_theme_mod('florapsi_feedback_text_fontsize', '18');
         if ($feedback_text_fs !== '18') { echo "#meus-depoimentos-customizados .ti-review-content { font-size: " . esc_attr($feedback_text_fs) . "px !important; }"; }
-        $feedback_text_fw = get_theme_mod('louize_feedback_text_fontweight', '300');
+        $feedback_text_fw = get_theme_mod('florapsi_feedback_text_fontweight', '300');
         if ($feedback_text_fw !== '300') { echo "#meus-depoimentos-customizados .ti-review-content { font-weight: " . esc_attr($feedback_text_fw) . " !important; }"; }
-        $feedback_text_color = get_theme_mod('louize_feedback_text_color', '#5A6E59');
+        $feedback_text_color = get_theme_mod('florapsi_feedback_text_color', '#5A6E59');
         if ($feedback_text_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-review-content { color: " . esc_attr($feedback_text_color) . " !important; }"; }
         
-        $feedback_readmore_ff = get_theme_mod('louize_feedback_readmore_fontfamily', 'Sofia Pro');
+        $feedback_readmore_ff = get_theme_mod('florapsi_feedback_readmore_fontfamily', 'Sofia Pro');
         if ($feedback_readmore_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-read-more span { font-family: '" . esc_attr($feedback_readmore_ff) . "', sans-serif !important; }"; }
-        $feedback_readmore_fs = get_theme_mod('louize_feedback_readmore_fontsize', '14');
+        $feedback_readmore_fs = get_theme_mod('florapsi_feedback_readmore_fontsize', '14');
         if ($feedback_readmore_fs !== '14') { echo "#meus-depoimentos-customizados .ti-read-more span { font-size: " . esc_attr($feedback_readmore_fs) . "px !important; }"; }
-        $feedback_readmore_fw = get_theme_mod('louize_feedback_readmore_fontweight', '600');
+        $feedback_readmore_fw = get_theme_mod('florapsi_feedback_readmore_fontweight', '600');
         if ($feedback_readmore_fw !== '600') { echo "#meus-depoimentos-customizados .ti-read-more span { font-weight: " . esc_attr($feedback_readmore_fw) . " !important; }"; }
-        $feedback_readmore_color = get_theme_mod('louize_feedback_readmore_color', '#5A6E59');
+        $feedback_readmore_color = get_theme_mod('florapsi_feedback_readmore_color', '#5A6E59');
         if ($feedback_readmore_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-read-more span { color: " . esc_attr($feedback_readmore_color) . " !important; }"; }
 
 
         /* --- Estilos Desktop para a Seção "Dúvidas Frequentes" --- */
-        $duvidas_bg_color = get_theme_mod('louize_duvidas_background_color', '#E8B1B1');
+        $duvidas_bg_color = get_theme_mod('florapsi_duvidas_background_color', '#E8B1B1');
         if ($duvidas_bg_color !== '#E8B1B1') { echo ".duvidas { background-color: " . esc_attr($duvidas_bg_color) . "; }"; }
         // Título
-        $duvidas_titulo_fs = get_theme_mod('louize_duvidas_titulo_fontsize', '50');
+        $duvidas_titulo_fs = get_theme_mod('florapsi_duvidas_titulo_fontsize', '50');
         if ($duvidas_titulo_fs !== '50') { echo ".duvidas .duvidas-title { font-size: " . esc_attr($duvidas_titulo_fs) . "px; }"; }
-        $duvidas_titulo_fw = get_theme_mod('louize_duvidas_titulo_fontweight', '400');
+        $duvidas_titulo_fw = get_theme_mod('florapsi_duvidas_titulo_fontweight', '400');
         if ($duvidas_titulo_fw !== '400') { echo ".duvidas .duvidas-title { font-weight: " . esc_attr($duvidas_titulo_fw) . "; }"; }
-        $duvidas_titulo_color = get_theme_mod('louize_duvidas_titulo_color', '#FFFFFF');
+        $duvidas_titulo_color = get_theme_mod('florapsi_duvidas_titulo_color', '#FFFFFF');
         if ($duvidas_titulo_color !== '#FFFFFF') { echo ".duvidas .duvidas-title { color: " . esc_attr($duvidas_titulo_color) . "; }"; }
         // Pergunta
-        $duvidas_pergunta_ff = get_theme_mod('louize_duvidas_pergunta_fontfamily', 'Sofia Pro');
+        $duvidas_pergunta_ff = get_theme_mod('florapsi_duvidas_pergunta_fontfamily', 'Sofia Pro');
         if ($duvidas_pergunta_ff !== 'Sofia Pro') { echo ".duvidas .duvidas-question, .duvidas .duvidas-question span { font-family: '" . esc_attr($duvidas_pergunta_ff) . "', sans-serif; }"; }
-        $duvidas_pergunta_fs = get_theme_mod('louize_duvidas_pergunta_fontsize', '20');
+        $duvidas_pergunta_fs = get_theme_mod('florapsi_duvidas_pergunta_fontsize', '20');
         if ($duvidas_pergunta_fs !== '20') { echo ".duvidas .duvidas-question { font-size: " . esc_attr($duvidas_pergunta_fs) . "px; }"; }
-        $duvidas_pergunta_fw = get_theme_mod('louize_duvidas_pergunta_fontweight', '600');
+        $duvidas_pergunta_fw = get_theme_mod('florapsi_duvidas_pergunta_fontweight', '600');
         if ($duvidas_pergunta_fw !== '600') { echo ".duvidas .duvidas-question { font-weight: " . esc_attr($duvidas_pergunta_fw) . "; }"; }
-        $duvidas_pergunta_color = get_theme_mod('louize_duvidas_pergunta_color', '#9B545A');
+        $duvidas_pergunta_color = get_theme_mod('florapsi_duvidas_pergunta_color', '#9B545A');
         if ($duvidas_pergunta_color !== '#9B545A') { echo ".duvidas .duvidas-question { color: " . esc_attr($duvidas_pergunta_color) . "; }"; }
-        $duvidas_pergunta_hover_color = get_theme_mod('louize_duvidas_pergunta_hover_color', '#E8B1B1');
+        $duvidas_pergunta_hover_color = get_theme_mod('florapsi_duvidas_pergunta_hover_color', '#E8B1B1');
         if ($duvidas_pergunta_hover_color !== '#E8B1B1') { echo ".duvidas .duvidas-question:hover span { color: " . esc_attr($duvidas_pergunta_hover_color) . "; }"; }
         
-        $duvidas_resposta_ff = get_theme_mod('louize_duvidas_resposta_fontfamily', 'Sofia Pro');
+        $duvidas_resposta_ff = get_theme_mod('florapsi_duvidas_resposta_fontfamily', 'Sofia Pro');
         if ($duvidas_resposta_ff !== 'Sofia Pro') { echo ".duvidas .duvidas-answer { font-family: '" . esc_attr($duvidas_resposta_ff) . "', sans-serif; }"; }
-        $duvidas_resposta_fs = get_theme_mod('louize_duvidas_resposta_fontsize', '18');
+        $duvidas_resposta_fs = get_theme_mod('florapsi_duvidas_resposta_fontsize', '18');
         if ($duvidas_resposta_fs !== '18') { echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { font-size: " . esc_attr($duvidas_resposta_fs) . "px; }"; }
-        $duvidas_resposta_fw = get_theme_mod('louize_duvidas_resposta_fontweight', '300');
+        $duvidas_resposta_fw = get_theme_mod('florapsi_duvidas_resposta_fontweight', '300');
         if ($duvidas_resposta_fw !== '300') { echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { font-weight: " . esc_attr($duvidas_resposta_fw) . "; }"; }
-        $duvidas_resposta_color = get_theme_mod('louize_duvidas_resposta_color', '#333333');
+        $duvidas_resposta_color = get_theme_mod('florapsi_duvidas_resposta_color', '#333333');
         if ($duvidas_resposta_color !== '#333333') { echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { color: " . esc_attr($duvidas_resposta_color) . "; }"; }
 
         // Contato
-        $contato_bg_color = get_theme_mod('louize_contato_background_color', '#FFFFFF');
+        $contato_bg_color = get_theme_mod('florapsi_contato_background_color', '#FFFFFF');
         if ($contato_bg_color !== '#FFFFFF') { echo ".contato { background-color: " . esc_attr($contato_bg_color) . "; }"; }
         
-        $contato_title_ff = get_theme_mod('louize_contato_title_fontfamily', 'Tan Mon Cheri');
+        $contato_title_ff = get_theme_mod('florapsi_contato_title_fontfamily', 'Tan Mon Cheri');
         if ($contato_title_ff !== 'Tan Mon Cheri') { echo ".contato .contato-title { font-family: '" . esc_attr($contato_title_ff) . "', sans-serif; }"; }
-        $contato_title_fs = get_theme_mod('louize_contato_title_fontsize', '45');
+        $contato_title_fs = get_theme_mod('florapsi_contato_title_fontsize', '45');
         if ($contato_title_fs !== '45') { echo ".contato .contato-title { font-size: " . esc_attr($contato_title_fs) . "px; }"; }
-        $contato_title_fw = get_theme_mod('louize_contato_title_fontweight', '400');
+        $contato_title_fw = get_theme_mod('florapsi_contato_title_fontweight', '400');
         if ($contato_title_fw !== '400') { echo ".contato .contato-title { font-weight: " . esc_attr($contato_title_fw) . "; }"; }
-        $contato_title_color = get_theme_mod('louize_contato_title_color', '#5A6E59');
+        $contato_title_color = get_theme_mod('florapsi_contato_title_color', '#5A6E59');
         if ($contato_title_color !== '#5A6E59') { echo ".contato .contato-title { color: " . esc_attr($contato_title_color) . "; }"; }
         
-        $contato_text_fs = get_theme_mod('louize_contato_text_fontsize', '22');
+        $contato_text_fs = get_theme_mod('florapsi_contato_text_fontsize', '22');
         if ($contato_text_fs !== '22') { echo ".contato .contato-text { font-size: " . esc_attr($contato_text_fs) . "px; }"; }
-        $contato_text_color = get_theme_mod('louize_contato_text_color', '#5A6E59');
+        $contato_text_color = get_theme_mod('florapsi_contato_text_color', '#5A6E59');
         if ($contato_text_color !== '#5A6E59') { echo ".contato .contato-text { color: " . esc_attr($contato_text_color) . "; }"; }
         
-        $whatsapp_bg = get_theme_mod('louize_whatsapp_button_bg_color', '#A3B899');
+        $whatsapp_bg = get_theme_mod('florapsi_whatsapp_button_bg_color', '#A3B899');
         if ($whatsapp_bg !== '#A3B899') { echo ".contato .whatsapp-button { background-color: " . esc_attr($whatsapp_bg) . "; }"; }
-        $whatsapp_text = get_theme_mod('louize_whatsapp_button_text_color', '#FFFFFF');
+        $whatsapp_text = get_theme_mod('florapsi_whatsapp_button_text_color', '#FFFFFF');
         if ($whatsapp_text !== '#FFFFFF') { echo ".contato .whatsapp-button { color: " . esc_attr($whatsapp_text) . "; }"; }
 
         // Rodapé
-        $footer_bg_color = get_theme_mod('louize_footer_background_color', '#5A6E59');
+        $footer_bg_color = get_theme_mod('florapsi_footer_background_color', '#5A6E59');
         if ($footer_bg_color !== '#5A6E59') { echo ".footer { background-color: " . esc_attr($footer_bg_color) . "; }"; }
-        $footer_text_color = get_theme_mod('louize_footer_text_color', '#E5CDC0');
+        $footer_text_color = get_theme_mod('florapsi_footer_text_color', '#E5CDC0');
         if ($footer_text_color !== '#E5CDC0') { echo ".footer { color: " . esc_attr($footer_text_color) . "; }"; }
-        $footer_ff = get_theme_mod('louize_footer_fontfamily', 'Sofia Pro');
+        $footer_ff = get_theme_mod('florapsi_footer_fontfamily', 'Sofia Pro');
         if ($footer_ff !== 'Sofia Pro') { echo ".footer { font-family: '" . esc_attr($footer_ff) . "', sans-serif; }"; }
-        $footer_fs = get_theme_mod('louize_footer_fontsize', '15');
+        $footer_fs = get_theme_mod('florapsi_footer_fontsize', '15');
         if ($footer_fs !== '15') { echo ".footer p { font-size: " . esc_attr($footer_fs) . "px; }"; }
-        $footer_id_fw = get_theme_mod('louize_footer_identification_fontweight', '600');
+        $footer_id_fw = get_theme_mod('florapsi_footer_identification_fontweight', '600');
         if ($footer_id_fw !== '600') { echo ".footer p:first-child { font-weight: " . esc_attr($footer_id_fw) . "; }"; }
-        $footer_padding = get_theme_mod('louize_footer_padding', '40');
+        $footer_padding = get_theme_mod('florapsi_footer_padding', '40');
         if ($footer_padding !== '40') { echo ".footer { padding-top: " . esc_attr($footer_padding) . "px; padding-bottom: " . esc_attr($footer_padding) . "px; }"; }
 
         // Botão Flutuante
-        $whatsapp_bg = get_theme_mod('louize_whatsapp_bg_color', '#A3B899');
+        $whatsapp_bg = get_theme_mod('florapsi_whatsapp_bg_color', '#A3B899');
         if ($whatsapp_bg !== '#A3B899') { echo ".whatsapp-float { background-color: " . esc_attr($whatsapp_bg) . "; }"; }
-        $whatsapp_icon_color = get_theme_mod('louize_whatsapp_icon_color', '#E5CDC0');
+        $whatsapp_icon_color = get_theme_mod('florapsi_whatsapp_icon_color', '#E5CDC0');
         if ($whatsapp_icon_color !== '#E5CDC0') { echo ".whatsapp-float { color: " . esc_attr($whatsapp_icon_color) . "; }"; }
-        $whatsapp_size = get_theme_mod('louize_whatsapp_size', '60');
+        $whatsapp_size = get_theme_mod('florapsi_whatsapp_size', '60');
         if ($whatsapp_size !== '60') { echo ".whatsapp-float { width: " . esc_attr($whatsapp_size) . "px; height: " . esc_attr($whatsapp_size) . "px; font-size: " . esc_attr(floor($whatsapp_size * 0.6)) . "px; }"; }
-        $whatsapp_bottom = get_theme_mod('louize_whatsapp_position_bottom', '50');
+        $whatsapp_bottom = get_theme_mod('florapsi_whatsapp_position_bottom', '50');
         if ($whatsapp_bottom !== '50') { echo ".whatsapp-float { bottom: " . esc_attr($whatsapp_bottom) . "px; }"; }
-        $whatsapp_right = get_theme_mod('louize_whatsapp_position_right', '50');
+        $whatsapp_right = get_theme_mod('florapsi_whatsapp_position_right', '50');
         if ($whatsapp_right !== '50') { echo ".whatsapp-float { right: " . esc_attr($whatsapp_right) . "px; }"; }
 
         ?>
 
         /* -------------------------------------------------------------------------
+         * ESTILOS RESPONSIVOS (TABLET)
+         * ------------------------------------------------------------------------- */
+        @media (max-width: <?php echo esc_attr($tablet_bp); ?>px) {
+            <?php
+            // Banner Tablet
+            echo ".banner { padding-top: " . esc_attr(get_theme_mod('florapsi_banner_padding_tablet', '160')) . "px; }";
+            echo ".banner .banner-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_fs_tablet', '56')) . "px; }";
+            echo ".banner .banner-text { font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_fs_tablet', '36')) . "px; }";
+            echo ".banner-button { font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_fs_tablet', '26')) . "px; }";
+            ?>
+        }
+        
+        /* -------------------------------------------------------------------------
          * ESTILOS RESPONSIVOS (MOBILE)
          * ------------------------------------------------------------------------- */
-        @media (max-width: <?php echo esc_attr($mobile_breakpoint); ?>px) {
+        @media (max-width: <?php echo esc_attr($mobile_bp); ?>px) {
             <?php
+            // Banner Mobile
+            echo ".banner .banner-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_fs_mobile', '38')) . "px; }";
+            echo ".banner .banner-text { font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_fs_mobile', '24')) . "px; }";
+            echo ".banner-button { font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_fs_mobile', '20')) . "px; }";
+
             // Sobre Mim
-            $sobre_padding_mobile = get_theme_mod('louize_sobre_padding_mobile', '40');
+            $sobre_padding_mobile = get_theme_mod('florapsi_sobre_padding_mobile', '40');
             if ($sobre_padding_mobile !== '40') {
                 echo ".sobre-mim { padding-top: " . esc_attr($sobre_padding_mobile) . "px; padding-bottom: " . esc_attr($sobre_padding_mobile) . "px; }";
             }
-            $sobre_titulo_fs_mobile = get_theme_mod('louize_sobre_titulo_fontsize_mobile', '36');
+            $sobre_titulo_fs_mobile = get_theme_mod('florapsi_sobre_titulo_fontsize_mobile', '36');
             if ($sobre_titulo_fs_mobile !== '36') {
                 echo ".sobre-mim .sobre-mim-title { font-size: " . esc_attr($sobre_titulo_fs_mobile) . "px; }";
             }
-            $sobre_subtitulo_fs_mobile = get_theme_mod('louize_sobre_subtitulo_fontsize_mobile', '22');
+            $sobre_subtitulo_fs_mobile = get_theme_mod('florapsi_sobre_subtitulo_fontsize_mobile', '22');
             if ($sobre_subtitulo_fs_mobile !== '22') {
                 echo ".sobre-mim .sobre-mim-subtitle { font-size: " . esc_attr($sobre_subtitulo_fs_mobile) . "px; }";
             }
-            $sobre_texto_fs_mobile = get_theme_mod('louize_sobre_texto_fontsize_mobile', '18');
+            $sobre_texto_fs_mobile = get_theme_mod('florapsi_sobre_texto_fontsize_mobile', '18');
             if ($sobre_texto_fs_mobile !== '18') {
                 echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p { font-size: " . esc_attr($sobre_texto_fs_mobile) . "px; }";
             }
             
             // Meu Percurso
-            $percurso_padding_mobile = get_theme_mod('louize_percurso_padding_mobile', '40');
+            $percurso_padding_mobile = get_theme_mod('florapsi_percurso_padding_mobile', '40');
             if ($percurso_padding_mobile !== '40') {
                 echo ".percurso { padding-top: " . esc_attr($percurso_padding_mobile) . "px; padding-bottom: " . esc_attr($percurso_padding_mobile) . "px; }";
             }
-            $percurso_titulo_fs_mobile = get_theme_mod('louize_percurso_titulo_fontsize_mobile', '32');
+            $percurso_titulo_fs_mobile = get_theme_mod('florapsi_percurso_titulo_fontsize_mobile', '32');
             if ($percurso_titulo_fs_mobile !== '32') {
                 echo ".percurso .percurso-title { font-size: " . esc_attr($percurso_titulo_fs_mobile) . "px; }";
             }
-            $percurso_texto_fs_mobile = get_theme_mod('louize_percurso_texto_fontsize_mobile', '18');
+            $percurso_texto_fs_mobile = get_theme_mod('florapsi_percurso_texto_fontsize_mobile', '18');
             if ($percurso_texto_fs_mobile !== '18') {
                 echo ".percurso .percurso-text, .percurso .percurso-text p { font-size: " . esc_attr($percurso_texto_fs_mobile) . "px; }";
             }
 
             // Serviços Mobile
-            echo ".servico .servico-title { font-size: " . esc_attr(get_theme_mod('louize_servicos_main_title_fontsize_mobile', '36')) . "px; }";
-            echo ".servico-card { max-width: " . esc_attr(get_theme_mod('louize_serv_card_max_width_mobile', '300')) . "px; }";
-            echo ".servico .servico-icon i { font-size: " . esc_attr(get_theme_mod('louize_serv_icon_size_mobile', '30')) . "px; }";
-            echo ".servico .servico-card-title { font-size: " . esc_attr(get_theme_mod('louize_serv_card_tit_fs_mobile', '22')) . "px; }";
-            echo ".servico .servico-card-text { font-size: " . esc_attr(get_theme_mod('louize_serv_card_txt_fs_mobile', '16')) . "px; }";
+            echo ".servico .servico-title { font-size: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontsize_mobile', '36')) . "px; }";
+            echo ".servico-card { max-width: " . esc_attr(get_theme_mod('florapsi_serv_card_max_width_mobile', '300')) . "px; }";
+            echo ".servico .servico-icon i { font-size: " . esc_attr(get_theme_mod('florapsi_serv_icon_size_mobile', '30')) . "px; }";
+            echo ".servico .servico-card-title { font-size: " . esc_attr(get_theme_mod('florapsi_serv_card_tit_fs_mobile', '22')) . "px; }";
+            echo ".servico .servico-card-text { font-size: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_fs_mobile', '16')) . "px; }";
 
             // Depoimentos
-            $feedback_padding_mobile = get_theme_mod('louize_feedback_padding_mobile', '40');
+            $feedback_padding_mobile = get_theme_mod('florapsi_feedback_padding_mobile', '40');
             if ($feedback_padding_mobile !== '40') {
                 echo ".feedback { padding-top: " . esc_attr($feedback_padding_mobile) . "px; padding-bottom: " . esc_attr($feedback_padding_mobile) . "px; }";
             }
-            $feedback_title_fs_mobile = get_theme_mod('louize_feedback_title_fontsize_mobile', '36');
+            $feedback_title_fs_mobile = get_theme_mod('florapsi_feedback_title_fontsize_mobile', '36');
             if ($feedback_title_fs_mobile !== '36') {
                 echo ".feedback .feedback-title { font-size: " . esc_attr($feedback_title_fs_mobile) . "px; }";
             }
 
             // Dúvidas Frequentes
-            $duvidas_padding_mobile = get_theme_mod('louize_duvidas_padding_mobile', '40');
+            $duvidas_padding_mobile = get_theme_mod('florapsi_duvidas_padding_mobile', '40');
             if ($duvidas_padding_mobile !== '40') {
                 echo ".duvidas { padding-top: " . esc_attr($duvidas_padding_mobile) . "px; padding-bottom: " . esc_attr($duvidas_padding_mobile) . "px; }";
             }
-            $duvidas_titulo_fs_mobile = get_theme_mod('louize_duvidas_titulo_fontsize_mobile', '36');
+            $duvidas_titulo_fs_mobile = get_theme_mod('florapsi_duvidas_titulo_fontsize_mobile', '36');
             if ($duvidas_titulo_fs_mobile !== '36') {
                 echo ".duvidas .duvidas-title { font-size: " . esc_attr($duvidas_titulo_fs_mobile) . "px; }";
             }
-            $duvidas_pergunta_fs_mobile = get_theme_mod('louize_duvidas_pergunta_fontsize_mobile', '18');
+            $duvidas_pergunta_fs_mobile = get_theme_mod('florapsi_duvidas_pergunta_fontsize_mobile', '18');
             if ($duvidas_pergunta_fs_mobile !== '18') {
                 echo ".duvidas .duvidas-question { font-size: " . esc_attr($duvidas_pergunta_fs_mobile) . "px; }";
             }
-            $duvidas_resposta_fs_mobile = get_theme_mod('louize_duvidas_resposta_fontsize_mobile', '16');
+            $duvidas_resposta_fs_mobile = get_theme_mod('florapsi_duvidas_resposta_fontsize_mobile', '16');
             if ($duvidas_resposta_fs_mobile !== '16') {
                 echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { font-size: " . esc_attr($duvidas_resposta_fs_mobile) . "px; }";
             }
 
             // Contato
-            $contato_padding_mobile = get_theme_mod('louize_contato_padding_mobile', '40');
+            $contato_padding_mobile = get_theme_mod('florapsi_contato_padding_mobile', '40');
             if ($contato_padding_mobile !== '40') {
                 echo ".contato { padding-top: " . esc_attr($contato_padding_mobile) . "px; padding-bottom: " . esc_attr($contato_padding_mobile) . "px; }";
             }
-            $contato_title_fs_mobile = get_theme_mod('louize_contato_title_fontsize_mobile', '36');
+            $contato_title_fs_mobile = get_theme_mod('florapsi_contato_title_fontsize_mobile', '36');
             if ($contato_title_fs_mobile !== '36') {
                 echo ".contato .contato-title { font-size: " . esc_attr($contato_title_fs_mobile) . "px; }";
             }
-            $contato_text_fs_mobile = get_theme_mod('louize_contato_text_fontsize_mobile', '18');
+            $contato_text_fs_mobile = get_theme_mod('florapsi_contato_text_fontsize_mobile', '18');
             if ($contato_text_fs_mobile !== '18') {
                 echo ".contato .contato-text { font-size: " . esc_attr($contato_text_fs_mobile) . "px; }";
             }
@@ -1706,4 +1788,4 @@ function louize_dynamic_css() {
     </style>
     <?php
 }
-add_action('wp_head', 'louize_dynamic_css');
+add_action('wp_head', 'florapsi_dynamic_css');

@@ -2,9 +2,9 @@
 /**
  * Adiciona as metaboxes e campos personalizados com CMB2.
  */
-add_action('cmb2_admin_init', 'louize_register_metaboxes');
+add_action('cmb2_admin_init', 'florapsi_register_metaboxes');
 
-function louize_register_metaboxes() {
+function florapsi_register_metaboxes() {
 
     // Define o ID da página inicial uma única vez para evitar repetição
     $home_page = get_page_by_title('Início');
@@ -14,7 +14,7 @@ function louize_register_metaboxes() {
      * SEÇÃO: SOBRE MIM
      * ------------------------------------------------------------------------- */
     $cmb_sobre = new_cmb2_box(array(
-        'id'            => '_louize_sobre_metabox',
+        'id'            => '_florapsi_sobre_metabox',
         'title'         => esc_html__('Sobre Mim', 'louize'),
         'object_types'  => array('page'),
         'show_on'       => array('key' => 'id', 'value' => $home_id),
@@ -54,7 +54,7 @@ function louize_register_metaboxes() {
      * SEÇÃO: MEU PERCURSO
      * ------------------------------------------------------------------------- */
     $cmb_percurso = new_cmb2_box(array(
-        'id'            => '_louize_percurso_metabox',
+        'id'            => '_florapsi_percurso_metabox',
         'title'         => esc_html__('Meu Percurso', 'louize'),
         'object_types'  => array('page'),
         'show_on'       => array('key' => 'id', 'value' => $home_id),
@@ -88,7 +88,7 @@ function louize_register_metaboxes() {
      * SEÇÃO: SERVIÇOS
      * ------------------------------------------------------------------------- */
     $cmb_servicos = new_cmb2_box(array(
-        'id'            => '_louize_servicos_metabox',
+        'id'            => '_florapsi_servicos_metabox',
         'title'         => esc_html__('Serviços', 'louize'),
         'object_types'  => array('page'),
         'show_on'       => array('key' => 'id', 'value' => $home_id),
@@ -138,7 +138,7 @@ function louize_register_metaboxes() {
      * SEÇÃO: DEPOIMENTOS
      * ------------------------------------------------------------------------- */
     $cmb_feedback = new_cmb2_box(array(
-        'id'            => '_louize_feedback_metabox',
+        'id'            => '_florapsi_feedback_metabox',
         'title'         => esc_html__('Depoimentos', 'louize'),
         'object_types'  => array('page'),
         'show_on'       => array('key' => 'id', 'value' => $home_id),
@@ -204,7 +204,7 @@ function louize_register_metaboxes() {
      * SEÇÃO: DÚVIDAS FREQUENTES (FAQ)
      * ------------------------------------------------------------------------- */
     $cmb_duvidas = new_cmb2_box(array(
-        'id'            => '_louize_duvidas_metabox',
+        'id'            => '_florapsi_duvidas_metabox',
         'title'         => esc_html__('Dúvidas Frequentes', 'louize'),
         'object_types'  => array('page'),
         'show_on'       => array('key' => 'id', 'value' => $home_id),

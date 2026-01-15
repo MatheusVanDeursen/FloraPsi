@@ -17,7 +17,7 @@
         
         <!-- LOGO -->
         <a href="#inicio" class="navbar-logo-link">
-            <?php $logo_url = get_theme_mod('louize_header_logo', ''); ?>
+            <?php $logo_url = get_theme_mod('florapsi_header_logo', ''); ?>
 
             <?php if ( !empty($logo_url) ) : ?>
                 <img src="<?php echo esc_url($logo_url); ?>" alt="<?php bloginfo('name'); ?>" class="navbar-logo-img">

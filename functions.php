@@ -3,20 +3,20 @@
 /* ==========================================================================
    CONFIGURAÇÃO DO TEMA
    ========================================================================== */
-function louize_theme_setup() {
+function florapsi_theme_setup() {
     add_theme_support('title-tag');
 
     register_nav_menus(array(
         'primary_menu' => __('Menu Principal', 'louize'),
     ));
 }
-add_action('after_setup_theme', 'louize_theme_setup');
+add_action('after_setup_theme', 'florapsi_theme_setup');
 
 
 /* ==========================================================================
    SCRIPTS E ESTILOS
    ========================================================================== */
-function louize_css() {
+function florapsi_css() {
     $theme_uri   = get_template_directory_uri();
     $css_version = filemtime(get_template_directory() . '/css/styles.css');
     $js_version  = filemtime(get_template_directory() . '/scripts/script.js');
@@ -25,7 +25,7 @@ function louize_css() {
     wp_enqueue_style('louize-style', $theme_uri . '/css/styles.css', ['font-awesome'], $css_version);
     wp_enqueue_script('louize-script', $theme_uri . '/scripts/script.js', [], $js_version, true);
 }
-add_action('wp_enqueue_scripts', 'louize_css');
+add_action('wp_enqueue_scripts', 'florapsi_css');
 
 
 /* ==========================================================================
@@ -38,7 +38,7 @@ require get_template_directory() . '/inc/cmb2-fields.php';
 /* ==========================================================================
    FUNCIONALIDADES EXTRAS (JS INLINE)
    ========================================================================== */
-function louize_add_delayed_trigger_animation_script() {
+function florapsi_add_delayed_trigger_animation_script() {
     ?>
     <script>
     document.addEventListener("DOMContentLoaded", function() {
@@ -59,13 +59,13 @@ function louize_add_delayed_trigger_animation_script() {
     </script>
     <?php
 }
-add_action('wp_footer', 'louize_add_delayed_trigger_animation_script');
+add_action('wp_footer', 'florapsi_add_delayed_trigger_animation_script');
 
 
 /* ==========================================================================
    INTEGRAÇÃO YOAST SEO
    ========================================================================== */
-function louize_integra_campos_seo( $content, $post ) {
+function florapsi_integra_campos_seo( $content, $post ) {
     $page_inicio = get_page_by_title('Início');
     
     // Executa apenas na página inicial
@@ -76,8 +76,8 @@ function louize_integra_campos_seo( $content, $post ) {
     $extra_content = '';
 
     // Customizer
-    $extra_content .= get_theme_mod('louize_banner_subtitle', '') . ' ';
-    $extra_content .= get_theme_mod('louize_banner_text', '') . ' ';
+    $extra_content .= get_theme_mod('florapsi_banner_subtitle', '') . ' ';
+    $extra_content .= get_theme_mod('florapsi_banner_text', '') . ' ';
 
     // Campos Simples CMB2
     $campos_simples = [
@@ -116,4 +116,4 @@ function louize_integra_campos_seo( $content, $post ) {
 
     return $content . ' ' . $extra_content;
 }
-add_filter( 'wpseo_pre_analysis_post_content', 'louize_integra_campos_seo', 10, 2 );
+add_filter( 'wpseo_pre_analysis_post_content', 'florapsi_integra_campos_seo', 10, 2 );

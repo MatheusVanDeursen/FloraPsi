@@ -9,10 +9,10 @@
         <!-- BANNER                                                              -->
         <!-- =================================================================== -->
         <?php
-        $banner_subtitle    = get_theme_mod( 'louize_banner_subtitle' );
-        $banner_text        = get_theme_mod( 'louize_banner_text' );
-        $banner_button_text = get_theme_mod( 'louize_banner_button_text' );
-        $banner_button_url  = get_theme_mod( 'louize_banner_button_url' );
+        $banner_subtitle    = get_theme_mod( 'florapsi_banner_subtitle' );
+        $banner_text        = get_theme_mod( 'florapsi_banner_text' );
+        $banner_button_text = get_theme_mod( 'florapsi_banner_button_text' );
+        $banner_button_url  = get_theme_mod( 'florapsi_banner_button_url' );
         ?>
         <section id="inicio" class="main-section banner">
             <div class="section-container">
@@ -37,10 +37,10 @@
 
                 <?php 
                 $flores = [
-                    [ 'url' => get_theme_mod( 'louize_banner_decor_tl' ), 'class' => 'banner-top-left',     'alt' => 'Decoração superior esquerda' ],
-                    [ 'url' => get_theme_mod( 'louize_banner_decor_tr' ), 'class' => 'banner-top-right',    'alt' => 'Decoração superior direita' ],
-                    [ 'url' => get_theme_mod( 'louize_banner_decor_bl' ), 'class' => 'banner-bottom-left',  'alt' => 'Decoração inferior esquerda' ],
-                    [ 'url' => get_theme_mod( 'louize_banner_decor_br' ), 'class' => 'banner-bottom-right', 'alt' => 'Decoração inferior direita' ],
+                    [ 'url' => get_theme_mod( 'florapsi_banner_decor_tl' ), 'class' => 'banner-top-left',     'alt' => 'Decoração superior esquerda' ],
+                    [ 'url' => get_theme_mod( 'florapsi_banner_decor_tr' ), 'class' => 'banner-top-right',    'alt' => 'Decoração superior direita' ],
+                    [ 'url' => get_theme_mod( 'florapsi_banner_decor_bl' ), 'class' => 'banner-bottom-left',  'alt' => 'Decoração inferior esquerda' ],
+                    [ 'url' => get_theme_mod( 'florapsi_banner_decor_br' ), 'class' => 'banner-bottom-right', 'alt' => 'Decoração inferior direita' ],
                 ];
 
                 foreach ( $flores as $flor ) :
@@ -239,16 +239,16 @@
                 <div class="contato-coluna">
                     <div class="contato-box">
                         <h3 class="contato-title">
-                            <?php echo esc_html( get_theme_mod( 'louize_contato_insta_title', 'Acompanhe nas redes' ) ); ?>
+                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_insta_title', 'Acompanhe nas redes' ) ); ?>
                         </h3>
                         
                         <p class="contato-text">
-                            <?php echo esc_html( get_theme_mod( 'louize_instagram_text', 'Conheça mais sobre meu trabalho.' ) ); ?>
+                            <?php echo esc_html( get_theme_mod( 'florapsi_instagram_text', 'Conheça mais sobre meu trabalho.' ) ); ?>
                         </p>
 
                         <?php 
-                        $insta_url    = get_theme_mod( 'louize_instagram_url' );
-                        $insta_handle = get_theme_mod( 'louize_instagram_handle', '@perfil' );
+                        $insta_url    = get_theme_mod( 'florapsi_instagram_url' );
+                        $insta_handle = get_theme_mod( 'florapsi_instagram_handle', '@perfil' );
                         
                         if ( ! empty( $insta_url ) ) : ?>
                             <a href="<?php echo esc_url( $insta_url ); ?>" target="_blank" class="instagram-button">
@@ -262,13 +262,13 @@
                 <div class="contato-coluna">
                     <div class="contato-cta">
                         <h3 class="contato-title">
-                            <?php echo esc_html( get_theme_mod( 'louize_contato_cta_title', 'Vamos conversar?' ) ); ?>
+                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_cta_title', 'Vamos conversar?' ) ); ?>
                         </h3>
                         <p class="contato-text">
-                            <?php echo esc_html( get_theme_mod( 'louize_contato_text', 'Dê o primeiro passo na sua jornada de cuidado.' ) ); ?>
+                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_text', 'Dê o primeiro passo na sua jornada de cuidado.' ) ); ?>
                         </p>
-                        <a href="<?php echo esc_url( get_theme_mod( 'louize_banner_button_url', '#' ) ); ?>" target="_blank" class="whatsapp-button">
-                            <?php echo esc_html( get_theme_mod( 'louize_banner_button_text', 'Agende sua consulta' ) ); ?>
+                        <a href="<?php echo esc_url( get_theme_mod( 'florapsi_banner_button_url', '#' ) ); ?>" target="_blank" class="whatsapp-button">
+                            <?php echo esc_html( get_theme_mod( 'florapsi_banner_button_text', 'Agende sua consulta' ) ); ?>
                         </a>
                     </div>
                 </div>
@@ -279,7 +279,7 @@
     <!-- =================================================================== -->
     <!-- BOTÃO FLUTUANTE                                                     -->
     <!-- =================================================================== -->
-    <a href="<?php echo esc_url( get_theme_mod( 'louize_whatsapp_link', '#' ) ); ?>" target="_blank" class="whatsapp-float">
+    <a href="<?php echo esc_url( get_theme_mod( 'florapsi_whatsapp_link', '#' ) ); ?>" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 

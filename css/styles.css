@@ -485,24 +485,32 @@ body *, body *::before, body *::after {
 .banner-button.border-active .border-bottom { animation: border-bottom-flow 0.8s ease 0.8s forwards; }
 .banner-button.border-active .border-left   { animation: border-left-flow 0.8s ease 1.2s forwards; }
 
-.slide-animation,
-.slide-animation-delayed-trigger {
+.slide-animation {
   opacity: 0;
   transform: translateY(20px); 
 }
 
-.slide-animation.is-visible,
-.slide-animation-delayed-trigger.is-visible {
+.slide-animation.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-@media (max-width: 991px) {
-  .banner { padding-top: 150px; }
-  .banner-subtitle { font-size: 42px; margin-bottom: 40px; }
-  .banner-text { font-size: 28px; margin-bottom: 80px; }
-  .banner-button { font-size: 22px; padding: 12px 28px; margin-bottom: 80px; }
-  .banner-corner-img { max-width: 200px; }
+/* Responsividade Mediana (Tablets e Laptops Pequenos) */
+@media (max-width: 992px) {
+  .banner { padding-top: 160px; padding-left: 10px; padding-right: 10px; }
+  .banner-subtitle { font-size: 56px; margin-bottom: 45px; }
+  .banner-text { font-size: 36px; margin-bottom: 100px; }
+  .banner-button { font-size: 26px; padding: 14px 30px; margin-bottom: 80px; }
+  .banner-corner-img { max-width: 280px; }
+}
+
+/* Responsividade Pequena (Mobile) */
+@media (max-width: 576px) {
+  .banner { padding-top: 130px; }
+  .banner-subtitle { font-size: 38px; margin-bottom: 30px; }
+  .banner-text { font-size: 24px; margin-bottom: 70px; }
+  .banner-button { font-size: 20px; padding: 12px 24px; margin-bottom: 70px; }
+  .banner-corner-img { max-width: 160px; }
 }
 
 /* =================================================================== */
