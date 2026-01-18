@@ -232,6 +232,9 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_control('florapsi_banner_btn_fs_tablet', array('label' => __('Botão - Tablet (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
     
     // --- Mobile (576px por padrão) ---
+    $wp_customize->add_setting('florapsi_banner_padding_mobile', array('default' => '130', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_padding_mobile', array('label' => __('Padding Top - Mobile (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
+
     $wp_customize->add_setting('florapsi_banner_subtitle_fs_mobile', array('default' => '35', 'sanitize_callback' => 'absint'));
     $wp_customize->add_control('florapsi_banner_subtitle_fs_mobile', array('label' => __('Subtítulo - Mobile (px)', 'louize'), 'section' => 'florapsi_banner_resp_section', 'type' => 'number'));
 
@@ -1698,6 +1701,7 @@ function florapsi_dynamic_css() {
         @media (max-width: <?php echo esc_attr($mobile_bp); ?>px) {
             <?php
             // Banner Mobile
+            echo ".banner { padding-top: " . esc_attr(get_theme_mod('florapsi_banner_padding_mobile', '130')) . "px; }";
             echo ".banner .banner-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_fs_mobile', '38')) . "px; }";
             echo ".banner .banner-text { font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_fs_mobile', '24')) . "px; }";
             echo ".banner-button { font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_fs_mobile', '20')) . "px; }";
