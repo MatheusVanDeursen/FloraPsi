@@ -18,6 +18,15 @@ function florapsi_customize_register($wp_customize) {
         'Kepler'         => 'Kepler',
         'Tan Mon Cheri'  => 'Tan Mon Cheri',
         'Segoe UI Light' => 'Segoe UI Light',
+        'Arial'          => 'Arial',
+        'Helvetica'      => 'Helvetica',
+        'Times New Roman'=> 'Times New Roman',
+        'Courier New'    => 'Courier New',
+        'Verdana'        => 'Verdana',
+        'Georgia'        => 'Georgia',
+        'Tahoma'         => 'Tahoma',
+        'Trebuchet MS'   => 'Trebuchet MS',
+        'Impact'         => 'Impact',
     );
 
     /* -------------------------------------------------------------------------
@@ -25,7 +34,7 @@ function florapsi_customize_register($wp_customize) {
      * ------------------------------------------------------------------------- */
     $wp_customize->add_section('florapsi_responsividade_section', array(
         'title'    => __('Responsividade', 'louize'),
-        'priority' => 200,
+        'priority' => 110,
     ));
 
     // Ponto de Interrupção: Tablet
@@ -49,7 +58,7 @@ function florapsi_customize_register($wp_customize) {
      * ------------------------------------------------------------------------- */
     $wp_customize->add_section('florapsi_header_section', array(
         'title'    => __('Cabeçalho', 'louize'),
-        'priority' => 20,
+        'priority' => 21,
     ));
 
     // Cor de Fundo
@@ -108,7 +117,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_banner_panel', array(
         'title'       => __('Banner Principal', 'louize'),
         'description' => __('Configurações de fundo, frases, botão e responsividade do banner.', 'louize'),
-        'priority'    => 30,
+        'priority'    => 101,
     ));
 
     /* --- SUBSEÇÃO: Fundo --- */
@@ -249,7 +258,7 @@ function florapsi_customize_register($wp_customize) {
     * ------------------------------------------------------------------------- */
     $wp_customize->add_panel('florapsi_sobre_panel', array(
         'title'       => __('Sobre Mim', 'louize'),
-        'priority'    => 35,
+        'priority'    => 102,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
@@ -429,7 +438,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_servicos_panel', array(
         'title'       => __('Serviços', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção de Serviços.', 'louize'),
-        'priority'    => 37,
+        'priority'    => 103,
     ));
 
     /* --- SUBSEÇÃO 1: Fundo e Título --- */
@@ -631,7 +640,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_percurso_panel', array(
         'title'       => __('Meu Percurso', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção Meu Percurso.', 'louize'),
-        'priority'    => 36,
+        'priority'    => 104,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
@@ -769,7 +778,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_feedback_panel', array(
         'title'       => __('Depoimentos', 'louize'),
         'description' => __('Configurações de layout, tipografia e estilos da seção de feedbacks.', 'louize'),
-        'priority'    => 38,
+        'priority'    => 105,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
@@ -929,7 +938,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_duvidas_panel', array(
         'title'       => __('Dúvidas Frequentes', 'louize'),
         'description' => __('Configurações de layout, tipografia e cores da seção de Dúvidas Frequentes (FAQ).', 'louize'),
-        'priority'    => 40,
+        'priority'    => 106,
     ));
 
     /* --- SUBSEÇÃO 1: Layout e Fundo --- */
@@ -1105,7 +1114,7 @@ function florapsi_customize_register($wp_customize) {
      * ------------------------------------------------------------------------- */
     $wp_customize->add_section('florapsi_contato_section', array(
         'title'    => __('Contato', 'louize'),
-        'priority' => 50,
+        'priority' => 107,
     ));
 
     // Títulos
@@ -1172,7 +1181,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_panel('florapsi_footer_panel', array(
         'title'       => __('Rodapé e Legal', 'louize'),
         'description' => __('Configurações de conteúdo, estilo do rodapé e avisos de privacidade.', 'louize'),
-        'priority'    => 160, // Mantém a prioridade original do rodapé
+        'priority'    => 108,
     ));
 
     // =========================================================================
@@ -1319,7 +1328,7 @@ function florapsi_customize_register($wp_customize) {
      * ------------------------------------------------------------------------- */
     $wp_customize->add_section('florapsi_whatsapp_section', array(
         'title'    => __('Botão Flutuante (WhatsApp)', 'louize'),
-        'priority' => 170,
+        'priority' => 109,
     ));
 
     $wp_customize->add_setting('florapsi_whatsapp_link', array(
