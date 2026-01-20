@@ -487,12 +487,23 @@ body *, body *::before, body *::after {
 
 .slide-animation {
   opacity: 0;
-  transform: translateY(20px); 
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .slide-animation.is-visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+.slide-animation-delayed-trigger {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.slide-animation-delayed-trigger.is-visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
 /* Responsividade Mediana (Tablets e Laptops Pequenos) */
@@ -551,6 +562,7 @@ body *, body *::before, body *::after {
   max-height: 600px;
   border: 2px solid black;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .sobre-mim-title {
@@ -627,6 +639,7 @@ body *, body *::before, body *::after {
   object-fit: cover;
   border: 2px solid black;
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .percurso-title {
@@ -748,6 +761,18 @@ body *, body *::before, body *::after {
 @media (max-width: 991px) {
   .servico {
     padding: 60px 0;
+  }
+  .servico .section-container {
+    gap: 40px;
+  }
+  .servico-icon i {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .servico {
+    padding: 40px 5px;
   }
   .servico .section-container {
     gap: 40px;
