@@ -702,164 +702,101 @@ function florapsi_customize_register($wp_customize) {
 
 
     /* -------------------------------------------------------------------------
-    * PAINEL: DEPOIMENTOS (FEEDBACK)
+    * PAINEL: DEPOIMENTOS
     * ------------------------------------------------------------------------- */
     $wp_customize->add_panel('florapsi_feedback_panel', array(
-        'title'       => __('Depoimentos', 'louize'),
-        'description' => __('Configurações de layout, tipografia e estilos da seção de feedbacks.', 'louize'),
+        'title'       => __('Depoimentos', 'florapsi'),
+        'description' => __('Configurações de layout, tipografia e cores da seção de depoimentos.', 'florapsi'),
         'priority'    => 105,
     ));
 
-    /* --- SUBSEÇÃO 1: Layout e Fundo --- */
-    $wp_customize->add_section('florapsi_feedback_layout_section', array(
-        'title'    => __('Layout e Fundo', 'louize'),
+    /* --- SUBSEÇÃO 1: Fundo e Título --- */
+    $wp_customize->add_section('florapsi_fb_bg_tit_section', array(
+        'title'    => __('Fundo e Título', 'florapsi'),
         'panel'    => 'florapsi_feedback_panel',
         'priority' => 10,
     ));
 
-    // Cor de Fundo da Seção
     $wp_customize->add_setting('florapsi_feedback_background_color', array('default' => '#F8F0E3', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_bg_clr_ctrl', array(
-        'label'    => __('Cor de Fundo da Seção', 'louize'),
-        'section'  => 'florapsi_feedback_layout_section',
-        'settings' => 'florapsi_feedback_background_color',
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_background_color', array(
+        'label'    => __('Cor de Fundo da Seção', 'florapsi'),
+        'section'  => 'florapsi_fb_bg_tit_section',
     )));
 
-    // Estilo do Card
-    $wp_customize->add_setting('florapsi_feedback_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_card_bg_ctrl', array(
-        'label'    => __('Cor de Fundo do Card', 'louize'),
-        'section'  => 'florapsi_feedback_layout_section',
-        'settings' => 'florapsi_feedback_card_bg_color',
-    )));
+    $wp_customize->add_setting('florapsi_feedback_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_title_color', array('label' => __('Cor do Título', 'florapsi'), 'section' => 'florapsi_fb_bg_tit_section')));
 
-    // Ícone de Aspas
-    $wp_customize->add_setting('florapsi_feedback_quote_icon_color', array('default' => '#A3B899', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_quote_clr_ctrl', array(
-        'label'    => __('Cor do Ícone de Aspas', 'louize'),
-        'section'  => 'florapsi_feedback_layout_section',
-        'settings' => 'florapsi_feedback_quote_icon_color',
-    )));
+    $wp_customize->add_setting('florapsi_feedback_title_ff', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_feedback_title_ff', array('label' => __('Fonte do Título', 'florapsi'), 'section' => 'florapsi_fb_bg_tit_section', 'type' => 'select', 'choices' => $font_family_choices));
 
-    $wp_customize->add_setting('florapsi_feedback_quote_icon_size', array('default' => '140', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_fb_quote_size_ctrl', array(
-        'label'    => __('Tamanho do Ícone de Aspas (px)', 'louize'),
-        'section'  => 'florapsi_feedback_layout_section',
-        'settings' => 'florapsi_feedback_quote_icon_size',
-        'type'     => 'number',
-    ));
+    $wp_customize->add_setting('florapsi_feedback_title_fs', array('default' => '50', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_title_fs', array('label' => __('Tamanho do Título (px)', 'florapsi'), 'section' => 'florapsi_fb_bg_tit_section', 'type' => 'number'));
 
-    // Padding Mobile
-    $wp_customize->add_setting('florapsi_feedback_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_fb_pad_mob_ctrl', array(
-        'label'    => __('Padding Vertical - Mobile (px)', 'louize'),
-        'section'  => 'florapsi_feedback_layout_section',
-        'settings' => 'florapsi_feedback_padding_mobile',
-        'type'     => 'number',
-    ));
+    $wp_customize->add_setting('florapsi_feedback_title_fw', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_title_fw', array('label' => __('Peso do Título', 'florapsi'), 'section' => 'florapsi_fb_bg_tit_section', 'type' => 'select', 'choices' => $font_weight_choices));
 
-    /* --- SUBSEÇÃO 2: Conteúdo e Tipografia --- */
-    $wp_customize->add_section('florapsi_feedback_typography_section', array(
-        'title'    => __('Conteúdo e Tipografia', 'louize'),
+    /* --- SUBSEÇÃO 2: Cards - Textos e Fonte --- */
+    $wp_customize->add_section('florapsi_fb_cards_texts_section', array(
+        'title'    => __('Cards: Textos e Fonte', 'florapsi'),
         'panel'    => 'florapsi_feedback_panel',
         'priority' => 20,
     ));
 
-    // Texto do Título
-    $wp_customize->add_setting('florapsi_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_fb_main_tit_txt_ctrl', array(
-        'label'    => __('Título da Seção', 'louize'),
-        'section'  => 'florapsi_feedback_typography_section',
-        'settings' => 'florapsi_feedback_main_title',
-    ));
+    // Texto do Depoimento
+    $wp_customize->add_setting('florapsi_feedback_text_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_feedback_text_ff', array('label' => __('Fonte do Depoimento', 'florapsi'), 'section' => 'florapsi_fb_cards_texts_section', 'type' => 'select', 'choices' => $font_family_choices));
 
-    // --- Tipografia: Título ---
-    $wp_customize->add_setting('florapsi_feedback_title_fontfamily', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_fb_tit_ff_ctrl', array(
-        'label'    => __('Fonte do Título', 'louize'),
-        'section'  => 'florapsi_feedback_typography_section',
-        'settings' => 'florapsi_feedback_title_fontfamily',
-        'type'     => 'select',
-        'choices'  => $font_family_choices,
-    ));
+    $wp_customize->add_setting('florapsi_feedback_text_fs', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_text_fs', array('label' => __('Tamanho do Texto (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_texts_section', 'type' => 'number'));
 
-    $wp_customize->add_setting('florapsi_feedback_title_fontsize', array('default' => '50', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_fb_tit_fs_ctrl', array(
-        'label'    => __('Tamanho do Título (px)', 'louize'),
-        'section'  => 'florapsi_feedback_typography_section',
-        'settings' => 'florapsi_feedback_title_fontsize',
-        'type'     => 'number',
-    ));
+    // Autor
+    $wp_customize->add_setting('florapsi_feedback_author_ff', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_feedback_author_ff', array('label' => __('Fonte do Autor', 'florapsi'), 'section' => 'florapsi_fb_cards_texts_section', 'type' => 'select', 'choices' => $font_family_choices));
 
-    // --- Tipografia: Autor ---
-    $wp_customize->add_setting('florapsi_feedback_author_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_fb_auth_ff_ctrl', array(
-        'label'    => __('Fonte do Autor', 'louize'),
-        'section'  => 'florapsi_feedback_typography_section',
-        'settings' => 'florapsi_feedback_author_fontfamily',
-        'type'     => 'select',
-        'choices'  => $font_family_choices,
-    ));
+    $wp_customize->add_setting('florapsi_feedback_author_fs', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_author_fs', array('label' => __('Tamanho do Autor (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_texts_section', 'type' => 'number'));
 
-    // --- Tipografia: Texto do Depoimento ---
-    $wp_customize->add_setting('florapsi_feedback_text_fontfamily', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_fb_txt_ff_ctrl', array(
-        'label'    => __('Fonte do Depoimento', 'louize'),
-        'section'  => 'florapsi_feedback_typography_section',
-        'settings' => 'florapsi_feedback_text_fontfamily',
-        'type'     => 'select',
-        'choices'  => $font_family_choices,
-    ));
+    // Ícone de Aspas
+    $wp_customize->add_setting('florapsi_feedback_quote_icon_size', array('default' => '140', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_quote_icon_size', array('label' => __('Tamanho das Aspas (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_texts_section', 'type' => 'number'));
 
-    /* --- SUBSEÇÃO 3: Cores e Estilo --- */
-    $wp_customize->add_section('florapsi_feedback_style_section', array(
-        'title'    => __('Cores e Estilo', 'louize'),
+    /* --- SUBSEÇÃO 3: Cards - Cores --- */
+    $wp_customize->add_section('florapsi_fb_cards_colors_section', array(
+        'title'    => __('Cards: Cores', 'florapsi'),
         'panel'    => 'florapsi_feedback_panel',
         'priority' => 30,
     ));
 
-    $wp_customize->add_setting('florapsi_feedback_title_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_tit_clr_ctrl', array(
-        'label'    => __('Cor do Título', 'louize'),
-        'section'  => 'florapsi_feedback_style_section',
-        'settings' => 'florapsi_feedback_title_color',
-    )));
-
-    $wp_customize->add_setting('florapsi_feedback_author_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_auth_clr_ctrl', array(
-        'label'    => __('Cor do Autor', 'louize'),
-        'section'  => 'florapsi_feedback_style_section',
-        'settings' => 'florapsi_feedback_author_color',
-    )));
+    $wp_customize->add_setting('florapsi_feedback_card_bg_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_card_bg_color', array('label' => __('Cor de Fundo do Card', 'florapsi'), 'section' => 'florapsi_fb_cards_colors_section')));
 
     $wp_customize->add_setting('florapsi_feedback_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_txt_clr_ctrl', array(
-        'label'    => __('Cor do Depoimento', 'louize'),
-        'section'  => 'florapsi_feedback_style_section',
-        'settings' => 'florapsi_feedback_text_color',
-    )));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_text_color', array('label' => __('Cor do Texto', 'florapsi'), 'section' => 'florapsi_fb_cards_colors_section')));
+
+    $wp_customize->add_setting('florapsi_feedback_author_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_author_color', array('label' => __('Cor do Autor', 'florapsi'), 'section' => 'florapsi_fb_cards_colors_section')));
+
+    $wp_customize->add_setting('florapsi_feedback_quote_icon_color', array('default' => '#A3B899', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_quote_icon_color', array('label' => __('Cor das Aspas', 'florapsi'), 'section' => 'florapsi_fb_cards_colors_section')));
 
     $wp_customize->add_setting('florapsi_feedback_readmore_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_fb_rdmr_clr_ctrl', array(
-        'label'    => __('Cor do "Ler Mais"', 'louize'),
-        'section'  => 'florapsi_feedback_style_section',
-        'settings' => 'florapsi_feedback_readmore_color',
-    )));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_feedback_readmore_color', array('label' => __('Cor do "Ler Mais"', 'florapsi'), 'section' => 'florapsi_fb_cards_colors_section')));
 
-    /* --- SUBSEÇÃO 4: Responsividade (Mobile) --- */
-    $wp_customize->add_section('florapsi_feedback_mobile_section', array(
-        'title'    => __('Responsividade (Mobile)', 'louize'),
+    /* --- SUBSEÇÃO 4: Responsividade --- */
+    $wp_customize->add_section('florapsi_fb_cards_resp_section', array(
+        'title'    => __('Responsividade', 'florapsi'),
         'panel'    => 'florapsi_feedback_panel',
         'priority' => 40,
     ));
 
-    $wp_customize->add_setting('florapsi_feedback_title_fontsize_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_fb_tit_fs_mob_ctrl', array(
-        'label'    => __('Tam. Título - Mobile (px)', 'louize'),
-        'section'  => 'florapsi_feedback_mobile_section',
-        'settings' => 'florapsi_feedback_title_fontsize_mobile',
-        'type'     => 'number',
-    ));
+    $wp_customize->add_setting('florapsi_feedback_padding_mobile', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_padding_mobile', array('label' => __('Padding Vertical - Mobile (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_feedback_title_fs_mobile', array('default' => '36', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_title_fs_mobile', array('label' => __('Tam. Título - Mobile (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_resp_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_feedback_text_fs_mobile', array('default' => '16', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_feedback_text_fs_mobile', array('label' => __('Tam. Texto - Mobile (px)', 'florapsi'), 'section' => 'florapsi_fb_cards_resp_section', 'type' => 'number'));
 
     /* -------------------------------------------------------------------------
     * PAINEL: DÚVIDAS FREQUENTES
@@ -1082,13 +1019,6 @@ function florapsi_customize_register($wp_customize) {
     // =========================================================================
     // Adicionando Títulos Editáveis às Secções Existentes
     // =========================================================================
-    
-    // Título da Secção de Depoimentos
-    $wp_customize->add_setting('florapsi_feedback_main_title', array('default' => 'O que dizem sobre meu Trabalho', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_feedback_main_title_control', array(
-        'label' => __('Título da Secção de Depoimentos', 'louize'),
-        'section' => 'florapsi_feedback_section',
-    ));
 
     // Título da Coluna Instagram
     $wp_customize->add_setting('florapsi_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
@@ -1480,52 +1410,42 @@ function florapsi_dynamic_css() {
         echo " font-weight: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_fw', '300')) . ";";
         echo "}";
 
-        // Depoimentos
-        $feedback_bg_color = get_theme_mod('florapsi_feedback_background_color', '#F8F0E3');
-        if ($feedback_bg_color !== '#F8F0E3') { echo ".feedback { background-color: " . esc_attr($feedback_bg_color) . "; }"; }
+        // Depoimentos (Desktop)
+        $fb_bg = get_theme_mod('florapsi_feedback_background_color', '#F8F0E3');
+        echo ".feedback { background-color: " . esc_attr($fb_bg) . "; }";
         
-        $feedback_title_ff = get_theme_mod('florapsi_feedback_title_fontfamily', 'Tan Mon Cheri');
-        if ($feedback_title_ff !== 'Tan Mon Cheri') { echo ".feedback .feedback-title { font-family: '" . esc_attr($feedback_title_ff) . "', sans-serif; }"; }
-        $feedback_title_fs = get_theme_mod('florapsi_feedback_title_fontsize', '50');
-        if ($feedback_title_fs !== '50') { echo ".feedback .feedback-title { font-size: " . esc_attr($feedback_title_fs) . "px; }"; }
-        $feedback_title_fw = get_theme_mod('florapsi_feedback_title_fontweight', '400');
-        if ($feedback_title_fw !== '400') { echo ".feedback .feedback-title { font-weight: " . esc_attr($feedback_title_fw) . "; }"; }
-        $feedback_title_color = get_theme_mod('florapsi_feedback_title_color', '#5A6E59');
-        if ($feedback_title_color !== '#5A6E59') { echo ".feedback .feedback-title { color: " . esc_attr($feedback_title_color) . "; }"; }
-        
-        $feedback_card_bg_color = get_theme_mod('florapsi_feedback_card_bg_color', '#FFFFFF');
-        if ($feedback_card_bg_color !== '#FFFFFF') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner { background-color: " . esc_attr($feedback_card_bg_color) . " !important; }"; }
-        $feedback_quote_color = get_theme_mod('florapsi_feedback_quote_icon_color', '#A3B899');
-        if ($feedback_quote_color !== '#A3B899') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner::before { color: " . esc_attr($feedback_quote_color) . " !important; }"; }
-        $feedback_quote_size = get_theme_mod('florapsi_feedback_quote_icon_size', '140');
-        if ($feedback_quote_size !== '140') { echo "#meus-depoimentos-customizados .ti-review-item > .ti-inner::before { font-size: " . esc_attr($feedback_quote_size) . "px !important; }"; }
-        
-        $feedback_author_ff = get_theme_mod('florapsi_feedback_author_fontfamily', 'Sofia Pro');
-        if ($feedback_author_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-name { font-family: '" . esc_attr($feedback_author_ff) . "', sans-serif !important; }"; }
-        $feedback_author_fs = get_theme_mod('florapsi_feedback_author_fontsize', '16');
-        if ($feedback_author_fs !== '16') { echo "#meus-depoimentos-customizados .ti-name { font-size: " . esc_attr($feedback_author_fs) . "px !important; }"; }
-        $feedback_author_fw = get_theme_mod('florapsi_feedback_author_fontweight', '600');
-        if ($feedback_author_fw !== '600') { echo "#meus-depoimentos-customizados .ti-name { font-weight: " . esc_attr($feedback_author_fw) . " !important; }"; }
-        $feedback_author_color = get_theme_mod('florapsi_feedback_author_color', '#5A6E59');
-        if ($feedback_author_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-name { color: " . esc_attr($feedback_author_color) . " !important; }"; }
-        
-        $feedback_text_ff = get_theme_mod('florapsi_feedback_text_fontfamily', 'Sofia Pro');
-        if ($feedback_text_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-review-content { font-family: '" . esc_attr($feedback_text_ff) . "', sans-serif !important; }"; }
-        $feedback_text_fs = get_theme_mod('florapsi_feedback_text_fontsize', '18');
-        if ($feedback_text_fs !== '18') { echo "#meus-depoimentos-customizados .ti-review-content { font-size: " . esc_attr($feedback_text_fs) . "px !important; }"; }
-        $feedback_text_fw = get_theme_mod('florapsi_feedback_text_fontweight', '300');
-        if ($feedback_text_fw !== '300') { echo "#meus-depoimentos-customizados .ti-review-content { font-weight: " . esc_attr($feedback_text_fw) . " !important; }"; }
-        $feedback_text_color = get_theme_mod('florapsi_feedback_text_color', '#5A6E59');
-        if ($feedback_text_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-review-content { color: " . esc_attr($feedback_text_color) . " !important; }"; }
-        
-        $feedback_readmore_ff = get_theme_mod('florapsi_feedback_readmore_fontfamily', 'Sofia Pro');
-        if ($feedback_readmore_ff !== 'Sofia Pro') { echo "#meus-depoimentos-customizados .ti-read-more span { font-family: '" . esc_attr($feedback_readmore_ff) . "', sans-serif !important; }"; }
-        $feedback_readmore_fs = get_theme_mod('florapsi_feedback_readmore_fontsize', '14');
-        if ($feedback_readmore_fs !== '14') { echo "#meus-depoimentos-customizados .ti-read-more span { font-size: " . esc_attr($feedback_readmore_fs) . "px !important; }"; }
-        $feedback_readmore_fw = get_theme_mod('florapsi_feedback_readmore_fontweight', '600');
-        if ($feedback_readmore_fw !== '600') { echo "#meus-depoimentos-customizados .ti-read-more span { font-weight: " . esc_attr($feedback_readmore_fw) . " !important; }"; }
-        $feedback_readmore_color = get_theme_mod('florapsi_feedback_readmore_color', '#5A6E59');
-        if ($feedback_readmore_color !== '#5A6E59') { echo "#meus-depoimentos-customizados .ti-read-more span { color: " . esc_attr($feedback_readmore_color) . " !important; }"; }
+        echo ".feedback .feedback-title {";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_feedback_title_color', '#5A6E59')) . ";";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_feedback_title_ff', 'Tan Mon Cheri')) . "', serif;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_feedback_title_fs', '50')) . "px;";
+        echo " font-weight: " . esc_attr(get_theme_mod('florapsi_feedback_title_fw', '400')) . ";";
+        echo "}";
+
+        // Estilos do Card (Manual e Trustindex)
+        $fb_card_bg = get_theme_mod('florapsi_feedback_card_bg_color', '#FFFFFF');
+        $fb_quote_clr = get_theme_mod('florapsi_feedback_quote_icon_color', '#A3B899');
+        $fb_txt_clr = get_theme_mod('florapsi_feedback_text_color', '#5A6E59');
+        $fb_auth_clr = get_theme_mod('florapsi_feedback_author_color', '#5A6E59');
+
+        echo ".depoimento-item, #meus-depoimentos-customizados .ti-review-item > .ti-inner { background-color: " . esc_attr($fb_card_bg) . " !important; }";
+        echo ".depoimento-item::before, #meus-depoimentos-customizados .ti-review-item > .ti-inner::before {";
+        echo " color: " . esc_attr($fb_quote_clr) . " !important;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_feedback_quote_icon_size', '140')) . "px !important;";
+        echo "}";
+
+        echo ".depoimento-item p, #meus-depoimentos-customizados .ti-review-content {";
+        echo " color: " . esc_attr($fb_txt_clr) . " !important;";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_feedback_text_ff', 'Sofia Pro')) . "', sans-serif !important;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_feedback_text_fs', '18')) . "px !important;";
+        echo "}";
+
+        echo ".depoimento-item span, #meus-depoimentos-customizados .ti-name {";
+        echo " color: " . esc_attr($fb_auth_clr) . " !important;";
+        echo " font-family: '" . esc_attr(get_theme_mod('florapsi_feedback_author_ff', 'Sofia Pro')) . "', sans-serif !important;";
+        echo " font-size: " . esc_attr(get_theme_mod('florapsi_feedback_author_fs', '16')) . "px !important;";
+        echo "}";
+
+        echo "#meus-depoimentos-customizados .ti-read-more span { color: " . esc_attr(get_theme_mod('florapsi_feedback_readmore_color', '#5A6E59')) . " !important; }";
 
 
         /* --- Estilos Desktop para a Seção "Dúvidas Frequentes" --- */
@@ -1677,14 +1597,10 @@ function florapsi_dynamic_css() {
             echo ".servico .servico-card-text { font-size: " . esc_attr(get_theme_mod('florapsi_serv_card_txt_fs_mobile', '16')) . "px; }";
 
             // Depoimentos
-            $feedback_padding_mobile = get_theme_mod('florapsi_feedback_padding_mobile', '40');
-            if ($feedback_padding_mobile !== '40') {
-                echo ".feedback { padding-top: " . esc_attr($feedback_padding_mobile) . "px; padding-bottom: " . esc_attr($feedback_padding_mobile) . "px; }";
-            }
-            $feedback_title_fs_mobile = get_theme_mod('florapsi_feedback_title_fontsize_mobile', '36');
-            if ($feedback_title_fs_mobile !== '36') {
-                echo ".feedback .feedback-title { font-size: " . esc_attr($feedback_title_fs_mobile) . "px; }";
-            }
+            $fb_pad_v = get_theme_mod('florapsi_feedback_padding_mobile', '40');
+            echo ".feedback { padding-top: " . esc_attr($fb_pad_v) . "px !important; padding-bottom: " . esc_attr($fb_pad_v) . "px !important; }";
+            echo ".feedback .feedback-title { font-size: " . esc_attr(get_theme_mod('florapsi_feedback_title_fs_mobile', '36')) . "px; }";
+            echo ".depoimento-item p, #meus-depoimentos-customizados .ti-review-content { font-size: " . esc_attr(get_theme_mod('florapsi_feedback_text_fs_mobile', '16')) . "px !important; }";
 
             // Dúvidas Frequentes
             $duvidas_padding_mobile = get_theme_mod('florapsi_duvidas_padding_mobile', '40');
