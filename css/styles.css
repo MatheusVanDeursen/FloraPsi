@@ -1273,7 +1273,9 @@ body *, body *::before, body *::after {
     padding-bottom: 10px;
 }
 
-.modal-body { font-size: 16px; line-height: 1.6; text-align: justify; }
+.modal-body { 
+    font-size: 16px; line-height: 1.6; text-align: justify; 
+}
 
 .modal-close {
     position: absolute;
@@ -1285,6 +1287,12 @@ body *, body *::before, body *::after {
 }
 
 .modal-close:hover { transform: rotate(90deg); }
+
+@media (max-width: 575px) {
+    .modal-title { 
+      font-size: 20px; 
+    }
+}
 
 /* =================================================================== */
 /* BOTÃO FLUTUANTE WHATSAPP                                          */
