@@ -15,6 +15,17 @@
         $banner_button_url  = get_theme_mod( 'florapsi_banner_button_url' );
         ?>
         <section id="inicio" class="main-section banner">
+            <?php 
+                $flora_left = get_theme_mod('florapsi_banner_flora_left');
+                $flora_right = get_theme_mod('florapsi_banner_flora_right');
+
+                if ($flora_left) : ?>
+                    <img src="<?php echo esc_url($flora_left); ?>" class="banner-flora-left slide-animation" data-delay="300">
+                <?php endif; 
+
+                if ($flora_right) : ?>
+                    <img src="<?php echo esc_url($flora_right); ?>" class="banner-flora-right slide-animation" data-delay="300">
+            <?php endif; ?>
             <div class="section-container">
 
                 <?php if ( ! empty( $banner_subtitle ) ) : ?>

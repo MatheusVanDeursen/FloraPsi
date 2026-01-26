@@ -699,7 +699,7 @@ body *, body *::before, body *::after {
   justify-content: center;
   gap: 50px;
   width: 100%;
-  --base-delay: 500ms; 
+  --base-delay: 2000ms; 
   --stagger-delay: 200ms;
 }
 

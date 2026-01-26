@@ -117,3 +117,18 @@ function florapsi_integra_campos_seo( $content, $post ) {
     return $content . ' ' . $extra_content;
 }
 add_filter( 'wpseo_pre_analysis_post_content', 'florapsi_integra_campos_seo', 10, 2 );
+
+// Autoriza o upload de ficheiros SVG na Biblioteca de Média
+function florapsi_add_svg_support($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'florapsi_add_svg_support');
+
+// Corrige a visualização do SVG na Biblioteca de Média
+function florapsi_fix_svg_display() {
+    echo '<style type="text/css">
+        .attachment-266x266, .thumbnail img[src$=".svg"] { width: 100% !important; height: auto !important; }
+    </style>';
+}
+add_action('admin_head', 'florapsi_fix_svg_display');

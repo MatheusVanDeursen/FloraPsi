@@ -219,6 +219,25 @@ function florapsi_customize_register($wp_customize) {
 
     $wp_customize->add_setting('florapsi_banner_btn_font_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
     $wp_customize->add_control('florapsi_banner_btn_font_weight', array('label' => __('Peso do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
+    
+    /* --- SUBSEÇÃO: Banner - Decorações de Flora --- */
+    $wp_customize->add_section('florapsi_banner_flora_section', array(
+        'title'    => __('Banner: Decorações de Flora', 'florapsi'),
+        'panel'    => 'florapsi_banner_panel',
+        'priority' => 35,
+    ));
+
+    $wp_customize->add_setting('florapsi_banner_flora_left', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'florapsi_banner_flora_left', array('label' => __('Folha Esquerda', 'florapsi'), 'section' => 'florapsi_banner_flora_section')));
+
+    $wp_customize->add_setting('florapsi_banner_flora_right', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'florapsi_banner_flora_right', array('label' => __('Folha Direita', 'florapsi'), 'section' => 'florapsi_banner_flora_section')));
+
+    $wp_customize->add_setting('florapsi_banner_flora_width', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_banner_flora_width', array('label' => __('Largura das Folhas (px)', 'florapsi'), 'section' => 'florapsi_banner_flora_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_banner_flora_opacity', array('default' => '0.4', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_banner_flora_opacity', array('label' => __('Opacidade da Flora (0.1 a 1.0)', 'florapsi'), 'section' => 'florapsi_banner_flora_section', 'type' => 'text', 'description' => __('Valores menores deixam o contorno mais suave e mesclado ao fundo.', 'florapsi')));
 
     /* --- SUBSEÇÃO: Banner - Responsividade --- */
     $wp_customize->add_section('florapsi_banner_resp_tablet_section', array(
@@ -1189,6 +1208,29 @@ function florapsi_dynamic_css() {
         echo " font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_font_size', '50')) . "px;";
         echo " font-weight: " . esc_attr(get_theme_mod('florapsi_banner_text_font_weight', '100')) . ";";
         echo "}";
+
+        // Decorações de Flora (Banner)
+        $flora_width = get_theme_mod('florapsi_banner_flora_width', '400');
+        $flora_op = get_theme_mod('florapsi_banner_flora_opacity', '0.4');
+
+        // Configuração Geral (Ajuste de Cor e Mesclagem)
+        echo ".banner-flora-left, .banner-flora-right {";
+        echo " position: absolute; bottom: 0; pointer-events: none; z-index: 1;";
+        echo " width: " . esc_attr($flora_width) . "px;";
+        echo " opacity: " . esc_attr($flora_op) . ";"; // Reduzir opacidade faz o preto "pegar" a cor do fundo
+        echo " mix-blend-mode: multiply;";             // Mescla com tons escuros
+        echo " filter: brightness(0.9);";              // Ajuste fino de tom
+        echo " transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;";
+        echo "}";
+
+        // Lado Esquerdo (Normal)
+        echo ".banner-flora-left { left: 0; transform: translateY(20px); }";
+        echo ".banner-flora-left.is-visible { transform: translateY(0) !important; }";
+
+        // Lado Direito (COM FLIP/ROTAÇÃO)
+        // Note que combinamos scaleX(-1) com o translateY da animação
+        echo ".banner-flora-right { right: 0; transform: scaleX(-1) translateY(20px); }";
+        echo ".banner-flora-right.is-visible { transform: scaleX(-1) translateY(0) !important; }";
 
         $btn_bg = get_theme_mod('florapsi_banner_button_bg_color', 'transparent');
         $btn_txt = get_theme_mod('florapsi_banner_button_text_color', '#E5CDC0');
