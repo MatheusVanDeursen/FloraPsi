@@ -122,7 +122,7 @@ function florapsi_customize_register($wp_customize) {
 
     /* --- SUBSEÇÃO: Fundo --- */
     $wp_customize->add_section('florapsi_banner_fundo_section', array(
-        'title'    => __('Banner: Fundo', 'louize'),
+        'title'    => __('Fundo', 'louize'),
         'panel'    => 'florapsi_banner_panel',
         'priority' => 10,
     ));
@@ -181,7 +181,7 @@ function florapsi_customize_register($wp_customize) {
 
     /* --- SUBSEÇÃO: Botão CTA - Cores --- */
     $wp_customize->add_section('florapsi_banner_btn_color_section', array(
-        'title'    => __('Botão CTA: Cores e Hover', 'louize'),
+        'title'    => __('Botão CTA: Cores', 'louize'),
         'panel'    => 'florapsi_banner_panel',
         'priority' => 40,
     ));
@@ -337,7 +337,7 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_setting('florapsi_sobre_texto_fontweight', array('default' => '300', 'sanitize_callback' => 'absint'));
     $wp_customize->add_control('florapsi_sobre_texto_fontweight', array('label' => __('Peso do Texto', 'florapsi'), 'section' => 'florapsi_sobre_frases_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
 
-    /* --- SUBSEÇÃO: Frases - Cores --- */
+    /* --- SUBSEÇÃO: Frases - w --- */
     $wp_customize->add_section('florapsi_sobre_frases_color_section', array(
         'title'    => __('Frases: Cores', 'florapsi'),
         'panel'    => 'florapsi_sobre_panel',
@@ -1088,7 +1088,7 @@ function florapsi_customize_register($wp_customize) {
     ));
 
     $wp_customize->add_setting('florapsi_whatsapp_link', array(
-        'default'   => 'https://wa.me/seu-numer',
+        'default'   => 'https://wa.me/seu-numero',
         'sanitize_callback' => 'esc_url_raw',
     ));
     $wp_customize->add_control('florapsi_whatsapp_link_control', array(

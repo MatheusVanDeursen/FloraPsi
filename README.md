@@ -1,50 +1,62 @@
-# FloraPsi (v0.2) 🌿
+# FloraPsi WordPress Theme 🌿
+**Versão:** 0.3 (Beta)
 
-**FloraPsi** é um tema exclusivo e de alta performance para WordPress, desenvolvido sob medida para profissionais de psicologia. O projeto une uma estética minimalista e botânica a uma arquitetura de software flexível, permitindo que a identidade visual e 100% do conteúdo sejam gerenciados de forma intuitiva pelo usuário final através de uma interface administrativa personalizada.
+Um tema WordPress exclusivo, minimalista e de alta performance, desenvolvido com Vanilla JS para profissionais de psicologia. O projeto une uma estética botânica a uma arquitetura de software robusta, focada na autonomia do usuário e na experiência do paciente.
 
-📖 **[Acesse aqui o Guia Completo do Tema](https://docs.google.com/document/d/1BoPj5-aRH9Y8iS-Oh1OZF7Lpo5r8DRBG59gBX58oteI/edit?usp=sharing)**
+---
+
+## 📚 Documentação Oficial (v0.3)
+Para garantir a melhor experiência de uso e desenvolvimento, a documentação foi dividida em dois guias essenciais:
+
+* 📘 **[Manual Técnico do Tema](https://docs.google.com/document/d/1BoPj5-aRH9Y8iS-Oh1OZF7Lpo5r8DRBG59gBX58oteI/edit?usp=sharing)** *Focado em instalação, arquitetura de código, gestão de conteúdo via CMB2 e conformidade ética.*
+* 🎨 **[Guia de Edição Visual](https://docs.google.com/document/d/1Nv8y3Lwrob75YsDo1gc83MB_fJTQVyxZmj5JxBgTwoo/edit?usp=sharing)** *Focado na personalização estética via Customizer (cores, fontes, responsividade e imagens).*
 
 ---
 
-## ✨ Novidades da Versão 0.2
-* **Padronização de Namespace:** Migração total de funções e variáveis para o prefixo único `florapsi_`, eliminando conflitos de escopo e aumentando a segurança do código.
-* **Responsividade Dinâmica:** Implementação de controles para definição manual de *breakpoints* para Tablet (padrão 1176px) e Mobile (padrão 576px) via painel administrativo.
-* **Controle de Layout Granular:** Inclusão de ajustes específicos de *padding* vertical e largura máxima de imagens para diferentes dispositivos em seções críticas como "Sobre Mim" e "Meu Percurso".
+## 🚀 Funcionalidades Principais
 
-## 🛠️ Funcionalidades Detalhadas
+### Governança Híbrida
+O tema utiliza uma separação lógica para facilitar a manutenção:
+* **Conteúdo Estrutural (CMB2):** Biografias, Serviços (grupos repetíveis), FAQ e Depoimentos são geridos na edição da página.
+* **Identidade Visual (Customizer):** Cores, tipografia, paddings e layouts são geridos em tempo real no personalizador nativo.
 
-### 🎨 Personalização em Tempo Real (Customizer API)
-O tema utiliza a API nativa do WordPress para gerenciar estilos sem a necessidade de editar arquivos CSS manualmente:
-* **Banner Principal:** Edição de frases, tipografia completa (família, tamanho e peso) e personalização de cores do botão CTA, incluindo o estado de *hover*.
-* **Gestão de Seções:** Painéis dedicados para "Sobre Mim", "Meu Percurso" e "Serviços", com subseções organizadas para cores, fontes e ajustes responsivos independentes.
-* **Tipografia Selecionável:** Suporte nativo a fontes premium como *Tan Mon Cheri* e *Sofia Pro*, além de fontes seguras da web (Arial, Helvetica, etc.).
-* **Botão Flutuante (WhatsApp):** Controle total de link, cores do ícone/fundo, tamanho do botão e posicionamento exato na tela (distância da base e direita).
+### Performance e Arquitetura
+* **Vanilla JS:** Zero dependência de jQuery ou bibliotecas pesadas de animação.
+* **One-Page Architecture:** Navegação fluida via *smooth scroll* e links âncora.
+* **CSS Dinâmico:** Injeção de variáveis PHP no `<head>` para sobrescrever estilos estáticos sem latência.
+* **Cache Busting:** Versionamento automático de arquivos via `filemtime()` para atualizações imediatas no navegador do cliente.
 
-### 📝 Gestão de Conteúdo (CMB2)
-A estruturação do conteúdo é feita via Metaboxes, separando a lógica de design do preenchimento de dados:
-* **Campos Repetíveis:** Adição de cards de serviços (com suporte a ícones FontAwesome) e sistema de FAQ (acordeão) de forma ilimitada.
-* **Depoimentos Inteligentes:** Suporte híbrido para inserção de *shortcodes* de widgets externos ou cadastro manual de feedbacks via painel.
-
-### ⚡ Performance e Experiência do Usuário
-* **Vanilla JS:** Interações como menu mobile, acordeões e carrossel infinito desenvolvidas totalmente em JavaScript puro (jQuery-free).
-* **Animações de Scroll:** Uso da API `IntersectionObserver` para disparar efeitos de surgimento (`.slide-animation`) de forma otimizada para o navegador.
-* **Cache Management:** Sistema de versionamento automático (`filemtime`) para arquivos estáticos, garantindo que atualizações de CSS/JS sejam aplicadas imediatamente aos usuários.
-
-## 🚀 Tecnologias Utilizadas
-* **PHP 8.x:** Lógica de templates e integração WordPress.
-* **WordPress Customizer API:** Motor de estilização e responsividade dinâmica.
-* **CMB2 Framework:** Gestão de campos personalizados e metaboxes.
-* **CSS3 (Flexbox/Grid):** Layouts modernos e animações complexas baseadas em `@keyframes`.
-* **FontAwesome 6.5.1:** Biblioteca de ícones integrada para a seção de serviços.
-
-## 📦 Instalação
-
-1.  Clone este repositório no diretório de temas do seu WordPress: `/wp-content/themes/florapsi`.
-2.  Certifique-se de que o plugin **[CMB2](https://wordpress.org/plugins/cmb2/)** está instalado e ativo.
-3.  Ative o tema no menu **Aparência > Temas**.
-4.  Certifique-se de ter uma página criada com o título **"Início"** para que todos os campos de edição apareçam no painel administrativo.
+### Responsividade Avançada
+* **Controle Granular de Imagens:** Sistema duplo de medidas para avatares e fotos (Pixels fixos para Tablet / Porcentagem fluida para Mobile).
+* **Breakpoints Dinâmicos:** As media queries respondem às configurações do banco de dados, não apenas a arquivos CSS estáticos.
 
 ---
-**Desenvolvedor:** Matheus Van Deursen  
-**Versão:** 0.2 (Janeiro/2026)  
-*Este projeto demonstra competências em desenvolvimento de temas WordPress profissionais, escaláveis e centrados na experiência do usuário.*
+
+## 🛠 Instalação e Configuração
+
+1.  Faça o download do arquivo `.zip` deste repositório ou clone a pasta em `/wp-content/themes/`.
+2.  Renomeie a pasta para `florapsi` (caso esteja como `FloraPsi-main`).
+3.  Ative o tema no Painel do WordPress.
+4.  **Obrigatório:** Instale e ative o plugin **CMB2** para habilitar os campos de edição de conteúdo.
+5.  Acesse **Aparência > Personalizar** para definir a identidade visual inicial.
+
+---
+
+## 📦 Changelog (v0.3)
+
+* **Refatoração:** Separação completa entre lógica de conteúdo (CMB2) e visual (Customizer).
+* **Feature:** Adição de controles de responsividade (Px/%) para imagens nas seções "Sobre Mim" e "Percurso".
+* **Feature:** Implementação de Troubleshooting lógico (seções sem conteúdo são ocultadas automaticamente para evitar quebras de layout).
+* **Feature:** Sistema de *Staggered Animations* (animações em cascata) para os cards de serviços.
+* **Docs:** Criação de manuais separados para Desenvolvedores/Administração e Edição Visual.
+* **Legal:** Adição de aviso de isenção de responsabilidade sobre o uso de depoimentos (conforme Art. 20 do CEPP).
+
+---
+
+## ⚠️ Nota Ética e Legal
+**Sobre a Seção de Depoimentos:**
+Embora o tema possua capacidade técnica para exibir depoimentos (via shortcode ou manual), esta funcionalidade é desativada por padrão em conformidade com o **Código de Ética Profissional do Psicólogo (CEPP)**. A ativação e uso desta seção são de inteira responsabilidade do profissional titular do site. Consulte o Manual Técnico para mais detalhes.
+
+---
+
+**Desenvolvido por Matheus Van Deursen**
