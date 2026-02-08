@@ -875,43 +875,297 @@ function florapsi_customize_register($wp_customize) {
     /* -------------------------------------------------------------------------
      * SEÇÃO: CONTATO
      * ------------------------------------------------------------------------- */
-    $wp_customize->add_section('florapsi_contato_section', array(
-        'title'    => __('Contato', 'louize'),
-        'priority' => 107,
+    $wp_customize->add_panel('florapsi_contact_panel', array(
+        'title'       => __('Contato & Redes', 'florapsi'),
+        'description' => __('Gestão total dividida por áreas (Geral, Box e Instagram).', 'florapsi'),
+        'priority'    => 107,
     ));
 
-    // Títulos
-    $wp_customize->add_setting('florapsi_contato_insta_title', array('default' => 'Acompanhe nas redes', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_contato_insta_title_control', array(
-        'label' => __('Título: Coluna Instagram', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_insta_title',
+    /* --- 1. LAYOUT E FUNDOS --- */
+    $wp_customize->add_section('florapsi_contact_bg_section', array(
+        'title'    => __('1. Layout e Fundos', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 10,
     ));
 
-    $wp_customize->add_setting('florapsi_contato_cta_title', array('default' => 'Vamos conversar?', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_contato_cta_title_control', array(
-        'label' => __('Título: Coluna Convite', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_cta_title',
-    ));
-
-    // Conteúdo Instagram
-    $wp_customize->add_setting('florapsi_instagram_text', array('default' => 'Conheça mais sobre meu trabalho.', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_instagram_text_control', array(
-        'label' => __('Texto da Coluna Instagram', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_text', 'type' => 'textarea',
-    ));
-
-    $wp_customize->add_setting('florapsi_instagram_handle', array('default' => '@perfil', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_instagram_handle_control', array(
-        'label' => __('Nome de Usuário (@)', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_handle',
-    ));
-
-    $wp_customize->add_setting('florapsi_instagram_url', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control('florapsi_instagram_url_control', array(
-        'label' => __('Link do Instagram (URL)', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_instagram_url', 'type' => 'url',
-    ));
-
-    // --- Estilos da Seção de Contato ---
-    $wp_customize->add_setting('florapsi_contato_background_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
-    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contato_background_color_control', array(
-        'label' => __('Cor de Fundo da Seção', 'louize'), 'section' => 'florapsi_contato_section', 'settings' => 'florapsi_contato_background_color',
+    // Cor Mestra
+    $wp_customize->add_setting('florapsi_contact_main_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_main_color', array(
+        'label'       => __('Cor Mestra (Padrão)', 'florapsi'),
+        'description' => __('Define a cor base. Pode ser sobrescrita nos controles individuais de cor.', 'florapsi'),
+        'section'     => 'florapsi_contact_bg_section',
     )));
+
+    $wp_customize->add_setting('florapsi_contact_bg_color', array('default' => '#F9F7F2', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_bg_color', array('label' => __('Fundo da Seção', 'florapsi'), 'section' => 'florapsi_contact_bg_section')));
+
+    $wp_customize->add_setting('florapsi_contact_card_bg', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_card_bg', array('label' => __('Fundo dos Cartões', 'florapsi'), 'section' => 'florapsi_contact_bg_section')));
+
+
+    /* --- 2. ÁREA ESQUERDA (GERAL) --- */
+    
+    // A. Tipografia
+    $wp_customize->add_section('florapsi_contact_typo_general', array(
+        'title'    => __('2A. Tipografia: Geral (Esq.)', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 20,
+    ));
+
+    // Título
+    $wp_customize->add_setting('florapsi_contact_title_font', array('default' => 'Tan Mon Cheri', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contact_title_font', array('label' => __('Fonte Título', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_contact_title_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_title_weight', array('label' => __('Peso Título', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_contact_title_size', array('default' => '40', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_title_size', array('label' => __('Tam. Título (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'number'));
+
+    // Descrição
+    $wp_customize->add_setting('florapsi_contact_desc_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contact_desc_font', array('label' => __('Fonte Descrição', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_contact_desc_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_desc_weight', array('label' => __('Peso Descrição', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_contact_desc_size', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_desc_size', array('label' => __('Tam. Descrição (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_general', 'type' => 'number'));
+
+    // B. Cores
+    $wp_customize->add_section('florapsi_contact_colors_general', array(
+        'title'    => __('2B. Cores: Geral (Esq.)', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 25,
+    ));
+
+    $wp_customize->add_setting('florapsi_contact_title_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_title_color', array('label' => __('Cor do Título', 'florapsi'), 'section' => 'florapsi_contact_colors_general')));
+
+    $wp_customize->add_setting('florapsi_contact_desc_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_desc_color', array('label' => __('Cor da Descrição', 'florapsi'), 'section' => 'florapsi_contact_colors_general')));
+
+
+    /* --- 3. ÁREA ESQUERDA (BOX DESTAQUE & BOTÃO) --- */
+
+    // A. Tipografia
+    $wp_customize->add_section('florapsi_contact_typo_box', array(
+        'title'    => __('3A. Tipografia: Box e Botão', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 30,
+    ));
+
+    // Box Título
+    $wp_customize->add_setting('florapsi_contact_box_title_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contact_box_title_font', array('label' => __('Fonte Título Box', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_contact_box_title_weight', array('default' => '700', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_box_title_weight', array('label' => __('Peso Título Box', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_contact_box_title_size', array('default' => '19', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_box_title_size', array('label' => __('Tam. Título Box (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'number'));
+
+    // Box Texto
+    $wp_customize->add_setting('florapsi_contact_box_text_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contact_box_text_font', array('label' => __('Fonte Texto Box', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_contact_box_text_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_box_text_weight', array('label' => __('Peso Texto Box', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_contact_box_text_size', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_box_text_size', array('label' => __('Tam. Texto Box (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'number'));
+
+    // Botão WPP
+    $wp_customize->add_setting('florapsi_contact_btn_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_contact_btn_font', array('label' => __('Fonte Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_contact_btn_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_btn_weight', array('label' => __('Peso Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_contact_btn_size', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_btn_size', array('label' => __('Tam. Botão WPP (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_box', 'type' => 'number'));
+
+    // B. Cores
+    $wp_customize->add_section('florapsi_contact_colors_box', array(
+        'title'    => __('3B. Cores: Box e Botão', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 35,
+    ));
+
+    $wp_customize->add_setting('florapsi_contact_box_title_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_box_title_color', array('label' => __('Cor Título Box', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+    $wp_customize->add_setting('florapsi_contact_box_text_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_box_text_color', array('label' => __('Cor Texto Box', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+    // Botão WPP (Normal)
+    $wp_customize->add_setting('florapsi_contact_btn_bg', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_btn_bg', array('label' => __('Fundo Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+    $wp_customize->add_setting('florapsi_contact_btn_text_color', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_btn_text_color', array('label' => __('Texto Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+    // Botão WPP (Hover)
+    $wp_customize->add_setting('florapsi_contact_btn_bg_hover', array('default' => '#1F363D', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_btn_bg_hover', array('label' => __('Hover: Fundo WPP', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+    $wp_customize->add_setting('florapsi_contact_btn_text_hover', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_contact_btn_text_hover', array('label' => __('Hover: Texto WPP', 'florapsi'), 'section' => 'florapsi_contact_colors_box')));
+
+
+    /* --- 4. ÁREA DIREITA (INSTAGRAM) --- */
+
+    // A. Tipografia
+    $wp_customize->add_section('florapsi_contact_typo_insta', array(
+        'title'    => __('4A. Tipografia: Instagram', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 40,
+    ));
+
+    // Handle
+    $wp_customize->add_setting('florapsi_insta_handle_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_insta_handle_font', array('label' => __('Fonte @Usuario', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_insta_handle_weight', array('default' => '700', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_handle_weight', array('label' => __('Peso @Usuario', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_insta_handle_size', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_handle_size', array('label' => __('Tam. @Usuario (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'number'));
+
+    // Label
+    $wp_customize->add_setting('florapsi_insta_label_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_insta_label_font', array('label' => __('Fonte Subtítulo', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_insta_label_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_label_weight', array('label' => __('Peso Subtítulo', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_insta_label_size', array('default' => '14', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_label_size', array('label' => __('Tam. Subtítulo (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'number'));
+
+    // Bio
+    $wp_customize->add_setting('florapsi_insta_bio_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_insta_bio_font', array('label' => __('Fonte Bio', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_insta_bio_weight', array('default' => '400', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_bio_weight', array('label' => __('Peso Bio', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_insta_bio_size', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_bio_size', array('label' => __('Tam. Bio (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'number'));
+
+    // Tags
+    $wp_customize->add_setting('florapsi_insta_tag_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_insta_tag_font', array('label' => __('Fonte Tags', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_insta_tag_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_tag_weight', array('label' => __('Peso Tags', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_insta_tag_size', array('default' => '14', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_tag_size', array('label' => __('Tam. Tags (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'number'));
+
+    // Botão Seguir
+    $wp_customize->add_setting('florapsi_insta_btn_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_insta_btn_font', array('label' => __('Fonte Btn Seguir', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_family_choices));
+    $wp_customize->add_setting('florapsi_insta_btn_weight', array('default' => '700', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_btn_weight', array('label' => __('Peso Btn Seguir', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'select', 'choices' => $font_weight_choices));
+    $wp_customize->add_setting('florapsi_insta_btn_size', array('default' => '18', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_insta_btn_size', array('label' => __('Tam. Btn Seguir (px)', 'florapsi'), 'section' => 'florapsi_contact_typo_insta', 'type' => 'number'));
+
+    // B. Cores
+    $wp_customize->add_section('florapsi_contact_colors_insta', array(
+        'title'    => __('4B. Cores: Instagram', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 45,
+    ));
+
+    $wp_customize->add_setting('florapsi_insta_handle_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_handle_color', array('label' => __('Cor @Usuario', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    $wp_customize->add_setting('florapsi_insta_label_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_label_color', array('label' => __('Cor Subtítulo', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    $wp_customize->add_setting('florapsi_insta_bio_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_bio_color', array('label' => __('Cor Bio', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    $wp_customize->add_setting('florapsi_insta_tag_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_tag_color', array('label' => __('Cor Texto Tags', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    // Botão Seguir (Normal)
+    $wp_customize->add_setting('florapsi_insta_btn_color', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_btn_color', array('label' => __('Btn Seguir (Texto/Borda)', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    // Botão Seguir (Hover)
+    $wp_customize->add_setting('florapsi_insta_btn_bg_hover', array('default' => '#2C4A52', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_btn_bg_hover', array('label' => __('Hover: Fundo Seguir', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+    $wp_customize->add_setting('florapsi_insta_btn_text_hover', array('default' => '#FFFFFF', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_insta_btn_text_hover', array('label' => __('Hover: Texto Seguir', 'florapsi'), 'section' => 'florapsi_contact_colors_insta')));
+
+
+    /* --- 5. ELEMENTOS VISUAIS --- */
+    $wp_customize->add_section('florapsi_contact_elements_section', array(
+        'title'    => __('5. Elementos Visuais', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 50,
+    ));
+
+    $wp_customize->add_setting('florapsi_contact_avatar_size', array('default' => '102', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_avatar_size', array('label' => __('Tam. Avatar Instagram (px)', 'florapsi'), 'section' => 'florapsi_contact_elements_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_contact_icon_size', array('default' => '22', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_icon_size', array('label' => __('Tam. Ícone Box (px)', 'florapsi'), 'section' => 'florapsi_contact_elements_section', 'type' => 'number'));
+
+
+    /* --- 6. RESPONSIVIDADE TABLET --- */
+    $wp_customize->add_section('florapsi_contact_resp_tablet', array(
+        'title'    => __('6. Responsividade: Tablet', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 60,
+    ));
+
+    $wp_customize->add_setting('florapsi_contact_padding_v_tablet', array('default' => '80', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_padding_v_tablet', array('label' => __('Padding Vertical', 'florapsi'), 'section' => 'florapsi_contact_resp_tablet', 'type' => 'number'));
+
+    // Tamanhos de Fonte Tablet
+    $fields_tablet = array(
+        'florapsi_contact_title_tablet' => 'Título Principal',
+        'florapsi_contact_desc_tablet'  => 'Descrição',
+        'florapsi_contact_box_title_tablet' => 'Título Box',
+        'florapsi_contact_box_text_tablet'  => 'Texto Box',
+        'florapsi_contact_btn_tablet'   => 'Botão WPP',
+        'florapsi_insta_handle_tablet'  => '@Usuario',
+        'florapsi_insta_label_tablet'   => 'Subtítulo',
+        'florapsi_insta_bio_tablet'     => 'Bio',
+        'florapsi_insta_tag_tablet'     => 'Tags',
+        'florapsi_insta_btn_tablet'     => 'Btn Seguir',
+    );
+
+    foreach ($fields_tablet as $id => $label) {
+        $wp_customize->add_setting($id, array('default' => '18', 'sanitize_callback' => 'absint'));
+        $wp_customize->add_control($id, array('label' => __($label, 'florapsi'), 'section' => 'florapsi_contact_resp_tablet', 'type' => 'number'));
+    }
+    
+    // Avatar Tablet
+    $wp_customize->add_setting('florapsi_contact_avatar_tablet', array('default' => '90', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_avatar_tablet', array('label' => __('Tam. Avatar (px)', 'florapsi'), 'section' => 'florapsi_contact_resp_tablet', 'type' => 'number'));
+
+
+    /* --- 7. RESPONSIVIDADE MOBILE --- */
+    $wp_customize->add_section('florapsi_contact_resp_mobile', array(
+        'title'    => __('7. Responsividade: Mobile', 'florapsi'),
+        'panel'    => 'florapsi_contact_panel',
+        'priority' => 70,
+    ));
+
+    $wp_customize->add_setting('florapsi_contact_padding_v_mobile', array('default' => '60', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_padding_v_mobile', array('label' => __('Padding Vertical', 'florapsi'), 'section' => 'florapsi_contact_resp_mobile', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_contact_padding_h_mobile', array('default' => '20', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_padding_h_mobile', array('label' => __('Padding Horizontal', 'florapsi'), 'section' => 'florapsi_contact_resp_mobile', 'type' => 'number'));
+
+    // Tamanhos de Fonte Mobile
+    $fields_mobile = array(
+        'florapsi_contact_title_mobile' => 'Título Principal',
+        'florapsi_contact_desc_mobile'  => 'Descrição',
+        'florapsi_contact_box_title_mobile' => 'Título Box',
+        'florapsi_contact_box_text_mobile'  => 'Texto Box',
+        'florapsi_contact_btn_mobile'   => 'Botão WPP',
+        'florapsi_insta_handle_mobile'  => '@Usuario',
+        'florapsi_insta_label_mobile'   => 'Subtítulo',
+        'florapsi_insta_bio_mobile'     => 'Bio',
+        'florapsi_insta_tag_mobile'     => 'Tags',
+        'florapsi_insta_btn_mobile'     => 'Btn Seguir',
+    );
+
+    foreach ($fields_mobile as $id => $label) {
+        $wp_customize->add_setting($id, array('default' => '16', 'sanitize_callback' => 'absint'));
+        $wp_customize->add_control($id, array('label' => __($label, 'florapsi'), 'section' => 'florapsi_contact_resp_mobile', 'type' => 'number'));
+    }
+
+    // Avatar Mobile
+    $wp_customize->add_setting('florapsi_contact_avatar_mobile', array('default' => '80', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_contact_avatar_mobile', array('label' => __('Tam. Avatar (px)', 'florapsi'), 'section' => 'florapsi_contact_resp_mobile', 'type' => 'number'));
 
     // =========================================================================
     // Adicionando Títulos Editáveis às Secções Existentes
@@ -1403,53 +1657,85 @@ function florapsi_dynamic_css() {
         echo "}";
 
         // Contato
-        $contato_bg_color = get_theme_mod('florapsi_contato_background_color', '#FFFFFF');
-        if ($contato_bg_color !== '#FFFFFF') { echo ".contato { background-color: " . esc_attr($contato_bg_color) . "; }"; }
-        
-        $contato_title_ff = get_theme_mod('florapsi_contato_title_fontfamily', 'Tan Mon Cheri');
-        if ($contato_title_ff !== 'Tan Mon Cheri') { echo ".contato .contato-title { font-family: '" . esc_attr($contato_title_ff) . "', sans-serif; }"; }
-        $contato_title_fs = get_theme_mod('florapsi_contato_title_fontsize', '45');
-        if ($contato_title_fs !== '45') { echo ".contato .contato-title { font-size: " . esc_attr($contato_title_fs) . "px; }"; }
-        $contato_title_fw = get_theme_mod('florapsi_contato_title_fontweight', '400');
-        if ($contato_title_fw !== '400') { echo ".contato .contato-title { font-weight: " . esc_attr($contato_title_fw) . "; }"; }
-        $contato_title_color = get_theme_mod('florapsi_contato_title_color', '#5A6E59');
-        if ($contato_title_color !== '#5A6E59') { echo ".contato .contato-title { color: " . esc_attr($contato_title_color) . "; }"; }
-        
-        $contato_text_fs = get_theme_mod('florapsi_contato_text_fontsize', '22');
-        if ($contato_text_fs !== '22') { echo ".contato .contato-text { font-size: " . esc_attr($contato_text_fs) . "px; }"; }
-        $contato_text_color = get_theme_mod('florapsi_contato_text_color', '#5A6E59');
-        if ($contato_text_color !== '#5A6E59') { echo ".contato .contato-text { color: " . esc_attr($contato_text_color) . "; }"; }
-        
-        $whatsapp_bg = get_theme_mod('florapsi_whatsapp_button_bg_color', '#A3B899');
-        if ($whatsapp_bg !== '#A3B899') { echo ".contato .whatsapp-button { background-color: " . esc_attr($whatsapp_bg) . "; }"; }
-        $whatsapp_text = get_theme_mod('florapsi_whatsapp_button_text_color', '#FFFFFF');
-        if ($whatsapp_text !== '#FFFFFF') { echo ".contato .whatsapp-button { color: " . esc_attr($whatsapp_text) . "; }"; }
+        echo ".contact-section { background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_bg_color', '#F9F7F2' ) ) . "; }";
+        echo ".info-highlight-box, .instagram-card { background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_card_bg', '#FFFFFF' ) ) . "; }";
+        echo ".contact-left .section-title { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_title_font', 'Tan Mon Cheri' ) ) . "', serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_title_size', '40' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_title_weight', '400' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_title_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".contact-description { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_desc_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_desc_size', '18' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_desc_weight', '400' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_desc_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".info-content h4 { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_box_title_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_box_title_size', '19' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_box_title_weight', '700' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_box_title_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".info-content p { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_box_text_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_box_text_size', '18' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_box_text_weight', '400' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_box_text_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".btn-main.whatsapp-btn { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_btn_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_size', '18' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_weight', '600' ) ) . ";
+            background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_bg', '#2C4A52' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_text_color', '#FFFFFF' ) ) . ";
+        }";
+        echo ".btn-main.whatsapp-btn:hover { 
+            background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_bg_hover', '#1F363D' ) ) . " !important;
+            color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_text_hover', '#FFFFFF' ) ) . " !important;
+        }";
+        echo ".insta-handle { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_handle_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_handle_size', '22' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_handle_weight', '700' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_insta_handle_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".insta-label { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_label_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_label_size', '14' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_label_weight', '600' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_insta_label_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".insta-bio { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_bio_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_bio_size', '18' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_bio_weight', '400' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_insta_bio_color', '#2C4A52' ) ) . ";
+        }";
+        echo ".topic-pill { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_tag_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_tag_size', '14' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_tag_weight', '600' ) ) . ";
+            color: " . esc_attr( get_theme_mod( 'florapsi_insta_tag_color', '#2C4A52' ) ) . ";
+        }";
+        $insta_btn_clr = get_theme_mod( 'florapsi_insta_btn_color', '#2C4A52' );
+        echo ".btn-secondary { 
+            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_btn_font', 'Sofia Pro' ) ) . "', sans-serif;
+            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_size', '18' ) ) . "px;
+            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_weight', '700' ) ) . ";
+            color: " . esc_attr( $insta_btn_clr ) . ";
+            border-color: " . esc_attr( $insta_btn_clr ) . ";
+        }";
+        echo ".btn-secondary:hover { 
+            background-color: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_bg_hover', '#2C4A52' ) ) . " !important;
+            color: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_text_hover', '#FFFFFF' ) ) . " !important;
+        }";
+        echo ".info-icon { font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_icon_size', '22' ) ) . "px; }";
+        $av_sz = get_theme_mod( 'florapsi_contact_avatar_size', '102' );
+        $im_sz = $av_sz - 10;
+        echo ".insta-avatar { width: " . esc_attr( $av_sz ) . "px; height: " . esc_attr( $av_sz ) . "px; }";
+        echo ".insta-avatar img { width: " . esc_attr( $im_sz ) . "px; height: " . esc_attr( $im_sz ) . "px; }";
 
-        // Rodapé
-        $footer_bg_color = get_theme_mod('florapsi_footer_background_color', '#5A6E59');
-        if ($footer_bg_color !== '#5A6E59') { echo ".footer { background-color: " . esc_attr($footer_bg_color) . "; }"; }
-        $footer_text_color = get_theme_mod('florapsi_footer_text_color', '#E5CDC0');
-        if ($footer_text_color !== '#E5CDC0') { echo ".footer { color: " . esc_attr($footer_text_color) . "; }"; }
-        $footer_ff = get_theme_mod('florapsi_footer_fontfamily', 'Sofia Pro');
-        if ($footer_ff !== 'Sofia Pro') { echo ".footer { font-family: '" . esc_attr($footer_ff) . "', sans-serif; }"; }
-        $footer_fs = get_theme_mod('florapsi_footer_fontsize', '15');
-        if ($footer_fs !== '15') { echo ".footer p { font-size: " . esc_attr($footer_fs) . "px; }"; }
-        $footer_id_fw = get_theme_mod('florapsi_footer_identification_fontweight', '600');
-        if ($footer_id_fw !== '600') { echo ".footer p:first-child { font-weight: " . esc_attr($footer_id_fw) . "; }"; }
-        $footer_padding = get_theme_mod('florapsi_footer_padding', '40');
-        if ($footer_padding !== '40') { echo ".footer { padding-top: " . esc_attr($footer_padding) . "px; padding-bottom: " . esc_attr($footer_padding) . "px; }"; }
-
-        // Botão Flutuante
-        $whatsapp_bg = get_theme_mod('florapsi_whatsapp_bg_color', '#A3B899');
-        if ($whatsapp_bg !== '#A3B899') { echo ".whatsapp-float { background-color: " . esc_attr($whatsapp_bg) . "; }"; }
-        $whatsapp_icon_color = get_theme_mod('florapsi_whatsapp_icon_color', '#E5CDC0');
-        if ($whatsapp_icon_color !== '#E5CDC0') { echo ".whatsapp-float { color: " . esc_attr($whatsapp_icon_color) . "; }"; }
-        $whatsapp_size = get_theme_mod('florapsi_whatsapp_size', '60');
-        if ($whatsapp_size !== '60') { echo ".whatsapp-float { width: " . esc_attr($whatsapp_size) . "px; height: " . esc_attr($whatsapp_size) . "px; font-size: " . esc_attr(floor($whatsapp_size * 0.6)) . "px; }"; }
-        $whatsapp_bottom = get_theme_mod('florapsi_whatsapp_position_bottom', '50');
-        if ($whatsapp_bottom !== '50') { echo ".whatsapp-float { bottom: " . esc_attr($whatsapp_bottom) . "px; }"; }
-        $whatsapp_right = get_theme_mod('florapsi_whatsapp_position_right', '50');
-        if ($whatsapp_right !== '50') { echo ".whatsapp-float { right: " . esc_attr($whatsapp_right) . "px; }"; }
 
         ?>
 
@@ -1492,6 +1778,23 @@ function florapsi_dynamic_css() {
             echo ".duvidas .duvidas-title { font-size: " . esc_attr(get_theme_mod('florapsi_duvidas_titulo_fs_tablet', '36')) . "px; }";
             echo ".duvidas .duvidas-question { font-size: " . esc_attr(get_theme_mod('florapsi_duvidas_pergunta_fs_tablet', '18')) . "px; }";
             echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { font-size: " . esc_attr(get_theme_mod('florapsi_duvidas_resposta_fs_tablet', '16')) . "px; }";
+
+            // Contatos - Tablet
+            $pad_tab = get_theme_mod( 'florapsi_contact_padding_v_tablet', '80' );
+            echo ".contact-section { padding-top: " . esc_attr( $pad_tab ) . "px; padding-bottom: " . esc_attr( $pad_tab ) . "px; }";
+            echo ".contact-left .section-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_tablet', '36') ) . "px; }";
+            echo ".contact-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_tablet', '18') ) . "px; }";
+            echo ".info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_tablet', '18') ) . "px; }";
+            echo ".info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_tablet', '17') ) . "px; }";
+            echo ".btn-main.whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_tablet', '17') ) . "px; }";
+            echo ".insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_tablet', '20') ) . "px; }";
+            echo ".insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_tablet', '14') ) . "px; }";
+            echo ".insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_tablet', '17') ) . "px; }";
+            echo ".topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_tablet', '14') ) . "px; }";
+            echo ".btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_tablet', '17') ) . "px; }";
+            $av_tab = get_theme_mod( 'florapsi_contact_avatar_tablet', '90' ); $im_tab = $av_tab - 10;
+            echo ".insta-avatar { width: " . esc_attr( $av_tab ) . "px; height: " . esc_attr( $av_tab ) . "px; }";
+            echo ".insta-avatar img { width: " . esc_attr( $im_tab ) . "px; height: " . esc_attr( $im_tab ) . "px; }";
 
             ?>
         }
@@ -1547,18 +1850,23 @@ function florapsi_dynamic_css() {
             echo ".duvidas .duvidas-answer, .duvidas .duvidas-answer p { font-size: " . esc_attr(get_theme_mod('florapsi_duvidas_resposta_fontsize_mobile', '16')) . "px; }";
 
             // Contato
-            $contato_padding_mobile = get_theme_mod('florapsi_contato_padding_mobile', '40');
-            if ($contato_padding_mobile !== '40') {
-                echo ".contato { padding-top: " . esc_attr($contato_padding_mobile) . "px; padding-bottom: " . esc_attr($contato_padding_mobile) . "px; }";
-            }
-            $contato_title_fs_mobile = get_theme_mod('florapsi_contato_title_fontsize_mobile', '36');
-            if ($contato_title_fs_mobile !== '36') {
-                echo ".contato .contato-title { font-size: " . esc_attr($contato_title_fs_mobile) . "px; }";
-            }
-            $contato_text_fs_mobile = get_theme_mod('florapsi_contato_text_fontsize_mobile', '18');
-            if ($contato_text_fs_mobile !== '18') {
-                echo ".contato .contato-text { font-size: " . esc_attr($contato_text_fs_mobile) . "px; }";
-            }
+            $pad_v_mob = get_theme_mod( 'florapsi_contact_padding_v_mobile', '60' );
+            echo ".contact-section { padding-top: " . esc_attr( $pad_v_mob ) . "px; padding-bottom: " . esc_attr( $pad_v_mob ) . "px; }";
+            $pad_h_mob = get_theme_mod( 'florapsi_contact_padding_h_mobile', '20' );
+            echo ".container.contact-grid { padding-left: " . esc_attr( $pad_h_mob ) . "px; padding-right: " . esc_attr( $pad_h_mob ) . "px; }";
+            echo ".contact-left .section-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_mobile', '30') ) . "px; }";
+            echo ".contact-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_mobile', '16') ) . "px; }";
+            echo ".info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_mobile', '18') ) . "px; }";
+            echo ".info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_mobile', '16') ) . "px; }";
+            echo ".btn-main.whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_mobile', '16') ) . "px; }";
+            echo ".insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_mobile', '20') ) . "px; }";
+            echo ".insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_mobile', '12') ) . "px; }";
+            echo ".insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_mobile', '16') ) . "px; }";
+            echo ".topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_mobile', '12') ) . "px; }";
+            echo ".btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_mobile', '16') ) . "px; }";
+            $av_mob = get_theme_mod( 'florapsi_contact_avatar_mobile', '80' ); $im_mob = $av_mob - 8;
+            echo ".insta-avatar { width: " . esc_attr( $av_mob ) . "px; height: " . esc_attr( $av_mob ) . "px; }";
+            echo ".insta-avatar img { width: " . esc_attr( $im_mob ) . "px; height: " . esc_attr( $im_mob ) . "px; }";
 
             ?>
         }

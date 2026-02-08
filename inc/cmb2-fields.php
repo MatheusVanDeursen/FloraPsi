@@ -244,4 +244,136 @@ function florapsi_register_metaboxes() {
         'options' => array('textarea_rows' => 5),
     ));
 
+    // -----------------------------------------------------------------
+    // SEÇÃO 6: CONTATO & INSTAGRAM (Novo Layout)
+    // -----------------------------------------------------------------
+    $cmb_contact = new_cmb2_box( array(
+        'id'            => 'florapsi_contact_metabox',
+        'title'         => __( 'Seção de Contato e Instagram', 'florapsi' ),
+        'object_types'  => array( 'page' ),
+        'show_on'       => array( 'key' => 'front-page', 'value' => '' ), // Exibir apenas na página inicial
+        'context'       => 'normal',
+        'priority'      => 'high',
+    ) );
+
+    // --- COLUNA ESQUERDA: Textos de Contato ---
+
+    $cmb_contact->add_field( array(
+        'name' => 'Configurações de Texto (Esquerda)',
+        'type' => 'title',
+        'id'   => 'florapsi_contact_title_header'
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name'    => 'Título Principal',
+        'desc'    => 'Ex: "Pronta para começar sua jornada?"',
+        'id'      => 'florapsi_contact_title',
+        'type'    => 'text',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name'    => 'Descrição',
+        'desc'    => 'Texto explicativo sobre vagas, atendimento, etc.',
+        'id'      => 'florapsi_contact_desc',
+        'type'    => 'textarea_small',
+    ) );
+
+    // --- BOX DE DESTAQUE ("Primeira Consulta") ---
+    
+    $cmb_contact->add_field( array(
+        'name' => 'Box de Destaque (Primeira Consulta)',
+        'type' => 'title',
+        'id'   => 'florapsi_contact_box_header',
+        'desc' => 'Configuração da caixa branca de destaque com ícone.'
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name'    => 'Título do Box',
+        'desc'    => 'Ex: "Primeira Consulta"',
+        'id'      => 'florapsi_contact_box_title',
+        'type'    => 'text',
+        'default' => 'Primeira Consulta',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name'    => 'Texto do Box',
+        'desc'    => 'Ex: "Entre em contato para entender o processo..."',
+        'id'      => 'florapsi_contact_box_text',
+        'type'    => 'textarea_small',
+    ) );
+
+    // --- BOTÃO DO WHATSAPP ---
+
+    $cmb_contact->add_field( array(
+        'name'    => 'Texto do Botão',
+        'default' => 'Agendar pelo WhatsApp',
+        'id'      => 'florapsi_contact_btn_label',
+        'type'    => 'text',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name' => 'Link do WhatsApp',
+        'desc' => 'Cole o link completo (ex: https://wa.me/55...)',
+        'id'   => 'florapsi_contact_whatsapp_link',
+        'type' => 'text_url',
+    ) );
+
+
+    // --- COLUNA DIREITA: Card do Instagram ---
+
+    $cmb_contact->add_field( array(
+        'name' => 'Card do Instagram (Direita)',
+        'type' => 'title',
+        'id'   => 'florapsi_insta_header',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name' => 'Foto de Perfil',
+        'id'   => 'florapsi_insta_photo',
+        'type' => 'file',
+        'options' => array( 'url' => false ),
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name' => 'Usuário (@)',
+        'desc' => 'Ex: manuela.psi',
+        'id'   => 'florapsi_insta_handle',
+        'type' => 'text',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name' => 'Bio / Chamada',
+        'desc' => 'Ex: "Acompanhe dicas diárias sobre saúde mental:"',
+        'id'   => 'florapsi_insta_bio',
+        'type' => 'textarea_small',
+    ) );
+
+    // --- GRUPO REPETÍVEL DE TAGS ---
+    
+    $group_field_id = $cmb_contact->add_field( array(
+        'id'          => 'florapsi_insta_topics_group',
+        'type'        => 'group',
+        'description' => __( 'Adicione quantas tags de assunto desejar.', 'florapsi' ),
+        'options'     => array(
+            'group_title'    => __( 'Tag {#}', 'florapsi' ), // Ex: "Tag 1", "Tag 2"
+            'add_button'     => __( 'Adicionar Nova Tag', 'florapsi' ),
+            'remove_button'  => __( 'Remover Tag', 'florapsi' ),
+            'sortable'       => true, // Permite arrastar para reordenar
+        ),
+    ) );
+
+    // O campo de texto dentro de cada grupo
+    $cmb_contact->add_group_field( $group_field_id, array(
+        'name' => 'Nome do Tópico',
+        'desc' => 'Ex: #Ansiedade',
+        'id'   => 'topic_text',
+        'type' => 'text',
+    ) );
+
+    $cmb_contact->add_field( array(
+        'name' => 'Link do Perfil',
+        'id'   => 'florapsi_insta_link',
+        'type' => 'text_url',
+    ) );
+
 }

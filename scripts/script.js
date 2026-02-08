@@ -14,6 +14,19 @@ document.addEventListener('DOMContentLoaded', function () {
             menuToggle.classList.toggle('is-open', isOpening);
             menuToggle.classList.toggle('is-closed', !isOpening);
         });
+
+        // Fecha o menu automaticamente ao clicar em um link
+        const menuLinks = mainNav.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mainNav.classList.contains('is-open')) {
+                    mainNav.classList.remove('is-open');
+                    header.classList.remove('menu-is-open');
+                    menuToggle.classList.remove('is-open');
+                    menuToggle.classList.add('is-closed');
+                }
+            });
+        });
     }
 
     /* ==========================================================================
@@ -147,4 +160,23 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.target === modal) toggleModal(false);
         });
     }
+
+    /* =================================================================== */
+    /* CORREÇÃO DE DELAY (HOVER)                                         */
+    /* =================================================================== */
+    const animatedElements = document.querySelectorAll('.slide-animation');
+
+    animatedElements.forEach(el => {
+        // Escuta o evento de "Fim da Transição"
+        el.addEventListener('transitionend', function(event) {
+            // Verifica se a transição que acabou foi a de transformação ou opacidade (entrada)
+            // Isso evita disparar em outras propriedades
+            if (event.propertyName === 'transform' || event.propertyName === 'opacity') {
+                // Adiciona a classe que mata o delay
+                el.classList.add('animation-finished');
+            }
+        });
+    });
+
+
 });

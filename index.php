@@ -245,46 +245,102 @@
         <!-- =================================================================== -->
         <!-- CONTATO                                                             -->
         <!-- =================================================================== -->
-        <section id="contato" class="main-section contato">
-            <div class="contato-wrapper">
-                <div class="contato-coluna">
-                    <div class="contato-box">
-                        <h3 class="contato-title">
-                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_insta_title', 'Acompanhe nas redes' ) ); ?>
-                        </h3>
-                        
-                        <p class="contato-text">
-                            <?php echo esc_html( get_theme_mod( 'florapsi_instagram_text', 'Conheça mais sobre meu trabalho.' ) ); ?>
-                        </p>
+         <?php
+        // Recuperando dados do CMB2 com prefixo 'florapsi_'
+        $contact_title       = get_post_meta( get_the_ID(), 'florapsi_contact_title', true );
+        $contact_description = get_post_meta( get_the_ID(), 'florapsi_contact_desc', true );
 
-                        <?php 
-                        $insta_url    = get_theme_mod( 'florapsi_instagram_url' );
-                        $insta_handle = get_theme_mod( 'florapsi_instagram_handle', '@perfil' );
-                        
-                        if ( ! empty( $insta_url ) ) : ?>
-                            <a href="<?php echo esc_url( $insta_url ); ?>" target="_blank" class="instagram-button">
-                                <i class="fa-brands fa-instagram"></i>
-                                <span><?php echo esc_html( $insta_handle ); ?></span>
-                            </a>
-                        <?php endif; ?>
+        // Box Destaque
+        $box_title           = get_post_meta( get_the_ID(), 'florapsi_contact_box_title', true );
+        $box_text            = get_post_meta( get_the_ID(), 'florapsi_contact_box_text', true );
+
+        // Botão
+        $btn_label           = get_post_meta( get_the_ID(), 'florapsi_contact_btn_label', true );
+        $whatsapp_link       = get_post_meta( get_the_ID(), 'florapsi_contact_whatsapp_link', true );
+                                        
+        // Instagram
+        $insta_photo   = get_post_meta( get_the_ID(), 'florapsi_insta_photo', true );
+        $insta_handle  = get_post_meta( get_the_ID(), 'florapsi_insta_handle', true );
+        $insta_bio     = get_post_meta( get_the_ID(), 'florapsi_insta_bio', true );
+        $insta_topics = get_post_meta( get_the_ID(), 'florapsi_insta_topics_group', true );
+        $insta_link    = get_post_meta( get_the_ID(), 'florapsi_insta_link', true );
+        ?>
+        <section id="contato" class="contact-section">
+        <div class="container contact-grid">
+            
+            <div class="contact-left">
+                <h2 class="section-title"><?php echo esc_html($contact_title); ?></h2>
+                
+                <div class="contact-description">
+                    <?php echo wpautop($contact_description); ?>
+                </div>
+
+                <div class="info-highlight-box slide-animation slide-up">
+                    <div class="info-icon">
+                        <i class="fa-regular fa-comments"></i>
+                    </div>
+                    <div class="info-content">
+                        <h4><?php echo esc_html($box_title); ?></h4>
+                        <p><?php echo esc_html($box_text); ?></p>
                     </div>
                 </div>
 
-                <div class="contato-coluna">
-                    <div class="contato-cta">
-                        <h3 class="contato-title">
-                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_cta_title', 'Vamos conversar?' ) ); ?>
-                        </h3>
-                        <p class="contato-text">
-                            <?php echo esc_html( get_theme_mod( 'florapsi_contato_text', 'Dê o primeiro passo na sua jornada de cuidado.' ) ); ?>
-                        </p>
-                        <a href="<?php echo esc_url( get_theme_mod( 'florapsi_banner_button_url', '#' ) ); ?>" target="_blank" class="whatsapp-button">
-                            <?php echo esc_html( get_theme_mod( 'florapsi_banner_button_text', 'Agende sua consulta' ) ); ?>
-                        </a>
+                <a href="<?php echo esc_url($whatsapp_link); ?>" 
+                class="btn-main whatsapp-btn slide-animation slide-up"> <i class="fa-brands fa-whatsapp"></i> <?php echo esc_html($btn_label); ?>
+                </a>
+            </div>
+
+            <div class="contact-right">
+                <div class="instagram-card slide-animation slide-from-right">
+                    
+                    <div class="insta-header">
+                        <div class="insta-avatar">
+                            <?php if($insta_photo): ?>
+                                <img src="<?php echo esc_url($insta_photo); ?>" alt="Perfil Instagram">
+                            <?php endif; ?>
+                        </div>
+                        <div class="insta-info">
+                            <span class="insta-handle">@<?php echo esc_html($insta_handle); ?></span>
+                            <span class="insta-label">Psicóloga Clínica</span>
+                        </div>
+                        <div class="insta-icon">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
                     </div>
+                    
+                    <div class="insta-body">
+                        <p class="insta-bio"><?php echo esc_html($insta_bio); ?></p>
+                        
+                        <div class="insta-topics-list">
+                            <?php 
+                            // Verifica se existem tópicos cadastrados e se é uma lista válida
+                            if ( ! empty( $insta_topics ) && is_array( $insta_topics ) ) : 
+                                
+                                // Para cada item na lista, cria uma Tag
+                                foreach ( $insta_topics as $topic ) :
+                                    // Garante que o texto existe antes de imprimir
+                                    if ( ! empty( $topic['topic_text'] ) ) :
+                            ?>
+                                        <span class="topic-pill">
+                                            <?php echo esc_html( $topic['topic_text'] ); ?>
+                                        </span>
+                            <?php 
+                                    endif;
+                                endforeach;
+                                
+                            endif; 
+                            ?>
+                        </div>
+                    </div>
+
+                    <a href="<?php echo esc_url($insta_link); ?>" target="_blank" class="btn-secondary full-width">
+                        Seguir no Instagram
+                    </a>
                 </div>
             </div>
-        </section>
+
+        </div>
+    </section>
     </main>
 
     <!-- =================================================================== -->
