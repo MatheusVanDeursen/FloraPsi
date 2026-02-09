@@ -9,11 +9,12 @@
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+    <?php wp_body_open(); ?>
 
     <!-- =================================================================== -->
     <!-- HEADER / NAVBAR                                                     -->
     <!-- =================================================================== -->
-    <header class="navbar">
+    <header class="navbar" itemscope itemtype="https://schema.org/WPHeader">
         
         <!-- LOGO -->
         <a href="#inicio" class="navbar-logo-link">
@@ -59,7 +60,7 @@
         </div>
 
         <!-- MENU DE NAVEGAÇÃO -->
-        <nav id="main-nav" class="navbar-nav">
+        <nav id="main-nav" class="navbar-nav" itemscope itemtype="https://schema.org/SiteNavigationElement">
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'primary_menu',

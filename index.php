@@ -20,11 +20,11 @@
                 $flora_right = get_theme_mod('florapsi_banner_flora_right');
 
                 if ($flora_left) : ?>
-                    <img src="<?php echo esc_url($flora_left); ?>" class="banner-flora-left slide-animation" data-delay="300">
+                    <img src="<?php echo esc_url($flora_left); ?>" class="banner-flora-left slide-animation" data-delay="300" alt="">
                 <?php endif; 
 
                 if ($flora_right) : ?>
-                    <img src="<?php echo esc_url($flora_right); ?>" class="banner-flora-right slide-animation" data-delay="300">
+                    <img src="<?php echo esc_url($flora_right); ?>" class="banner-flora-right slide-animation" data-delay="300" alt="">
             <?php endif; ?>
             <div class="section-container">
 
@@ -37,7 +37,7 @@
                 <?php endif; ?>
 
                 <?php if ( ! empty( $banner_button_text ) && ! empty( $banner_button_url ) ) : ?>
-                    <a href="<?php echo esc_url( $banner_button_url ); ?>" target="_blank" class="banner-button slide-animation" data-delay="1400">
+                    <a href="<?php echo esc_url( $banner_button_url ); ?>" target="_blank" rel="noopener noreferrer" class="banner-button slide-animation" data-delay="1400">
                         <span class="border-top"></span>
                         <span class="border-right"></span>
                         <span class="border-bottom"></span>
@@ -76,7 +76,7 @@
         <section id="sobre-mim" class="main-section sobre-mim">
             <div class="section-container">
                 <div class="sobre-mim-content-1 flex-4 slide-animation-delayed-trigger">
-                    <img src="<?php echo esc_url( $sobre_imagem_url ); ?>" alt="Foto de Louize Vieira" class="sobre-mim-img">
+                    <img src="<?php echo esc_url( $sobre_imagem_url ); ?>" alt="Foto de Louize Vieira" class="sobre-mim-img" loading="lazy">
                 </div>
                 <div class="sobre-mim-content-2 flex-8">
                     <?php if ( ! empty( $sobre_titulo ) ) : ?>
@@ -150,7 +150,7 @@
 
                 <div class="percurso-content-img flex-4 slide-animation-delayed-trigger">
                     <?php if ( $percurso_imagem_url ) : ?>
-                        <img src="<?php echo esc_url( $percurso_imagem_url ); ?>" alt="Trajetória de Louize Vieira" class="percurso-img">
+                        <img src="<?php echo esc_url( $percurso_imagem_url ); ?>" alt="Trajetória de Louize Vieira" class="percurso-img" loading="lazy">
                     <?php endif; ?>
                 </div>
             </div>
@@ -286,7 +286,7 @@
                 </div>
 
                 <a href="<?php echo esc_url($whatsapp_link); ?>" 
-                class="btn-main whatsapp-btn slide-animation slide-up"> <i class="fa-brands fa-whatsapp"></i> <?php echo esc_html($btn_label); ?>
+                class="btn-main whatsapp-btn slide-animation slide-up" rel="noopener noreferrer nofollow"> <i class="fa-brands fa-whatsapp"></i> <?php echo esc_html($btn_label); ?>
                 </a>
             </div>
 
@@ -296,7 +296,7 @@
                     <div class="insta-header">
                         <div class="insta-avatar">
                             <?php if($insta_photo): ?>
-                                <img src="<?php echo esc_url($insta_photo); ?>" alt="Perfil Instagram">
+                                <img src="<?php echo esc_url($insta_photo); ?>" alt="Perfil Instagram" loading="lazy">
                             <?php endif; ?>
                         </div>
                         <div class="insta-info">
@@ -333,7 +333,7 @@
                         </div>
                     </div>
 
-                    <a href="<?php echo esc_url($insta_link); ?>" target="_blank" class="btn-secondary full-width">
+                    <a href="<?php echo esc_url($insta_link); ?>" target="_blank" rel="me noopener noreferrer" class="btn-secondary full-width">
                         Seguir no Instagram
                     </a>
                 </div>
@@ -346,7 +346,7 @@
     <!-- =================================================================== -->
     <!-- BOTÃO FLUTUANTE                                                     -->
     <!-- =================================================================== -->
-    <a href="<?php echo esc_url( get_theme_mod( 'florapsi_whatsapp_link', '#' ) ); ?>" target="_blank" class="whatsapp-float">
+    <a href="<?php echo esc_url( get_theme_mod( 'florapsi_whatsapp_link', '#' ) ); ?>" target="_blank" rel="noopener noreferrer nofollow" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 

@@ -1,5 +1,5 @@
     <!-- ========== Footer ========== -->
-    <footer class="footer">
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
         <div class="section-container">
             <p><?php echo esc_html(get_theme_mod('florapsi_footer_identification_text')); ?></p>
             <p><?php echo '&copy; ' . date('Y') . '. ' . esc_html(get_theme_mod('florapsi_footer_copyright_text')); ?></p>
