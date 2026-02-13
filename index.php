@@ -19,12 +19,20 @@
                 $flora_left = get_theme_mod('florapsi_banner_flora_left');
                 $flora_right = get_theme_mod('florapsi_banner_flora_right');
 
+                // LADO ESQUERDO
                 if ($flora_left) : ?>
-                    <img src="<?php echo esc_url($flora_left); ?>" class="banner-flora-left slide-animation" data-delay="300" alt="">
+                    <div class="banner-flora-left slide-animation" 
+                         data-delay="300"
+                         style="-webkit-mask-image: url(<?php echo esc_url($flora_left); ?>); mask-image: url(<?php echo esc_url($flora_left); ?>);">
+                    </div>
                 <?php endif; 
-
+                
+                // LADO DIREITO
                 if ($flora_right) : ?>
-                    <img src="<?php echo esc_url($flora_right); ?>" class="banner-flora-right slide-animation" data-delay="300" alt="">
+                    <div class="banner-flora-right slide-animation" 
+                         data-delay="300"
+                         style="-webkit-mask-image: url(<?php echo esc_url($flora_right); ?>); mask-image: url(<?php echo esc_url($flora_right); ?>);">
+                    </div>
             <?php endif; ?>
             <div class="section-container">
 

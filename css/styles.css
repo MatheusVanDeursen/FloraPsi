@@ -507,6 +507,63 @@ a.banner-button:hover {
   transform: translateY(0) !important;
 }
 
+/* Imagesn decorativas */
+.banner-flora-left, .banner-flora-right {
+    position: absolute;
+    z-index: 5; /* Garante que fique acima do fundo, mas cuidado para não cobrir texto */
+    pointer-events: none;
+
+    /* Tamanho */
+    width: 400px;
+    height: 800px;
+    
+    /* COR: Verde Escuro Sólido (Mais escuro que o banner #5A6E59) */
+    background-color: #2A382A; 
+
+    /* Máscara para recortar o formato da folha */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+}
+
+/* --- IMAGEM ESQUERDA (Topo, de cabeça para baixo) --- */
+.banner-flora-left {
+    top: -160px; /* Sobe a imagem para ficar "debaixo" da navbar/topo */
+    left: -50px; /* Um pouco para fora da tela na esquerda */
+    
+    /* Apenas rotaciona de cabeça para baixo */
+    transform: rotate(180deg); 
+    
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+/* --- IMAGEM DIREITA (Fundo, invadindo o "Sobre Mim") --- */
+.banner-flora-right {
+    bottom: -180px; /* Empurra para baixo, invadindo a próxima seção */
+    right: -50px; /* Um pouco para fora da tela na direita */
+    
+    /* Normal (ou espelhada se quiser simetria, use scaleX(-1)) */
+    transform: none; 
+    
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+/* REMOVENDO classes de animação antigas para evitar conflito */
+.banner-flora-left.slide-animation,
+.banner-flora-right.slide-animation {
+    transition: none !important;
+    opacity: 1 !important;
+    transform: rotate(180deg) !important; /* Força a rotação fixa na esquerda */
+}
+
+/* Exceção para a direita não herdar a rotação da esquerda nas regras acima */
+.banner-flora-right.slide-animation {
+    transform: none !important;
+}
+
 /* Responsividade Mediana (Tablets e Laptops Pequenos) */
 @media (max-width: 992px) {
   .banner { padding-top: 160px; padding-left: 10px; padding-right: 10px; }

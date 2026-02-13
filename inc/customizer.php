@@ -1413,7 +1413,7 @@ add_action('customize_register', 'florapsi_customize_register');
  * Adiciona o CSS dinâmico do Personalizador ao <head>.
  */
 function florapsi_dynamic_css() {
-    $tablet_bp = get_theme_mod('florapsi_tablet_breakpoint', '1176');
+    $tablet_bp = get_theme_mod('florapsi_tablet_breakpoint', '992');
     $mobile_bp = get_theme_mod('florapsi_mobile_breakpoint', '576');
     ?>
     <style type="text/css">
@@ -1464,27 +1464,7 @@ function florapsi_dynamic_css() {
         echo "}";
 
         // Decorações de Flora (Banner)
-        $flora_width = get_theme_mod('florapsi_banner_flora_width', '400');
-        $flora_op = get_theme_mod('florapsi_banner_flora_opacity', '0.4');
-
-        // Configuração Geral (Ajuste de Cor e Mesclagem)
-        echo ".banner-flora-left, .banner-flora-right {";
-        echo " position: absolute; bottom: 0; pointer-events: none; z-index: 1;";
-        echo " width: " . esc_attr($flora_width) . "px;";
-        echo " opacity: " . esc_attr($flora_op) . ";"; // Reduzir opacidade faz o preto "pegar" a cor do fundo
-        echo " mix-blend-mode: multiply;";             // Mescla com tons escuros
-        echo " filter: brightness(0.9);";              // Ajuste fino de tom
-        echo " transition: opacity 0.8s ease-out, transform 0.8s ease-out !important;";
-        echo "}";
-
-        // Lado Esquerdo (Normal)
-        echo ".banner-flora-left { left: 0; transform: translateY(20px); }";
-        echo ".banner-flora-left.is-visible { transform: translateY(0) !important; }";
-
-        // Lado Direito (COM FLIP/ROTAÇÃO)
-        // Note que combinamos scaleX(-1) com o translateY da animação
-        echo ".banner-flora-right { right: 0; transform: scaleX(-1) translateY(20px); }";
-        echo ".banner-flora-right.is-visible { transform: scaleX(-1) translateY(0) !important; }";
+        /* Vazio no momento */
 
         $btn_bg = get_theme_mod('florapsi_banner_button_bg_color', 'transparent');
         $btn_txt = get_theme_mod('florapsi_banner_button_text_color', '#E5CDC0');

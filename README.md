@@ -5,7 +5,7 @@ Um tema WordPress exclusivo, minimalista e de alta performance, desenvolvido com
 
 ---
 
-## 📚 Documentação Oficial (v0.3)
+## 📚 Documentação Oficial (v0.4)
 Para garantir a melhor experiência de uso e desenvolvimento, a documentação foi dividida em dois guias essenciais:
 
 * 📘 **[Manual Técnico do Tema](https://docs.google.com/document/d/1BoPj5-aRH9Y8iS-Oh1OZF7Lpo5r8DRBG59gBX58oteI/edit?usp=sharing)** *Focado em instalação, arquitetura de código, gestão de conteúdo via CMB2 e conformidade ética.*
