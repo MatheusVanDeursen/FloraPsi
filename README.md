@@ -1,57 +1,56 @@
 # FloraPsi WordPress Theme 🌿
 **Versão:** 0.4 (Beta)
 
-Um tema WordPress exclusivo, minimalista e de alta performance, desenvolvido com Vanilla JS para profissionais de psicologia. O projeto une uma estética botânica a uma arquitetura de software robusta, focada na autonomia do usuário e na experiência do paciente.
+Um tema WordPress exclusivo, minimalista e de alta performance para profissionais de psicologia. O projeto une uma estética botânica a uma arquitetura de software robusta, focada na autonomia do usuário através da edição nativa de blocos e na experiência de navegação do paciente.
 
 ---
 
-## 📚 Documentação Oficial (v0.4)
-Para garantir a melhor experiência de uso e desenvolvimento, a documentação foi dividida em dois guias essenciais:
+## 📚 Documentação Oficial
+Para garantir a melhor experiência de uso, configuração e manutenção, toda a documentação foi consolidada em um único manual abrangente:
 
-* 📘 **[Manual Técnico do Tema](https://docs.google.com/document/d/1BoPj5-aRH9Y8iS-Oh1OZF7Lpo5r8DRBG59gBX58oteI/edit?usp=sharing)** *Focado em instalação, arquitetura de código, gestão de conteúdo via CMB2 e conformidade ética.*
-* 🎨 **[Guia de Edição Visual](https://docs.google.com/document/d/1Nv8y3Lwrob75YsDo1gc83MB_fJTQVyxZmj5JxBgTwoo/edit?usp=sharing)** *Focado na personalização estética via Customizer (cores, fontes, responsividade e imagens).*
+* 📘 **[Guia de Edição: Tema FloraPsi](https://docs.google.com/document/d/1ler9iCQWpeUWwmJ6YTE149WoxS7rHo9d1I9r-oTKWf8/edit?usp=sharing)** *Focado em instalação, uso do Editor de Páginas (Gutenberg), ajustes finos via Customizer, boas práticas e conformidade ética.*
 
 ---
 
 ## 🚀 Funcionalidades Principais
 
-### Governança Híbrida
-O tema utiliza uma separação lógica para facilitar a manutenção:
-* **Conteúdo Estrutural (CMB2):** Biografias, Serviços (grupos repetíveis), FAQ e Depoimentos são geridos na edição da página.
-* **Identidade Visual (Customizer):** Cores, tipografia, paddings e layouts são geridos em tempo real no personalizador nativo.
+### Governança Híbrida 2.0 (Gutenberg + Customizer)
+O tema utiliza uma separação lógica e nativa para facilitar a manutenção e edição:
+* **Conteúdo e Layout (Editor de Páginas):** Textos, imagens, cores de fundo e estruturação das seções são geridos de forma 100% visual através do editor de blocos nativo do WordPress.
+* **Identidade e Responsividade (Customizer):** Uma interface limpa e enxuta focada apenas em ajustes finos: tipografia global, links de botões, efeitos de interação (hovers) e controle granular de responsividade para Tablet e Mobile.
 
-### Performance e Arquitetura
-* **Vanilla JS:** Zero dependência de jQuery ou bibliotecas pesadas de animação.
-* **One-Page Architecture:** Navegação fluida via *smooth scroll* e links âncora.
-* **CSS Dinâmico:** Injeção de variáveis PHP no `<head>` para sobrescrever estilos estáticos sem latência.
-* **Cache Busting:** Versionamento automático de arquivos via `filemtime()` para atualizações imediatas no navegador do cliente.
-
-### Responsividade Avançada
-* **Controle Granular de Imagens:** Sistema duplo de medidas para avatares e fotos (Pixels fixos para Tablet / Porcentagem fluida para Mobile).
-* **Breakpoints Dinâmicos:** As media queries respondem às configurações do banco de dados, não apenas a arquivos CSS estáticos.
+### Padrões de Bloco (Block Patterns)
+O tema conta com um sistema de pré-carregamento nativo. A página inicial inteira pode ser injetada no editor com um único clique através do padrão "Página Inicial Completa", dispensando a construção manual de layouts complexos.
 
 ---
 
 ## 🛠 Instalação e Configuração
 
-1.  Faça o download do arquivo `.zip` deste repositório ou clone a pasta em `/wp-content/themes/`.
-2.  Renomeie a pasta para `florapsi` (caso esteja como `FloraPsi-main`).
-3.  Ative o tema no Painel do WordPress.
-4.  **Obrigatório:** Instale e ative o plugin **CMB2** para habilitar os campos de edição de conteúdo.
-5.  Acesse **Aparência > Personalizar** para definir a identidade visual inicial.
+1. Faça o download do arquivo `.zip` deste repositório ou clone a pasta em `/wp-content/themes/`.
+2. Certifique-se de que a pasta se chama apenas `florapsi`.
+3. Ative o tema no Painel do WordPress (A imagem de preview do tema já estará visível).
+4. Vá em **Páginas > Adicionar Nova**, clique no Inseridor de Blocos (`+`), acesse a aba **Padrões** e adicione a "Página Inicial Completa".
+5. Acesse **Aparência > Personalizar** para definir a identidade visual (Logo, menus e links de contato).
 
 ---
 
 ## 📦 Changelog (v0.4)
 
-* **Seção Contatos Refatorada:** A seção contatos foi refeira do zero com um novo modelo mais moderno. Foram adicionadas customizações completas e animações aos elementos da seção.
-* **SEO Aprimorado:** Pequenas melhorias ao SEO com uso de tags mais pertinentes.
+* **Migração para o Gutenberg:** O sistema migrou totalmente do método de personalização antigo (via plugin CMB2) para as ferramentas nativas de edição de blocos do WordPress. A dependência do CMB2 foi removida.
+* **Padrões de Bloco Adicionados:** Nova pasta `/patterns` incluída para carregamento em lote das seções do tema.
+* **Customizer Refatorado:** O painel de personalização foi fortemente encolhido e otimizado, delegando a gestão de textos e cores base para o editor de páginas, mantendo apenas configurações técnicas e de responsividade.
+* **Preview do Tema:** Imagem oficial de demonstração (`screenshot`) adicionada ao painel de temas.
+* **Manutenção Visual:** Nenhuma mudança significativa na aparência final do site foi feita durante esta migração estrutural.
+
+### 🐛 Problemas Conhecidos (Known Issues)
+* **Animações Desativadas:** As animações de rolagem (slide-in) foram removidas temporariamente devido a incompatibilidades com a nova estrutura de blocos e serão refeitas em atualizações futuras. Ainda há código residual no `script.js` que será limpo.
+* **Bugs no Customizer:** Alguns poucos itens de cor em botões específicos no Customizer estão temporariamente intermitentes e serão corrigidos no próximo patch.
 
 ---
 
 ## ⚠️ Nota Ética e Legal
 **Sobre a Seção de Depoimentos:**
-Embora o tema possua capacidade técnica para exibir depoimentos (via shortcode ou manual), esta funcionalidade é desativada por padrão em conformidade com o **Código de Ética Profissional do Psicólogo (CEPP)**. A ativação e uso desta seção são de inteira responsabilidade do profissional titular do site. Consulte o Manual Técnico para mais detalhes.
+Embora o tema possua capacidade técnica para exibir depoimentos, esta funcionalidade é desativada nas configurações sugeridas em conformidade com o **Código de Ética Profissional do Psicólogo (CEPP)**. A ativação e uso de avaliações de pacientes são de inteira responsabilidade legal e ética do profissional titular do site.
 
 ---
 
