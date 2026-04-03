@@ -46,30 +46,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     /* ==========================================================================
-       ANIMAÇÕES DE SCROLL
-       ========================================================================== */
-    const elementsToAnimate = document.querySelectorAll('.slide-animation');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const delay = parseInt(entry.target.dataset.delay || 0);
-
-                setTimeout(() => {
-                    entry.target.classList.add('is-visible');
-                    // Ativa animação de borda no botão do banner
-                    if (entry.target.classList.contains('banner-button')) {
-                        entry.target.classList.add('border-active');
-                    }
-                }, parseInt(delay));
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.15 });
-
-    elementsToAnimate.forEach(el => observer.observe(el));
-
-    /* ==========================================================================
        CARROSSEL DEPOIMENTOS
        ========================================================================== */
     const track = document.querySelector('.manual-carousel-wrapper');
@@ -160,23 +136,5 @@ document.addEventListener('DOMContentLoaded', function () {
             if (e.target === modal) toggleModal(false);
         });
     }
-
-    /* =================================================================== */
-    /* CORREÇÃO DE DELAY (HOVER)                                         */
-    /* =================================================================== */
-    const animatedElements = document.querySelectorAll('.slide-animation');
-
-    animatedElements.forEach(el => {
-        // Escuta o evento de "Fim da Transição"
-        el.addEventListener('transitionend', function(event) {
-            // Verifica se a transição que acabou foi a de transformação ou opacidade (entrada)
-            // Isso evita disparar em outras propriedades
-            if (event.propertyName === 'transform' || event.propertyName === 'opacity') {
-                // Adiciona a classe que mata o delay
-                el.classList.add('animation-finished');
-            }
-        });
-    });
-
 
 });

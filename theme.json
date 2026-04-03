@@ -1,0 +1,42 @@
+{
+    "version": 2,
+    "settings": {
+        "appearanceTools": true,
+        "typography": {
+            "customFontSize": true,
+            "lineHeight": true,
+            "fontWeight": true,
+            "fontStyle": true,
+            "textDecoration": true,
+            "textTransform": true,
+            "letterSpacing": true,
+            "fontFamilies": [
+                { 
+                    "fontFamily": "\"Sofia Pro\", sans-serif", 
+                    "name": "Sofia Pro", 
+                    "slug": "sofia-pro" 
+                },
+                { 
+                    "fontFamily": "\"Tan Mon Cheri\", serif", 
+                    "name": "Tan Mon Cheri", 
+                    "slug": "tan-mon-cheri" 
+                },
+                { 
+                    "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif", 
+                    "name": "Sistema (Sem Serifa)", 
+                    "slug": "system-sans-serif" 
+                },
+                { 
+                    "fontFamily": "Georgia, \"Times New Roman\", Times, serif", 
+                    "name": "Sistema (Com Serifa)", 
+                    "slug": "system-serif" 
+                },
+                { 
+                    "fontFamily": "Courier New, Courier, monospace", 
+                    "name": "Monoespaçada", 
+                    "slug": "monospace" 
+                }
+            ]
+        }
+    }
+}

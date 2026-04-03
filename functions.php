@@ -6,12 +6,29 @@
 function florapsi_theme_setup() {
     add_theme_support('title-tag');
 
+    // Suporte para o editor puxar os estilos
+    add_theme_support('editor-styles');
+    add_editor_style('css/styles.css');
+
+    // Carrega o Font Awesome 6.5.1 dentro do editor para os ícones aparecerem
+    //add_editor_style('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
+    // Manda o WordPress procurar e carregar a pasta /patterns nativamente
+    add_theme_support('core-block-patterns');
+
+    // Habilita as Ferramentas de Aparência no Gutenberg (Cores, Margens, etc.)
+    add_theme_support('appearance-tools');
+    
+    // Suportes explícitos (Garante que temas clássicos mostrem os painéis)
+    add_theme_support('custom-spacing'); // Libera Padding e Margin
+    add_theme_support('custom-line-height'); // Libera altura de linha
+    add_theme_support('custom-units', 'rem', 'em', 'vh', 'vw'); // Libera unidades flexíveis
+
     register_nav_menus(array(
         'primary_menu' => __('Menu Principal', 'louize'),
     ));
 }
 add_action('after_setup_theme', 'florapsi_theme_setup');
-
 
 /* ==========================================================================
    SCRIPTS E ESTILOS
@@ -32,7 +49,7 @@ add_action('wp_enqueue_scripts', 'florapsi_css');
    INCLUDES
    ========================================================================== */
 require get_template_directory() . '/inc/customizer.php';
-require get_template_directory() . '/inc/cmb2-fields.php';
+//require get_template_directory() . '/inc/cmb2-fields.php';
 
 
 /* ==========================================================================
@@ -63,61 +80,8 @@ add_action('wp_footer', 'florapsi_add_delayed_trigger_animation_script');
 
 
 /* ==========================================================================
-   INTEGRAÇÃO YOAST SEO
+   SUPORTE A SVG
    ========================================================================== */
-function florapsi_integra_campos_seo( $content, $post ) {
-    $page_inicio = get_page_by_title('Início');
-    
-    // Executa apenas na página inicial
-    if ( ! $page_inicio || $post->ID !== $page_inicio->ID ) {
-        return $content;
-    }
-
-    $extra_content = '';
-
-    // Customizer
-    $extra_content .= get_theme_mod('florapsi_banner_subtitle', '') . ' ';
-    $extra_content .= get_theme_mod('florapsi_banner_text', '') . ' ';
-
-    // Campos Simples CMB2
-    $campos_simples = [
-        'sobre_titulo', 'sobre_subtitulo', 'sobre_texto',
-        'percurso_titulo', 'percurso_texto',
-        'servicos_titulo_principal', 'duvidas_titulo', 'feedback_titulo'
-    ];
-    foreach ( $campos_simples as $campo ) {
-        $valor = get_post_meta( $post->ID, $campo, true );
-        if ( ! empty( $valor ) && ! is_array( $valor ) ) {
-            $extra_content .= $valor . ' ';
-        }
-    }
-
-    // Grupos Repetíveis CMB2
-    $servicos = get_post_meta( $post->ID, 'servicos_cards_group', true );
-    if ( is_array( $servicos ) ) {
-        foreach ( $servicos as $s ) {
-            $extra_content .= ( $s['servico_card_titulo'] ?? '' ) . ' ' . ( $s['servico_card_texto'] ?? '' ) . ' ';
-        }
-    }
-
-    $duvidas = get_post_meta( $post->ID, 'duvidas_accordion', true );
-    if ( is_array( $duvidas ) ) {
-        foreach ( $duvidas as $d ) {
-            $extra_content .= ( $d['pergunta'] ?? '' ) . ' ' . ( $d['resposta'] ?? '' ) . ' ';
-        }
-    }
-
-    $feedbacks = get_post_meta( $post->ID, 'feedback_manual_group', true );
-    if ( is_array( $feedbacks ) ) {
-        foreach ( $feedbacks as $f ) {
-            $extra_content .= ( $f['nome'] ?? '' ) . ' ' . ( $f['texto'] ?? '' ) . ' ';
-        }
-    }
-
-    return $content . ' ' . $extra_content;
-}
-add_filter( 'wpseo_pre_analysis_post_content', 'florapsi_integra_campos_seo', 10, 2 );
-
 // Autoriza o upload de ficheiros SVG na Biblioteca de Média
 function florapsi_add_svg_support($mimes) {
     $mimes['svg'] = 'image/svg+xml';
