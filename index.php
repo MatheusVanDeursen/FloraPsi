@@ -9,7 +9,7 @@
         ?>
     </main>
 
-    <a href="<?php echo esc_url( get_theme_mod( 'louize_whatsapp_link', '#' ) ); ?>" target="_blank" class="whatsapp-float">
+    <a href="<?php echo esc_url( get_theme_mod( 'florapsi_whatsapp_link', '#' ) ); ?>" target="_blank" class="whatsapp-float">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 

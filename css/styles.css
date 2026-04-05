@@ -422,8 +422,6 @@ a.banner-button:hover {
 }
 
 .banner .banner-button .wp-block-button__link {
-    background-color: transparent !important;
-    color: #E5CDC0 !important;
     border-radius: 0 !important;
     padding: 15px 36px !important;
     font-family: "Sofia Pro", sans-serif !important;
@@ -432,11 +430,6 @@ a.banner-button:hover {
     border: none !important;
     box-shadow: none !important;
     transition: background-color 0.8s ease, color 0.8s ease !important;
-}
-
-.banner .banner-button .wp-block-button__link:hover {
-    color: #5A6E59 !important;
-    background-color: #E5CDC0 !important;
 }
 
 .banner .wp-block-buttons {

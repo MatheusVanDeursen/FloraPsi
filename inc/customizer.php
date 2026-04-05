@@ -138,28 +138,6 @@ function florapsi_customize_register($wp_customize) {
     $wp_customize->add_setting('florapsi_banner_button_hover_text_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
     $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_banner_button_hover_text_color', array('label' => __('Cor do Texto (Hover)', 'louize'), 'section' => 'florapsi_banner_btn_color_section')));
 
-    /* --- SUBSEÇÃO: Botão CTA - Texto e Fonte --- */
-    $wp_customize->add_section('florapsi_banner_btn_text_section', array(
-        'title'    => __('Botão CTA: Texto e Fonte', 'louize'),
-        'panel'    => 'florapsi_banner_panel',
-        'priority' => 50,
-    ));
-
-    $wp_customize->add_setting('florapsi_banner_button_text', array('default' => 'Agendar Consulta', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_banner_button_text', array('label' => __('Texto do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section'));
-
-    $wp_customize->add_setting('florapsi_banner_button_url', array('default' => '#', 'sanitize_callback' => 'esc_url_raw'));
-    $wp_customize->add_control('florapsi_banner_button_url', array('label' => __('Link do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'url'));
-
-    $wp_customize->add_setting('florapsi_banner_btn_font_family', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_banner_btn_font_family', array('label' => __('Fonte do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'select', 'choices' => $font_family_choices));
-
-    $wp_customize->add_setting('florapsi_banner_btn_font_size', array('default' => '30', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_banner_btn_font_size', array('label' => __('Tamanho do Botão (px)', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'number'));
-
-    $wp_customize->add_setting('florapsi_banner_btn_font_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_banner_btn_font_weight', array('label' => __('Peso do Botão', 'louize'), 'section' => 'florapsi_banner_btn_text_section', 'type' => 'select', 'choices' => $font_weight_choices));
-    
     /* --- SUBSEÇÃO: Banner - Decorações de Flora (Mantido) --- */
     $wp_customize->add_section('florapsi_banner_flora_section', array(
         'title'    => __('Banner: Decorações de Flora', 'florapsi'),
@@ -597,28 +575,18 @@ function florapsi_customize_register($wp_customize) {
         'priority'    => 107,
     ));
 
-    /* --- SUBSEÇÃO: Botões - Texto e Fonte --- */
-    $wp_customize->add_section('florapsi_contact_btns_typo_section', array(
-        'title'    => __('Botões: Texto e Fonte', 'florapsi'),
+    /* --- SUBSEÇÃO: Botões - Links --- */
+    $wp_customize->add_section('florapsi_contact_btns_links_section', array(
+        'title'    => __('Botões: Links', 'florapsi'),
         'panel'    => 'florapsi_contact_panel',
         'priority' => 10,
     ));
 
-    // WhatsApp
-    $wp_customize->add_setting('florapsi_contact_btn_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_contact_btn_font', array('label' => __('Fonte Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'select', 'choices' => $font_family_choices));
-    $wp_customize->add_setting('florapsi_contact_btn_weight', array('default' => '600', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_contact_btn_weight', array('label' => __('Peso Botão WPP', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'select', 'choices' => $font_weight_choices));
-    $wp_customize->add_setting('florapsi_contact_btn_size', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_contact_btn_size', array('label' => __('Tam. Botão WPP (px)', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'number'));
+    $wp_customize->add_setting('florapsi_contact_whatsapp_url', array('default' => '#', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control('florapsi_contact_whatsapp_url', array('label' => __('Link do WhatsApp', 'florapsi'), 'section' => 'florapsi_contact_btns_links_section', 'type' => 'url'));
 
-    // Instagram
-    $wp_customize->add_setting('florapsi_insta_btn_font', array('default' => 'Sofia Pro', 'sanitize_callback' => 'sanitize_text_field'));
-    $wp_customize->add_control('florapsi_insta_btn_font', array('label' => __('Fonte Btn Seguir', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'select', 'choices' => $font_family_choices));
-    $wp_customize->add_setting('florapsi_insta_btn_weight', array('default' => '700', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_insta_btn_weight', array('label' => __('Peso Btn Seguir', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'select', 'choices' => $font_weight_choices));
-    $wp_customize->add_setting('florapsi_insta_btn_size', array('default' => '18', 'sanitize_callback' => 'absint'));
-    $wp_customize->add_control('florapsi_insta_btn_size', array('label' => __('Tam. Btn Seguir (px)', 'florapsi'), 'section' => 'florapsi_contact_btns_typo_section', 'type' => 'number'));
+    $wp_customize->add_setting('florapsi_contact_instagram_url', array('default' => '#', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control('florapsi_contact_instagram_url', array('label' => __('Link do Instagram', 'florapsi'), 'section' => 'florapsi_contact_btns_links_section', 'type' => 'url'));
 
     /* --- SUBSEÇÃO: Botões - Cores --- */
     $wp_customize->add_section('florapsi_contact_btns_color_section', array(
@@ -963,14 +931,12 @@ function florapsi_dynamic_css() {
         $btn_hvr_bg = get_theme_mod('florapsi_banner_button_hover_bg_color', '#E5CDC0');
         $btn_hvr_txt = get_theme_mod('florapsi_banner_button_hover_text_color', '#5A6E59');
 
-        echo ".banner-button {";
-        echo " background-color: " . esc_attr($btn_bg) . ";";
-        echo " color: " . esc_attr($btn_txt) . ";";
+        echo ".banner .banner-button .wp-block-button__link {";
+        echo " background-color: " . esc_attr($btn_bg) . " !important;";
+        echo " color: " . esc_attr($btn_txt) . " !important;";
         echo "}";
 
-        echo ".banner-button span[class^=border-] { background-color: " . esc_attr($btn_txt) . "; }";
-
-        echo ".banner-button:hover {";
+        echo ".banner .banner-button .wp-block-button__link:hover {";
         echo " background-color: " . esc_attr($btn_hvr_bg) . " !important;";
         echo " color: " . esc_attr($btn_hvr_txt) . " !important;";
         echo "}";
@@ -1061,9 +1027,6 @@ function florapsi_dynamic_css() {
 
         // Contato (Desktop)
         echo ".btn-main.whatsapp-btn { 
-            font-family: '" . esc_attr( get_theme_mod( 'florapsi_contact_btn_font', 'Sofia Pro' ) ) . "', sans-serif;
-            font-size: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_size', '18' ) ) . "px;
-            font-weight: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_weight', '600' ) ) . ";
             background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_bg', '#2C4A52' ) ) . ";
             color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_text_color', '#FFFFFF' ) ) . ";
         }";
@@ -1074,9 +1037,6 @@ function florapsi_dynamic_css() {
 
         $insta_btn_clr = get_theme_mod( 'florapsi_insta_btn_color', '#2C4A52' );
         echo ".btn-secondary { 
-            font-family: '" . esc_attr( get_theme_mod( 'florapsi_insta_btn_font', 'Sofia Pro' ) ) . "', sans-serif;
-            font-size: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_size', '18' ) ) . "px;
-            font-weight: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_weight', '700' ) ) . ";
             color: " . esc_attr( $insta_btn_clr ) . ";
             border-color: " . esc_attr( $insta_btn_clr ) . ";
         }";
@@ -1090,6 +1050,19 @@ function florapsi_dynamic_css() {
         echo ".insta-avatar { width: " . esc_attr( $av_sz ) . "px; height: " . esc_attr( $av_sz ) . "px; }";
         echo ".insta-avatar img { width: " . esc_attr( $im_sz ) . "px; height: " . esc_attr( $im_sz ) . "px; }";
 
+        // Botão Flutuante (WhatsApp)
+        $wpp_size = get_theme_mod('florapsi_whatsapp_size', '60');
+        $wpp_font_size = intval($wpp_size) * 0.58; // Deixa o ícone proporcional à largura do botão
+        
+        echo ".whatsapp-float {";
+        echo " background-color: " . esc_attr(get_theme_mod('florapsi_whatsapp_bg_color', '#A3B899')) . ";";
+        echo " color: " . esc_attr(get_theme_mod('florapsi_whatsapp_icon_color', '#E5CDC0')) . ";";
+        echo " width: " . esc_attr($wpp_size) . "px;";
+        echo " height: " . esc_attr($wpp_size) . "px;";
+        echo " bottom: " . esc_attr(get_theme_mod('florapsi_whatsapp_position_bottom', '50')) . "px;";
+        echo " right: " . esc_attr(get_theme_mod('florapsi_whatsapp_position_right', '50')) . "px;";
+        echo " font-size: " . esc_attr($wpp_font_size) . "px;";
+        echo "}";
 
         ?>
 
