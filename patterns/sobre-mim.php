@@ -1,6 +1,6 @@
 <?php
 /**
- * Title: Sobre  MIm
+ * Title: Sobre MIm
  * Slug: florapsi/sobre-mim
  * Categories: featured
  * Block Types: core/post-content

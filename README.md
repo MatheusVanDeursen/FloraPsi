@@ -1,5 +1,5 @@
 # FloraPsi WordPress Theme 🌿
-**Versão:** 0.4 (Beta)
+**Versão:** 0.4.1
 
 Um tema WordPress exclusivo, minimalista e de alta performance para profissionais de psicologia. O projeto une uma estética botânica a uma arquitetura de software robusta, focada na autonomia do usuário através da edição nativa de blocos e na experiência de navegação do paciente.
 
@@ -44,7 +44,6 @@ O tema conta com um sistema de pré-carregamento nativo. A página inicial intei
 
 ### 🐛 Problemas Conhecidos (Known Issues)
 * **Animações Desativadas:** As animações de rolagem (slide-in) foram removidas temporariamente devido a incompatibilidades com a nova estrutura de blocos e serão refeitas em atualizações futuras. Ainda há código residual no `script.js` que será limpo.
-* **Bugs no Customizer:** Alguns poucos itens de cor em botões específicos no Customizer estão temporariamente intermitentes e serão corrigidos no próximo patch.
 
 ---
 
