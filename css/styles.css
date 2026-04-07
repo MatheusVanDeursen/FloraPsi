@@ -362,7 +362,6 @@ body *, body *::before, body *::after {
     padding-top: 200px;
     padding-left: 15px;
     padding-right: 15px;
-    transition: background-color 0.2s ease-out, color 0.2s ease-out;
     position: relative;
     --animation-base-delay: 0s;
 }
@@ -511,8 +510,6 @@ a.banner-button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    transition-delay: 500ms;
 }
 
 .sobre-mim-content-2 {
@@ -526,7 +523,6 @@ a.banner-button:hover {
     max-height: 600px;
     border: 2px solid black;
     box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.65); 
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .sobre-mim-title {
@@ -628,8 +624,6 @@ figure.sobre-mim-img img {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    transition-delay: 500ms;
     flex-grow: 1 !important; 
 }
 
@@ -646,7 +640,6 @@ figure.sobre-mim-img img {
     object-fit: cover;
     border: 2px solid black;
     box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.65); 
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .percurso-title {
@@ -746,7 +739,7 @@ figure.percurso-img img {
     padding: 20px 25px;
     text-align: center;
     box-shadow: 5px 10px 30px 10px rgba(0, 0, 0, 0.15); 
-    transition: opacity 1s ease-out, transform 1s ease-out, box-shadow 0.6s ease-in-out;
+    transition: transform 1s ease-out, box-shadow 0.6s ease-in-out;
     flex: 1 1 300px;
     max-width: 400px;
 }
@@ -827,191 +820,6 @@ figure.percurso-img img {
     }
     .servico-icon i {
         font-size: 30px !important;
-    }
-}
-
-/* =================================================================== */
-/* DEPOIMENTOS (FEEDBACK)                                              */
-/* =================================================================== */
-
-.feedback {
-    min-height: 400px;
-    width: 100%;
-    background-color: #F8F0E3;
-    padding: 50px 0;
-    color: #5A6E59;
-    display: flex;
-    align-items: flex-start;
-}
-
-.feedback .section-container {
-    text-align: center;
-    width: 100%;           
-    max-width: 1280px;      
-    margin: 0 auto;
-    padding: 0 20px;       
-    overflow: hidden;      
-}
-
-.feedback-title {
-    font-size: 50px;
-    font-family: "Tan Mon Cheri";
-    font-weight: 400;
-    margin: 0 0 40px 0;
-    text-align: center;
-}
-
-.depoimentos-manuais-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-}
-
-.depoimento-item {
-    background-color: #FFFFFF;
-    padding: 40px 30px;
-    border-radius: 20px;
-    box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.65); 
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-.depoimento-item::before {
-    content: '“';
-    font-family: 'Kepler', serif;
-    font-size: 80px;
-    color: #A3B899;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    opacity: 0.3;
-}
-
-.depoimento-item p {
-    font-family: "Sofia Pro", sans-serif;
-    font-style: italic;
-    font-size: 18px;
-    color: #5A6E59;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    z-index: 1;
-}
-
-.depoimento-item span {
-    font-family: "Sofia Pro", sans-serif;
-    font-weight: 600;
-    font-size: 16px;
-    color: #5A6E59;
-    display: block;
-    margin-top: auto;
-}
-
-.manual-carousel-wrapper {
-    display: flex !important;
-    transition: transform 0.5s ease-in-out;
-    gap: 0;
-    overflow: visible !important;
-    width: 100%;
-}
-
-.ti-reviews-container {
-    overflow: hidden !important; 
-    position: relative;
-    padding: 20px 0;
-}
-
-.manual-carousel-wrapper .ti-review-item {
-    flex: 0 0 33.333%;
-    max-width: 33.333%;
-    padding: 0 10px;
-    box-sizing: border-box;
-}
-
-.is-manual-carousel .ti-controls {
-    display: flex !important;
-    justify-content: space-between;
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    left: 0;
-    transform: translateY(-50%);
-    z-index: 100;
-    pointer-events: none; 
-}
-
-.manual-next, .manual-prev {
-    pointer-events: auto;
-    width: 40px !important;
-    height: 40px !important;
-    background-color: white !important;
-    border-radius: 50% !important;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1) !important;
-    cursor: pointer;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-}
-
-.is-manual-carousel .manual-next, 
-.is-manual-carousel .manual-prev {
-    pointer-events: auto;
-    width: 35px !important;
-    height: 35px !important;
-    background-color: white !important;
-    border: 1px solid #d9d9d9 !important;
-    border-radius: 50% !important;
-    cursor: pointer;
-    position: relative;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.is-manual-carousel .manual-next:hover, 
-.is-manual-carousel .manual-prev:hover {
-    background-color: #969696 !important;
-    border-color: #5E5E5E !important;
-}
-
-.is-manual-carousel .manual-next::before, 
-.is-manual-carousel .manual-prev::before {
-    content: "";
-    display: block;
-    width: 8px;
-    height: 8px;
-    border-style: solid;
-    border-width: 0 0 2px 2px;
-    border-color: #5E5E5E;
-}
-
-.is-manual-carousel .manual-prev::before { transform: rotate(45deg); margin-left: 3px; }
-.is-manual-carousel .manual-next::before { transform: rotate(-135deg); margin-right: 3px; }
-
-@media (max-width: 1024px) {
-    .is-manual-carousel .ti-review-item {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-@media (max-width: 991px) {
-    .feedback { padding: 40px 0; }
-    .feedback-title { font-size: 36px !important; }
-}
-
-@media (max-width: 768px) {
-    .depoimentos-manuais-grid { grid-template-columns: 1fr; }
-    .is-manual-carousel .ti-review-item {
-        flex: 0 0 100% !important;
-        max-width: 100% !important;
-    }
-    .is-manual-carousel .ti-controls {
-        width: 100%;
-        padding: 0 2px;
     }
 }
 
@@ -1135,7 +943,7 @@ figure.percurso-img img {
 /* CONTATO                                                             */
 /* =================================================================== */
 
-.contact-section {
+.contato-section {
     background-color: #F9F7F2; 
     padding: 50px 0;
 }
@@ -1147,14 +955,14 @@ figure.percurso-img img {
     padding-right: 20px;
 }
 
-.contact-grid {
+.contato-grid {
     display: grid;
     grid-template-columns: 1fr 0.8fr;
     gap: 80px;
     align-items: center;
 }
 
-.section-title {
+.contato-title {
     font-family: 'Tan Mon Cheri', serif; 
     font-size: 40px;
     font-weight: 300;
@@ -1163,7 +971,7 @@ figure.percurso-img img {
     margin-bottom: 45px;
 }
 
-.contact-description {
+.contato-description {
     font-family: 'Sofia Pro', sans-serif;
     font-size: 18px;
     color: var(--contact-blue-text);
@@ -1172,7 +980,7 @@ figure.percurso-img img {
     opacity: 0.9;
 }
 
-.info-highlight-box {
+.contato-info-box {
     background-color: #FFFFFF;
     border-radius: 16px;
     padding: 30px;
@@ -1184,13 +992,13 @@ figure.percurso-img img {
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
-.info-highlight-box:hover {
+.contato-info-box:hover {
     transform: translateY(-10px) !important;
     box-shadow: 5px 20px 40px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease !important;
 }
 
-.info-icon {
+.contato-info-icon {
     background-color: #EEF4F8;
     color: var(--contact-blue-text);
     width: 55px;
@@ -1203,7 +1011,7 @@ figure.percurso-img img {
     flex-shrink: 0;
 }
 
-.info-content h4 {
+.contato-info-content h4 {
     margin: 0 0 8px 0;
     font-family: 'Sofia Pro', serif;
     font-weight: bold;
@@ -1211,7 +1019,7 @@ figure.percurso-img img {
     color: var(--contact-blue-text);
 }
 
-.info-content p {
+.contato-info-content p {
     margin: 0;
     font-family: 'Sofia Pro', sans-serif;
     font-size: 18px;
@@ -1220,7 +1028,7 @@ figure.percurso-img img {
     opacity: 0.8;
 }
 
-.btn-main.whatsapp-btn {
+.contato-btn-main.contato-whatsapp-btn {
     background-color: var(--contact-blue-text); 
     font-size: 18px;
     color: #fff;
@@ -1235,13 +1043,13 @@ figure.percurso-img img {
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
-.btn-main.whatsapp-btn:hover {
+.contato-btn-main.contato-whatsapp-btn:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 25px rgba(44, 74, 82, 0.3);
     background-color: #1F363D;
 }
 
-.instagram-card {
+.contato-instagram-card {
     background: #FFFFFF;
     border-radius: 24px;
     padding: 45px 40px;
@@ -1250,7 +1058,7 @@ figure.percurso-img img {
     box-shadow: 10px 20px 50px rgba(44, 74, 82, 0.15); 
 }
 
-.insta-header {
+.contato-insta-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1259,7 +1067,7 @@ figure.percurso-img img {
     position: relative;
 }
 
-.insta-avatar {
+.contato-insta-avatar {
     width: 102px;
     height: 102px;
     background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
@@ -1270,7 +1078,7 @@ figure.percurso-img img {
     box-shadow: 0 4px 15px rgba(220, 39, 67, 0.2);
 }
 
-.insta-avatar img {
+.contato-insta-avatar img {
     width: 92px;
     height: 92px;
     border-radius: 50%;
@@ -1279,7 +1087,7 @@ figure.percurso-img img {
     box-shadow: none; 
 }
 
-.insta-handle {
+.contato-insta-handle {
     font-family: 'Sofia Pro', serif; 
     font-size: 22px;
     font-weight: 600;
@@ -1287,7 +1095,7 @@ figure.percurso-img img {
     display: block;
 }
 
-.insta-label {
+.contato-insta-label {
     font-family: 'Sofia Pro', sans-serif;
     font-size: 14px;
     color: var(--contact-blue-text);
@@ -1297,7 +1105,7 @@ figure.percurso-img img {
     font-weight: 600;
 }
 
-.insta-icon {
+.contato-insta-icon {
     position: absolute;
     top: -40px;
     right: 0;
@@ -1306,11 +1114,11 @@ figure.percurso-img img {
     opacity: 0.25; 
 }
 
-.insta-info {
+.contato-insta-info {
     margin: 0;
 }
 
-.insta-bio {
+.contato-insta-bio {
     font-family: 'Sofia Pro', sans-serif;
     font-size: 18px;
     color: var(--contact-blue-text);
@@ -1319,11 +1127,11 @@ figure.percurso-img img {
     opacity: 0.9;
 }
 
-.insta-body {
+.contato-insta-body {
     margin-bottom: 50px;
 }
 
-.insta-topics-list {
+.contato-topics-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -1331,7 +1139,7 @@ figure.percurso-img img {
     margin-bottom: 35px;
 }
 
-.topic-pill {
+.contato-topic-pill {
     background-color: transparent;
     color: var(--contact-blue-text);
     padding: 8px 18px;
@@ -1343,7 +1151,7 @@ figure.percurso-img img {
     background-color: rgba(44, 74, 82, 0.03);
 }
 
-.btn-secondary {
+.contato-btn-secondary {
     display: inline-block;
     width: 100%;
     padding: 16px 0;
@@ -1358,48 +1166,48 @@ figure.percurso-img img {
     transition: all 0.3s ease;
 }
 
-.btn-secondary:hover {
+.contato-btn-secondary:hover {
     background: var(--contact-blue-text);
     color: #fff;
     box-shadow: 0 10px 20px rgba(44, 74, 82, 0.2);
 }
 
 /* --- Correções Gutenberg --- */
-.contact-section .wp-block-group p { margin: 0 !important; }
-.wp-block-columns.contact-grid { gap: 80px !important; align-items: center !important; }
-.insta-avatar { margin: 0 auto !important; }
-.insta-avatar figure.wp-block-image { margin: 0 !important; display: flex; justify-content: center; align-items: center; }
-.info-highlight-box.wp-block-columns { gap: 20px !important; flex-wrap: nowrap !important; }
-.info-highlight-box .wp-block-column { margin: 0 !important; }
+.contato-section .wp-block-group p { margin: 0 !important; }
+.wp-block-columns.contato-grid { gap: 80px !important; align-items: center !important; }
+.contato-insta-avatar { margin: 0 auto !important; }
+.contato-insta-avatar figure.wp-block-image { margin: 0 !important; display: flex; justify-content: center; align-items: center; }
+.contato-info-box.wp-block-columns { gap: 20px !important; flex-wrap: nowrap !important; }
+.contato-info-box .wp-block-column { margin: 0 !important; }
 
 @media (max-width: 991px) {
-    .contact-section { padding: 80px 0; }
-    .contact-grid { grid-template-columns: 1fr; gap: 60px; max-width: 700px; margin: 0 auto; }
-    .contact-left { text-align: center; padding-right: 0; }
-    .wp-block-columns.contact-grid { gap: 60px !important; }
-    .info-highlight-box { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; gap: 15px; }
-    .btn-main.whatsapp-btn { width: auto; min-width: 280px; justify-content: center; }
-    .section-title { font-size: 36px !important; }
+    .contato-section { padding: 80px 0; }
+    .contato-grid { grid-template-columns: 1fr; gap: 60px; max-width: 700px; margin: 0 auto; }
+    .contato-left { text-align: center; padding-right: 0; }
+    .wp-block-columns.contato-grid { gap: 60px !important; }
+    .contato-info-box { flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; gap: 15px; }
+    .contato-btn-main.contato-whatsapp-btn { width: auto; min-width: 280px; justify-content: center; }
+    .contato-title { font-size: 36px !important; }
 }
 
 @media (max-width: 575px) {
-    .contact-section { padding: 60px 0; }
-    .contact-grid { gap: 50px; }
-    .section-title { font-size: 30px !important; margin-bottom: 20px; }
-    .contact-description { font-size: 16px !important; }
-    .info-highlight-box { padding: 25px 20px; margin-bottom: 30px; }
-    .info-content h4 { font-size: 18px !important; }
-    .info-content p { font-size: 16px !important; }
-    .btn-main.whatsapp-btn { width: 100%; padding: 16px 20px; font-size: 16px !important; }
-    .instagram-card { padding: 35px 20px; }
-    .insta-header { margin-bottom: 20px; }
-    .insta-avatar { width: 80px; height: 80px; }
-    .insta-avatar img { width: 72px; height: 72px; border-width: 3px; }
-    .insta-handle { font-size: 20px !important; }
-    .insta-bio { font-size: 16px !important; margin-bottom: 25px; }
-    .insta-topics-list { gap: 8px; margin-bottom: 30px; }
-    .topic-pill { font-size: 0.8rem !important; padding: 6px 14px; }
-    .btn-secondary { font-size: 16px !important; padding: 14px 0; }
+    .contato-section { padding: 60px 0; }
+    .contato-grid { gap: 50px; }
+    .contato-title { font-size: 30px !important; margin-bottom: 20px; }
+    .contato-description { font-size: 16px !important; }
+    .contato-info-box { padding: 25px 20px; margin-bottom: 30px; }
+    .contato-info-content h4 { font-size: 18px !important; }
+    .contato-info-content p { font-size: 16px !important; }
+    .contato-btn-main.contato-whatsapp-btn { width: 100%; padding: 16px 20px; font-size: 16px !important; }
+    .contato-instagram-card { padding: 35px 20px; }
+    .contato-insta-header { margin-bottom: 20px; }
+    .contato-insta-avatar { width: 80px; height: 80px; }
+    .contato-insta-avatar img { width: 72px; height: 72px; border-width: 3px; }
+    .contato-insta-handle { font-size: 20px !important; }
+    .contato-insta-bio { font-size: 16px !important; margin-bottom: 25px; }
+    .contato-topics-list { gap: 8px; margin-bottom: 30px; }
+    .contato-topic-pill { font-size: 0.8rem !important; padding: 6px 14px; }
+    .contato-btn-secondary { font-size: 16px !important; padding: 14px 0; }
 }
 
 /* =================================================================== */

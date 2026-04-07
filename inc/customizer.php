@@ -1026,29 +1026,29 @@ function florapsi_dynamic_css() {
         echo "}";
 
         // Contato (Desktop)
-        echo ".btn-main.whatsapp-btn { 
+        echo ".contato-btn-main.contato-whatsapp-btn { 
             background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_bg', '#2C4A52' ) ) . ";
             color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_text_color', '#FFFFFF' ) ) . ";
         }";
-        echo ".btn-main.whatsapp-btn:hover { 
+        echo ".contato-btn-main.contato-whatsapp-btn:hover { 
             background-color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_bg_hover', '#1F363D' ) ) . " !important;
             color: " . esc_attr( get_theme_mod( 'florapsi_contact_btn_text_hover', '#FFFFFF' ) ) . " !important;
         }";
 
         $insta_btn_clr = get_theme_mod( 'florapsi_insta_btn_color', '#2C4A52' );
-        echo ".btn-secondary { 
+        echo ".contato-btn-secondary { 
             color: " . esc_attr( $insta_btn_clr ) . ";
             border-color: " . esc_attr( $insta_btn_clr ) . ";
         }";
-        echo ".btn-secondary:hover { 
+        echo ".contato-btn-secondary:hover { 
             background-color: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_bg_hover', '#2C4A52' ) ) . " !important;
             color: " . esc_attr( get_theme_mod( 'florapsi_insta_btn_text_hover', '#FFFFFF' ) ) . " !important;
         }";
 
         $av_sz = get_theme_mod( 'florapsi_contact_avatar_size', '102' );
         $im_sz = $av_sz - 10;
-        echo ".insta-avatar { width: " . esc_attr( $av_sz ) . "px; height: " . esc_attr( $av_sz ) . "px; }";
-        echo ".insta-avatar img { width: " . esc_attr( $im_sz ) . "px; height: " . esc_attr( $im_sz ) . "px; }";
+        echo ".contato-insta-avatar { width: " . esc_attr( $av_sz ) . "px; height: " . esc_attr( $av_sz ) . "px; }";
+        echo ".contato-insta-avatar img { width: " . esc_attr( $im_sz ) . "px; height: " . esc_attr( $im_sz ) . "px; }";
 
         // Botão Flutuante (WhatsApp)
         $wpp_size = get_theme_mod('florapsi_whatsapp_size', '60');
@@ -1106,22 +1106,22 @@ function florapsi_dynamic_css() {
 
             // Contatos - Tablet
             $pad_tab = get_theme_mod( 'florapsi_contact_padding_v_tablet', '80' );
-            echo ".contact-section { padding-top: " . esc_attr( $pad_tab ) . "px; padding-bottom: " . esc_attr( $pad_tab ) . "px; }";
-            echo ".contact-left .section-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_tablet', '36') ) . "px !important; }";
-            echo ".contact-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_tablet', '18') ) . "px !important; }";
-            echo ".info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_tablet', '18') ) . "px !important; }";
-            echo ".info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_tablet', '17') ) . "px !important; }";
-            echo ".btn-main.whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_tablet', '18') ) . "px !important; }";
-            echo ".insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_tablet', '20') ) . "px !important; }";
-            echo ".insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_tablet', '14') ) . "px !important; }";
-            echo ".insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_tablet', '17') ) . "px !important; }";
-            echo ".topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_tablet', '14') ) . "px !important; }";
-            echo ".btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_tablet', '18') ) . "px !important; }";
+            echo ".contato-section { padding-top: " . esc_attr( $pad_tab ) . "px; padding-bottom: " . esc_attr( $pad_tab ) . "px; }";
+            echo ".contato-left .contato-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_tablet', '36') ) . "px !important; }";
+            echo ".contato-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_tablet', '18') ) . "px !important; }";
+            echo ".contato-info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_tablet', '18') ) . "px !important; }";
+            echo ".contato-info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_tablet', '17') ) . "px !important; }";
+            echo ".contato-btn-main.contato-whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_tablet', '18') ) . "px !important; }";
+            echo ".contato-insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_tablet', '20') ) . "px !important; }";
+            echo ".contato-insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_tablet', '14') ) . "px !important; }";
+            echo ".contato-insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_tablet', '17') ) . "px !important; }";
+            echo ".contato-topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_tablet', '14') ) . "px !important; }";
+            echo ".contato-btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_tablet', '18') ) . "px !important; }";
             
             $av_tab = get_theme_mod( 'florapsi_contact_avatar_tablet', '90' ); 
             $im_tab = $av_tab - 10;
-            echo ".insta-avatar { width: " . esc_attr( $av_tab ) . "px; height: " . esc_attr( $av_tab ) . "px; }";
-            echo ".insta-avatar img { width: " . esc_attr( $im_tab ) . "px; height: " . esc_attr( $im_tab ) . "px; }";
+            echo ".contato-insta-avatar { width: " . esc_attr( $av_tab ) . "px; height: " . esc_attr( $av_tab ) . "px; }";
+            echo ".contato-insta-avatar img { width: " . esc_attr( $im_tab ) . "px; height: " . esc_attr( $im_tab ) . "px; }";
             ?>
         }
         
@@ -1174,25 +1174,25 @@ function florapsi_dynamic_css() {
 
             // Contato - Mobile
             $pad_v_mob = get_theme_mod( 'florapsi_contact_padding_v_mobile', '60' );
-            echo ".contact-section { padding-top: " . esc_attr( $pad_v_mob ) . "px; padding-bottom: " . esc_attr( $pad_v_mob ) . "px; }";
             $pad_h_mob = get_theme_mod( 'florapsi_contact_padding_h_mobile', '20' );
-            echo ".container.contact-grid { padding-left: " . esc_attr( $pad_h_mob ) . "px; padding-right: " . esc_attr( $pad_h_mob ) . "px; }";
+            echo ".contato-section { padding-top: " . esc_attr( $pad_v_mob ) . "px; padding-bottom: " . esc_attr( $pad_v_mob ) . "px; }";
+            echo ".container.contato-grid { padding-left: " . esc_attr( $pad_h_mob ) . "px; padding-right: " . esc_attr( $pad_h_mob ) . "px; }";
             
-            echo ".contact-left .section-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_mobile', '30') ) . "px !important; }";
-            echo ".contact-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_mobile', '16') ) . "px !important; }";
-            echo ".info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_mobile', '18') ) . "px !important; }";
-            echo ".info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_mobile', '16') ) . "px !important; }";
-            echo ".btn-main.whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_mobile', '16') ) . "px !important; }";
-            echo ".insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_mobile', '20') ) . "px !important; }";
-            echo ".insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_mobile', '12') ) . "px !important; }";
-            echo ".insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_mobile', '16') ) . "px !important; }";
-            echo ".topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_mobile', '12') ) . "px !important; }";
-            echo ".btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_mobile', '16') ) . "px !important; }";
+            echo ".contato-left .contato-title { font-size: " . esc_attr( get_theme_mod('florapsi_contact_title_mobile', '30') ) . "px !important; }";
+            echo ".contato-description { font-size: " . esc_attr( get_theme_mod('florapsi_contact_desc_mobile', '16') ) . "px !important; }";
+            echo ".contato-info-content h4 { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_title_mobile', '18') ) . "px !important; }";
+            echo ".contato-info-content p { font-size: " . esc_attr( get_theme_mod('florapsi_contact_box_text_mobile', '16') ) . "px !important; }";
+            echo ".contato-btn-main.contato-whatsapp-btn { font-size: " . esc_attr( get_theme_mod('florapsi_contact_btn_mobile', '16') ) . "px !important; }";
+            echo ".contato-insta-handle { font-size: " . esc_attr( get_theme_mod('florapsi_insta_handle_mobile', '20') ) . "px !important; }";
+            echo ".contato-insta-label { font-size: " . esc_attr( get_theme_mod('florapsi_insta_label_mobile', '12') ) . "px !important; }";
+            echo ".contato-insta-bio { font-size: " . esc_attr( get_theme_mod('florapsi_insta_bio_mobile', '16') ) . "px !important; }";
+            echo ".contato-topic-pill { font-size: " . esc_attr( get_theme_mod('florapsi_insta_tag_mobile', '12') ) . "px !important; }";
+            echo ".contato-btn-secondary { font-size: " . esc_attr( get_theme_mod('florapsi_insta_btn_mobile', '16') ) . "px !important; }";
             
             $av_mob = get_theme_mod( 'florapsi_contact_avatar_mobile', '80' ); 
             $im_mob = $av_mob - 8;
-            echo ".insta-avatar { width: " . esc_attr( $av_mob ) . "px; height: " . esc_attr( $av_mob ) . "px; }";
-            echo ".insta-avatar img { width: " . esc_attr( $im_mob ) . "px; height: " . esc_attr( $im_mob ) . "px; }";
+            echo ".contato-insta-avatar { width: " . esc_attr( $av_mob ) . "px; height: " . esc_attr( $av_mob ) . "px; }";
+            echo ".contato-insta-avatar img { width: " . esc_attr( $im_mob ) . "px; height: " . esc_attr( $im_mob ) . "px; }";
             ?>
         }
 
