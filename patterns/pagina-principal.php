@@ -246,7 +246,7 @@
 <!-- /wp:group -->
 
 <!-- wp:group {"tagName":"section","className":"contact-section","layout":{"type":"default"}} -->
-<section class="wp-block-group contact-section"><!-- wp:columns {"className":"container contact-grid"} -->
+<section id="contato" class="wp-block-group contact-section"><!-- wp:columns {"className":"container contact-grid"} -->
 <div class="wp-block-columns container contact-grid"><!-- wp:column {"width":"55%","className":"contact-left"} -->
 <div class="wp-block-column contact-left" style="flex-basis:55%"><!-- wp:heading {"className":"section-title"} -->
 <h2 class="wp-block-heading section-title">Dê o primeiro passo</h2>

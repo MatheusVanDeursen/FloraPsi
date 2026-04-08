@@ -8,7 +8,7 @@
 ?>
 
 <!-- wp:group {"tagName":"section","className":"contato-section","layout":{"type":"default"}} -->
-<section class="wp-block-group contato-section"><!-- wp:columns {"className":"container contato-grid"} -->
+<section id="contato" class="wp-block-group contato-section"><!-- wp:columns {"className":"container contato-grid"} -->
 <div class="wp-block-columns container contato-grid"><!-- wp:column {"width":"55%","className":"contato-left"} -->
 <div class="wp-block-column contato-left" style="flex-basis:55%"><!-- wp:heading {"className":"contato-title"} -->
 <h2 class="wp-block-heading contato-title">Dê o primeiro passo</h2>
