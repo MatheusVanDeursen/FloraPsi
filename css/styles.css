@@ -366,6 +366,11 @@ body *, body *::before, body *::after {
     --animation-base-delay: 0s;
 }
 
+.banner .section-container {
+    position: relative;
+    z-index: 10;
+}
+
 .banner-subtitle {
     font-size: 80px;
     color: #E5CDC0;
@@ -421,14 +426,20 @@ a.banner-button:hover {
 }
 
 .banner .banner-button .wp-block-button__link {
-    border-radius: 0 !important;
-    padding: 15px 36px !important;
+    border-radius: 50px !important; /* Aqui criamos o formato de pílula */
+    padding: 14px 45px !important; /* Ajustamos o respiro interno para ficar alongado */
     font-family: "Sofia Pro", sans-serif !important;
-    font-size: 30px;
+    font-size: 22px !important; /* Reduzimos de 30px para ficar mais delicado e proporcional */
+    font-weight: 500 !important; /* Peso um pouco mais leve */
     text-decoration: none !important;
     border: none !important;
     box-shadow: none !important;
-    transition: background-color 0.8s ease, color 0.8s ease !important;
+    transition: background-color 0.8s ease, color 0.8s ease, transform 0.3s ease !important;
+}
+
+/* Efeito de hover suave (opcional, faz o botão subir levemente ao passar o mouse) */
+.banner .banner-button .wp-block-button__link:hover {
+    transform: translateY(-3px);
 }
 
 .banner .wp-block-buttons {
@@ -522,7 +533,7 @@ a.banner-button:hover {
 .sobre-mim-img {
     max-height: 600px;
     border: 2px solid black;
-    box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.65); 
+    box-shadow: 10px 20px 50px rgba(0, 0, 0, 0.65);
 }
 
 .sobre-mim-title {
@@ -560,6 +571,8 @@ figure.sobre-mim-img {
     border: none !important;
     box-shadow: none !important;
     width: 100%;
+    position: relative;
+    z-index: 10;
 }
 
 figure.sobre-mim-img img {

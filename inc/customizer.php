@@ -838,6 +838,16 @@ function florapsi_dynamic_css() {
         echo " color: " . esc_attr($btn_hvr_txt) . " !important;";
         echo "}";
 
+        // Banner - Decorações de Flora
+        $flora_left = get_theme_mod('florapsi_banner_flora_left');
+        $flora_right = get_theme_mod('florapsi_banner_flora_right');
+        $flora_width = get_theme_mod('florapsi_banner_flora_width', '400');
+        $flora_opacity = get_theme_mod('florapsi_banner_flora_opacity', '0.4');
+
+        if ($flora_left) { echo ".banner-flora-left { -webkit-mask-image: url(" . esc_url($flora_left) . "); mask-image: url(" . esc_url($flora_left) . "); }"; }
+        if ($flora_right) { echo ".banner-flora-right { -webkit-mask-image: url(" . esc_url($flora_right) . "); mask-image: url(" . esc_url($flora_right) . "); }";}
+        echo ".banner-flora-left, .banner-flora-right { width: " . esc_attr($flora_width) . "px; opacity: " . esc_attr($flora_opacity) . " !important; }";
+
         // Serviços (Desktop)
         echo ".servico .servico-icon i {";
         echo " color: " . esc_attr(get_theme_mod('florapsi_servicos_icon_color', '#9B545A')) . ";";
@@ -936,6 +946,10 @@ function florapsi_dynamic_css() {
             echo ".banner .banner-text { font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_fs_tablet', '20')) . "px !important; }";
             echo ".banner .banner-button .wp-block-button__link { font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_fs_tablet', '18')) . "px !important; }";
 
+            echo ".banner-flora-left, .banner-flora-right { width: 300px !important; }";
+            echo ".banner-flora-left { top: -200px; }"; 
+            echo ".banner-flora-right { bottom: -220px; }";
+
             // Sobre Mim Tablet
             echo ".sobre-mim { padding-top: " . esc_attr(get_theme_mod('florapsi_sobre_pad_vert_tablet', '40')) . "px !important; padding-bottom: " . esc_attr(get_theme_mod('florapsi_sobre_pad_vert_tablet', '60')) . "px !important; }";
             echo ".sobre-mim .sobre-mim-img { max-width: " . esc_attr(get_theme_mod('florapsi_sobre_img_max_width_tablet', '350')) . "px !important; max-height: " . esc_attr(get_theme_mod('florapsi_sobre_img_max_height_tablet', '500')) . "px !important; }";
@@ -994,6 +1008,9 @@ function florapsi_dynamic_css() {
             echo ".banner .banner-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_banner_subtitle_fs_mobile', '38')) . "px !important; }";
             echo ".banner .banner-text { font-size: " . esc_attr(get_theme_mod('florapsi_banner_text_fs_mobile', '24')) . "px !important; }";
             echo ".banner .banner-button .wp-block-button__link { font-size: " . esc_attr(get_theme_mod('florapsi_banner_btn_fs_mobile', '20')) . "px !important; }";
+
+            echo ".banner-flora-left { display: none !important; }";
+            echo ".banner-flora-right { width: 400px !important; bottom: -200px; right: -20px; opacity: 0.3 !important; }";
 
             // Sobre Mim Mobile
             $pad_v = get_theme_mod('florapsi_sobre_pad_vert_mobile', '40');

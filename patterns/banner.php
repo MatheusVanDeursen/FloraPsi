@@ -8,7 +8,14 @@
 ?>
 
 <!-- wp:group {"tagName":"section","className":"main-section banner","style":{"color":{"background":"#5a6e59"}},"layout":{"type":"constrained"}} -->
-<section id="banner" class="wp-block-group main-section banner has-background" style="background-color:#5a6e59"><!-- wp:group {"className":"section-container","layout":{"type":"constrained"}} -->
+<section id="banner" class="wp-block-group main-section banner has-background" style="background-color:#5a6e59">
+
+<!-- wp:html -->
+<div class="banner-flora-left"></div>
+<div class="banner-flora-right"></div>
+<!-- /wp:html -->
+
+<!-- wp:group {"className":"section-container","layout":{"type":"constrained"}} -->
 <div class="wp-block-group section-container"><!-- wp:heading {"textAlign":"center","className":"banner-subtitle","style":{"elements":{"link":{"color":{"text":"#e5cdc0"}}},"color":{"text":"#e5cdc0"},"typography":{"fontSize":"50px"}},"fontFamily":"tan-mon-cheri"} -->
 <h2 class="wp-block-heading has-text-align-center banner-subtitle has-text-color has-link-color has-tan-mon-cheri-font-family" style="color:#e5cdc0;font-size:50px">Seja bem-vindo</h2>
 <!-- /wp:heading -->
