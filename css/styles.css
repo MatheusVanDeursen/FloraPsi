@@ -624,6 +624,7 @@ figure.sobre-mim-img img {
     background-color: white; 
     color: #5A6E59;
     padding: 50px 0;
+    position: relative;
 }
 
 .percurso .section-container {
@@ -631,6 +632,23 @@ figure.sobre-mim-img img {
     gap: 70px; 
     align-items: center;
     flex-direction: row; 
+    position: relative;
+    z-index: 10;
+}
+
+.percurso-flora-left {
+    position: absolute;
+    z-index: 5;
+    pointer-events: none;
+    bottom: -40px; /* Deixa ela levemente cortada na base */
+    left: 70px;   /* Deixa ela levemente cortada na lateral */
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: bottom left;
+    mask-position: bottom left;
+    transform: rotate(60deg);
 }
 
 .percurso-content-img {

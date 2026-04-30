@@ -335,6 +335,25 @@ function florapsi_customize_register($wp_customize) {
         'priority'    => 104,
     ));
 
+    /* --- SUBSEÇÃO: Decoração de Flora --- */
+    $wp_customize->add_section('florapsi_percurso_flora_section', array(
+        'title'    => __('Decoração de Flora', 'florapsi'),
+        'panel'    => 'florapsi_percurso_panel',
+        'priority' => 30,
+    ));
+
+    $wp_customize->add_setting('florapsi_percurso_flora_img', array('default' => '', 'sanitize_callback' => 'esc_url_raw'));
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'florapsi_percurso_flora_img', array('label' => __('Flor (Canto Inferior Esquerdo)', 'florapsi'), 'section' => 'florapsi_percurso_flora_section')));
+
+    $wp_customize->add_setting('florapsi_percurso_flora_width', array('default' => '300', 'sanitize_callback' => 'absint'));
+    $wp_customize->add_control('florapsi_percurso_flora_width', array('label' => __('Largura (px)', 'florapsi'), 'section' => 'florapsi_percurso_flora_section', 'type' => 'number'));
+
+    $wp_customize->add_setting('florapsi_percurso_flora_opacity', array('default' => '0.15', 'sanitize_callback' => 'sanitize_text_field'));
+    $wp_customize->add_control('florapsi_percurso_flora_opacity', array('label' => __('Opacidade (0.1 a 1.0)', 'florapsi'), 'section' => 'florapsi_percurso_flora_section', 'type' => 'text'));
+
+    $wp_customize->add_setting('florapsi_percurso_flora_color', array('default' => '#5A6E59', 'sanitize_callback' => 'sanitize_hex_color'));
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'florapsi_percurso_flora_color', array('label' => __('Cor da Flor', 'florapsi'), 'section' => 'florapsi_percurso_flora_section')));
+
     /* --- SUBSEÇÃO: Responsividade --- */
     $wp_customize->add_section('florapsi_percurso_resp_tablet_section', array(
         'title'    => __('Responsividade: Tablet', 'florapsi'),
@@ -848,6 +867,23 @@ function florapsi_dynamic_css() {
         if ($flora_right) { echo ".banner-flora-right { -webkit-mask-image: url(" . esc_url($flora_right) . "); mask-image: url(" . esc_url($flora_right) . "); }";}
         echo ".banner-flora-left, .banner-flora-right { width: " . esc_attr($flora_width) . "px; opacity: " . esc_attr($flora_opacity) . " !important; }";
 
+        // Meu Percurso - Flora
+        $perc_flora_img = get_theme_mod('florapsi_percurso_flora_img');
+        $perc_flora_width = get_theme_mod('florapsi_percurso_flora_width', '300');
+        $perc_flora_opacity = get_theme_mod('florapsi_percurso_flora_opacity', '0.15');
+        $perc_flora_color = get_theme_mod('florapsi_percurso_flora_color', '#5A6E59');
+
+        if ($perc_flora_img) {
+            echo ".percurso-flora-left {";
+            echo " -webkit-mask-image: url(" . esc_url($perc_flora_img) . ");";
+            echo " mask-image: url(" . esc_url($perc_flora_img) . ");";
+            echo " width: " . esc_attr($perc_flora_width) . "px;";
+            echo " height: " . esc_attr($perc_flora_width) . "px;"; /* Mantém a caixa quadrada para a máscara */
+            echo " opacity: " . esc_attr($perc_flora_opacity) . " !important;";
+            echo " background-color: " . esc_attr($perc_flora_color) . " !important;";
+            echo "}";
+        }
+
         // Serviços (Desktop)
         echo ".servico .servico-icon i {";
         echo " color: " . esc_attr(get_theme_mod('florapsi_servicos_icon_color', '#9B545A')) . ";";
@@ -957,6 +993,9 @@ function florapsi_dynamic_css() {
             echo ".sobre-mim .sobre-mim-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_sobre_subtitulo_fs_tablet', '26')) . "px !important; }";
             echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p, .sobre-mim .sobre-mim-text li { font-size: " . esc_attr(get_theme_mod('florapsi_sobre_text_fs_tablet', '19')) . "px !important; }";
             
+            // Meu Percurso Tablet
+            echo ".percurso-flora-left { height: 300px !important; bottom: -50px; left: 0px; }";
+
             // Serviços Tablet
             echo ".servico .servico-title { font-size: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontsize_tablet', '42')) . "px !important; }";
             echo ".servico-card { max-width: " . esc_attr(get_theme_mod('florapsi_serv_card_max_width_tablet', '350')) . "px; }";
@@ -1020,6 +1059,7 @@ function florapsi_dynamic_css() {
             echo ".sobre-mim .sobre-mim-title { font-size: " . esc_attr(get_theme_mod('florapsi_sobre_titulo_fs_mobile', '30')) . "px !important; }";
             echo ".sobre-mim .sobre-mim-subtitle { font-size: " . esc_attr(get_theme_mod('florapsi_sobre_subtitulo_fs_mobile', '10')) . "px !important; }";
             echo ".sobre-mim .sobre-mim-text, .sobre-mim .sobre-mim-text p, .sobre-mim .sobre-mim-text li { font-size: " . esc_attr(get_theme_mod('florapsi_sobre_text_fs_mobile', '16')) . "px !important; }";
+            
             // Meu Percurso Mobile
             $perc_pad_v = get_theme_mod('florapsi_percurso_pad_vert_mobile', '40');
             $perc_pad_h = get_theme_mod('florapsi_percurso_pad_horiz_mobile', '5');
@@ -1027,6 +1067,7 @@ function florapsi_dynamic_css() {
             echo ".percurso .percurso-img { max-width: " . esc_attr(get_theme_mod('florapsi_percurso_img_max_width_mobile', '80')) . "% !important; max-height: " . esc_attr(get_theme_mod('florapsi_percurso_img_max_height_mobile', '600')) . "px !important; }";
             echo ".percurso .percurso-title { font-size: " . esc_attr(get_theme_mod('florapsi_percurso_titulo_fs_mobile', '30')) . "px !important; }";
             echo ".percurso .percurso-text, .percurso .percurso-text p, .percurso .percurso-text li { font-size: " . esc_attr(get_theme_mod('florapsi_percurso_text_fs_mobile', '16')) . "px !important; }";
+            echo ".percurso-flora-left { width: 120px !important; height: 120px !important; bottom: -10px; left: -10px; }";
 
             // Serviços Mobile
             echo ".servico .servico-title { font-size: " . esc_attr(get_theme_mod('florapsi_servicos_main_title_fontsize_mobile', '36')) . "px !important; }";

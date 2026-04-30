@@ -34,13 +34,9 @@ O tema conta com um sistema de pré-carregamento nativo. A página inicial intei
 
 ---
 
-## 📦 Changelog (v0.4)
+## 📦 Changelog (v0.5)
 
-* **Migração para o Gutenberg:** O sistema migrou totalmente do método de personalização antigo (via plugin CMB2) para as ferramentas nativas de edição de blocos do WordPress. A dependência do CMB2 foi removida.
-* **Padrões de Bloco Adicionados:** Nova pasta `/patterns` incluída para carregamento em lote das seções do tema.
-* **Customizer Refatorado:** O painel de personalização foi fortemente encolhido e otimizado, delegando a gestão de textos e cores base para o editor de páginas, mantendo apenas configurações técnicas e de responsividade.
-* **Preview do Tema:** Imagem oficial de demonstração (`screenshot`) adicionada ao painel de temas.
-* **Manutenção Visual:** Nenhuma mudança significativa na aparência final do site foi feita durante esta migração estrutural.
+* **Adição de aretes personalizadas:** Agora é possível adicionar artes personalizadas nas seções banner e meu percurso.
 
 ### 🐛 Problemas Conhecidos (Known Issues)
 * **Animações Desativadas:** As animações de rolagem (slide-in) foram removidas temporariamente devido a incompatibilidades com a nova estrutura de blocos e serão refeitas em atualizações futuras. Ainda há código residual no `script.js` que será limpo.
