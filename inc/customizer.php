@@ -863,8 +863,10 @@ function florapsi_dynamic_css() {
         $flora_width = get_theme_mod('florapsi_banner_flora_width', '400');
         $flora_opacity = get_theme_mod('florapsi_banner_flora_opacity', '0.4');
 
-        if ($flora_left) { echo ".banner-flora-left { -webkit-mask-image: url(" . esc_url($flora_left) . "); mask-image: url(" . esc_url($flora_left) . "); }"; }
-        if ($flora_right) { echo ".banner-flora-right { -webkit-mask-image: url(" . esc_url($flora_right) . "); mask-image: url(" . esc_url($flora_right) . "); }";}
+        if (!empty($flora_left)) { echo ".banner-flora-left { -webkit-mask-image: url('" . esc_url($flora_left) . "'); mask-image: url('" . esc_url($flora_left) . "'); display: block; }";
+        } else { echo ".banner-flora-left { display: none !important; }"; }
+        if (!empty($flora_right)) { echo ".banner-flora-right { -webkit-mask-image: url('" . esc_url($flora_right) . "'); mask-image: url('" . esc_url($flora_right) . "'); display: block; }";
+        } else { echo ".banner-flora-right { display: none !important; }";}
         echo ".banner-flora-left, .banner-flora-right { width: " . esc_attr($flora_width) . "px; opacity: " . esc_attr($flora_opacity) . " !important; }";
 
         // Meu Percurso - Flora
@@ -872,16 +874,22 @@ function florapsi_dynamic_css() {
         $perc_flora_width = get_theme_mod('florapsi_percurso_flora_width', '300');
         $perc_flora_opacity = get_theme_mod('florapsi_percurso_flora_opacity', '0.15');
         $perc_flora_color = get_theme_mod('florapsi_percurso_flora_color', '#5A6E59');
+        $perc_flora_rotate = get_theme_mod('florapsi_percurso_flora_rotate', '0');
 
-        if ($perc_flora_img) {
+        if (!empty($perc_flora_img)) {
             echo ".percurso-flora-left {";
-            echo " -webkit-mask-image: url(" . esc_url($perc_flora_img) . ");";
-            echo " mask-image: url(" . esc_url($perc_flora_img) . ");";
+            echo " -webkit-mask-image: url('" . esc_url($perc_flora_img) . "');";
+            echo " mask-image: url('" . esc_url($perc_flora_img) . "');";
             echo " width: " . esc_attr($perc_flora_width) . "px;";
-            echo " height: " . esc_attr($perc_flora_width) . "px;"; /* Mantém a caixa quadrada para a máscara */
+            echo " height: " . esc_attr($perc_flora_width) . "px;";
             echo " opacity: " . esc_attr($perc_flora_opacity) . " !important;";
             echo " background-color: " . esc_attr($perc_flora_color) . " !important;";
+            echo " transform: rotate(" . esc_attr($perc_flora_rotate) . "deg);";
+            echo " transform-origin: bottom left;";
+            echo " display: block;";
             echo "}";
+        } else {
+            echo ".percurso-flora-left { display: none !important; }";
         }
 
         // Serviços (Desktop)
